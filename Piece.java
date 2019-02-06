@@ -1,3 +1,5 @@
+import java.lang.Math
+
 public class Piece{
     
     //in calling this method one should already have determined the peice is a rook and it will return an array showing true for valid moves and false everyhere else
@@ -50,12 +52,27 @@ public class Piece{
         y = pos[1];
         bool[][] moves = bool[8][8];
         if team.equals("white"){ //assuming white is on the top of the board
-            moves[x-1][y+1] = true;
-            moves[x+1][y+1] = true;
+            moves[Math.max(x-1,0)][y+1] = true;
+            moves[Math.min(x+1,7)][y+1] = true;
         }
         else{
-            moves[x-1][y-1] = true;
-            moves[x+1][y-1] = true;
+            moves[Math.max(x-1,0)][y-1] = true;
+            moves[Math.min(x+1,7)][y-1] = true;
         }
+    }
+    
+    public static bool[][] calculateKnightMoves(String[][] board, int[] pos, String team){
+        x = pos[0];
+        y = pos[1];
+        bool[][] moves = bool[8][8];
+        moves[x+2][y+1] = true;
+        moves[x+1][y+2] = true;
+        moves[x-1][y+2] = true;
+        moves[x-2][y+1] = true;
+        moves[x-2][y-1] = true;
+        moves[x-1][y-2] = true;
+        moves[x+1][y-2] = true;
+        moves[x+2][y-1] = true;
+    }
     //more methods
 }
