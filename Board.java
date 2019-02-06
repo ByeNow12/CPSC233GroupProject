@@ -15,6 +15,10 @@ public class Board {
         return this.boardPositions;
     }
 
+    public void setBoardPositions(int i, int x, String value) {
+        this.boardPositions[i][x] = value;
+    }
+
     public void defaultPositions() {
         String[] pieces = {"w_Ro", "w_Kn", "w_Bi", "b_Ro", "b_Kn", "b_Bi"};
         for (int i = 0; i < 8; i++) {
@@ -50,11 +54,4 @@ public class Board {
             }
         }
     }
-
-    public static void main(String[] args) {
-        Board b = new Board();
-        b.defaultPositions();
-        b.draw();
-    }
-
 }
