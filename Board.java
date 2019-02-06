@@ -33,10 +33,10 @@ public class Board {
             boardPositions[0][7 - i] = pieces[i];
             boardPositions[7][7 - i] = pieces[i + 3];
         }
-        boardPositions[0][3] = "w_Ki";
-        boardPositions[0][4] = "w_Qu";
-        boardPositions[7][3] = "b_Ki";
-        boardPositions[7][4] = "b_Qu";
+        boardPositions[0][4] = "w_Ki";
+        boardPositions[0][3] = "w_Qu";
+        boardPositions[7][4] = "b_Ki";
+        boardPositions[7][3] = "b_Qu";
     }
 
     public void draw() {
