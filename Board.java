@@ -35,10 +35,26 @@ public class Board {
         boardPositions[7][4] = "b_Qu";
     }
 
+    public void draw() {
+        for (int i = 0; i < 8; i++) {
+            for (int x = 0; x < 8; x++) {
+                if (boardPositions[i][x] != "0") {
+                    System.out.print("|" + boardPositions[i][x]);
+                }
+                else {
+                    System.out.print("|____");
+                }
+                if (x == 7) {
+                    System.out.println("|");
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Board b = new Board();
         b.defaultPositions();
-        System.out.println(Arrays.deepToString(b.getBoardPosition()));
+        b.draw();
     }
 
 }
