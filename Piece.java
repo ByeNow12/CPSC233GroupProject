@@ -1,24 +1,48 @@
 public class Piece{
-
-    private final String team;
     
-    public Piece(String team){
-        this.team = team;
-    }
+    //in calling this method oens hould already have determined the peice is a rook and it will return an array showing true for valid moves and false everyhere else
     
-    /*
-    @param board the game board
-    @param pos -  the position of the piece in the format [x,y]
-    @return returns each move in the format [x,y] within a 2D array
-    **/
-    
-    public int[][] calculateMoves(int[][] board, int[] pos){
-        //calculate valid moves
-        // this function may even just be removed
-    }
-    
-    public String getTeam(){
-        return team;
+    public static bool[][] calculateRookMoves(String[][] board, int[] pos){ 
+        x = pos[0];
+        y = pos[1];
+        bool[][] moves = bool[8][8];
+        for (int i = x-1; i >= 0; i--;){
+            if (board[i][y].equals("blank")){
+                moves[i][y] = true;
+            }
+            else{
+                moves[i][y] = true;
+                break;
+            }
+        }
+        for (int i = x+1; i < 8; i++;){
+            if (board[i][y].equals("blank")){
+                moves[i][y] = true;
+            }
+            else{
+                moves[i][y] = true;
+                break;
+            }
+        }
+        for (int i = y-1; i >= 0; i--;){
+            if (board[x][i].equals("blank")){
+                moves[x][i] = true;
+            }
+            else{
+                moves[i][y] = true;
+                break;
+            }
+        }
+        for (int i = y+1; i < 8; i++;){
+            if (board[x][i].equals("blank")){
+                moves[x][i] = true;
+            }
+            else{
+                moves[i][y] = true;
+                break;
+            }
+        }
+        return moves;
     }
     
     //more methods
