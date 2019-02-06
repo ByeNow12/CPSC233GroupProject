@@ -49,13 +49,13 @@ public class Piece{
         x = pos[0];
         y = pos[1];
         bool[][] moves = bool[8][8];
-        if team.equals("white"){
+        if team.equals("white"){ //assuming white is on the top of the board
+            moves[x-1][y+1] = true;
             moves[x+1][y+1] = true;
-            moves[x+1][y-1] = true;
         }
         else{
-            moves[x-1][y+1] = true;
             moves[x-1][y-1] = true;
+            moves[x+1][y-1] = true;
         }
     //more methods
 }
