@@ -8,7 +8,7 @@ public class Piece{
         x = pos[0];
         y = pos[1];
         bool[][] moves = bool[8][8];
-        for (int i = x-1; i >= 0; i--;){
+        for (int i = x-1; i >= 0; i--){
             if (board[i][y].equals("blank")){
                 moves[i][y] = true;
             }
@@ -17,7 +17,7 @@ public class Piece{
                 break;
             }
         }
-        for (int i = x+1; i < 8; i++;){
+        for (int i = x+1; i < 8; i++){
             if (board[i][y].equals("blank")){
                 moves[i][y] = true;
             }
@@ -26,7 +26,7 @@ public class Piece{
                 break;
             }
         }
-        for (int i = y-1; i >= 0; i--;){
+        for (int i = y-1; i >= 0; i--){
             if (board[x][i].equals("blank")){
                 moves[x][i] = true;
             }
@@ -35,7 +35,7 @@ public class Piece{
                 break;
             }
         }
-        for (int i = y+1; i < 8; i++;){
+        for (int i = y+1; i < 8; i++){
             if (board[x][i].equals("blank")){
                 moves[x][i] = true;
             }
@@ -51,7 +51,7 @@ public class Piece{
         x = pos[0];
         y = pos[1];
         bool[][] moves = bool[8][8];
-        if team.equals("white"){ //assuming white is on the top of the board
+        if (team.equals("white")){ //assuming white is on the top of the board
             moves[Math.max(x-1,0)][y+1] = true;
             moves[Math.min(x+1,7)][y+1] = true;
         }
