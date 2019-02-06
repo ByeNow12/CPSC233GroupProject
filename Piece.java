@@ -6,7 +6,13 @@ public class Piece{
         this.team = team;
     }
     
-    public void calculateMoves(int[] board){
+    /*
+    @param board the game board
+    @param pos -  the position of the piece in the format [x,y]
+    @return returns each move in the format [x,y] within a 2D array
+    **/
+    
+    public int[][] calculateMoves(int[][] board, int[] pos){
         //calculate valid moves
         // this function may even just be removed
     }
