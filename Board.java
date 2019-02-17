@@ -49,9 +49,12 @@ public class Board {
                     System.out.print("|____");
                 }
                 if (x == 7) {
-                    System.out.println("|");
+                    System.out.println("| " + Integer.toString(8 - i));
                 }
             }
+			if (i == 7) {
+				System.out.println("   A    B    C    D    E    F    G    H");
+			}
         }
     }
 }
