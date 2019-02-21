@@ -4,26 +4,40 @@ public class UserInterface {
 	private Scanner input = new Scanner(System.in);
 	private String userName;
 	private char userColor;
+	private int team;
 	
 	public UserInterface() {
 		userName = "Default name";
 		userColor = 'w';
+		team = 0;
 	}
 	
 	public UserInterface(String name) {
 		userName = name;
 		userColor = 'w';
+		team = 0;
 	}
 	
 	public UserInterface(String name, char color) {
 		userName = name;
 		userColor = color;
+		team = 0;
+	}
+	
+	public UserInterface(String name, char color, int teamNum) {
+		userName = name;
+		userColor = color;
+		team = teamNum;
 	}
 	
 	public void setUserName() {
 		System.out.print("Please enter your name: ");
 		userName = input.nextLine();
-		System.out.println("Thanks " + userName + ". Your name has been recorded as belonging to the user.");
+		System.out.println("Thanks " + userName + ". Your name has been recorded.");
+	}
+	
+	public void setName(String name) {
+		userName = name;
 	}
 	
 	public void setUserColor() {
@@ -36,12 +50,33 @@ public class UserInterface {
 		userColor = userInput.charAt(0);
 	}
 	
+	public void setColor(char c) {
+		userColor = c;
+	}
+	
 	public String getUserName() {
 		return userName;
 	}
 	
 	public char getUserColor() {
 		return userColor;
+	}
+	
+	public void setTeam() {
+		System.out.println("Do you want to play with another person?");
+		System.out.println("'y' = yes\n'n' = no");
+		String userInput = input.nextLine();
+		while ((!userInput.equals("y") && !userInput.equals("n"))) {
+			System.out.println("Invalid Input");
+			userInput = input.nextLine();
+		}
+		if (userInput.equals("y")) {
+			team = 1;
+		}
+	}
+	
+	public int getTeam() {
+		return team;
 	}
 	
 	public void welcomeMsg(boolean show_board) {
@@ -85,5 +120,17 @@ public class UserInterface {
 		else {
 			return userInput;
 		}
+	}
+	
+	public String selectSpot(int teamNum, String name) {
+		System.out.println(name + " select one of your pieces on the board.");
+		//spot verification must be done
+		return moveInput();
+	}
+	
+	public void move(String spot) {
+		System.out.println("TEST");
+		//Board updates must be done
+		System.out.println(spot);
 	}
 }
