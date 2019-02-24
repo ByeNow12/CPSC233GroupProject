@@ -7,6 +7,9 @@ class Game{
   private ComputerPlayer ai;
   private GameConfiguration config = new GameConfiguration();
 
+  private Scanner m = new Scanner(System.in); // Scanner for getting input regarding move selection.
+  private int fR, fC, tR, tC, turnCounter;  // Always used, the first four are for move selections.
+  
   public void setup(){
     Scanner format = new Scanner(System.in);
     System.out.println("Would you like to play a [H]uman or [C]omputer?");
@@ -18,11 +21,9 @@ class Game{
     }
     if (c == "C"){
       human1 = new HumanPlayer("White"); // Default's the human to the slightly more advantageous side, may change in the future.
-      ai = new ComputerPlayer("Black", lastMovePlaceholder); // Unsure of the purpose of the instance variable of Move type upon initialisation.
+      ai = new ComputerPlayer("Black"); // Unsure of the purpose of the instance variable of Move type upon initialisation.
     }
 
-    Scanner m = new Scanner(System.in); // Scanner for getting input regarding move selection.
-    int fR, fC, tR, tC, turnCounter;  // Always used, the first four are for move selections.
   }
 
 
