@@ -9,7 +9,7 @@ public class ComputerPlayer {
     		this.token = aToken;
  	 }
   
-	public ComputerPlayer(ComputerPlay toCopy) { //copy constructor
+	public ComputerPlayer(ComputerPlayer toCopy) { //copy constructor
    		super(toCopy);
 		this.token = toCopy.token;
     		this.lastMove = toCopy.lastMove;
