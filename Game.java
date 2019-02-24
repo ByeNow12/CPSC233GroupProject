@@ -36,7 +36,7 @@ class Game{
     System.out.println("What column would you like to move this piece to?");
     tC = m.nextInt();
 
-    if (config.isValidMove(new Move("White",fC,fR,tR,tC))
+    if (config.isValidMove(new Move("White",fC,fR,tR,tC)))
       config.update("White",fC,fR,tR,tC);
     else{ 
       System.out.println("You have made an invalid move selection.");
@@ -55,7 +55,7 @@ class Game{
     System.out.println("What column would you like to move this piece to?");
     tC = m.nextInt();
 
-    if (config.isValidMove(new Move("Black",fC,fR,tR,tC))
+    if (config.isValidMove(new Move("Black",fC,fR,tR,tC)))
       config.update("Black",fC,fR,tR,tC);
     else{
       System.out.println("You have made an invalid move selection.");
