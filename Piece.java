@@ -1,5 +1,3 @@
-import java.lang.Math;
-
 public class Piece{
     
     //in calling this method one should already have determined the peice is a rook and it will return an array showing true for valid moves and false everyhere else
