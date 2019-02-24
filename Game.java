@@ -67,6 +67,7 @@ class Game{
 
   public void play(){
     while (!hasWon("White") || !hasWon("Black")){
+      int turnCounter;
       if (turnCounter % 2 == 0)
         whitePlay();
       if ((turnCounter % 2 == 1) && (c == "H"))
