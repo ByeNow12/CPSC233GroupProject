@@ -5,6 +5,7 @@ public class ComputerPlayer extends Game {
   //Constructors
   public ComputerPlayer(String aToken, Move theLastMove) { //default
     super();
+    this.token = aToken;
   }
   
   public ComputerPlayer(ComputerPlay toCopy) { //copy constructor
@@ -29,11 +30,15 @@ public class ComputerPlayer extends Game {
     p1.CalculatePieceMoves("newPiece", newPosition, "newTeam"); //compute all legal destinations in which that piece could move
     p1.getAllValidMoves(tokenToMove);
     p1.isValidMove(tokenToMove); 
-    if (p1.isValidMove(move) != true;) {
+    if (p1.isValidMove(move) != true) {
       Piece p2 = new Piece(); //if there are no legal destinations, choose a new piece
     }
     //Randomly select one of the computed legal destinations to move the piece to
     
+  }
+  
+ public static void main(String[] args) {
+    ComputerPlayer c = new ComputerPlayer();
   }
    
 }
