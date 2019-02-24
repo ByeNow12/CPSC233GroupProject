@@ -29,7 +29,7 @@ public class ComputerPlayer {
   	*/
   	public void setMove(int rowNum, int colNum) {
 		//while the row/column numbers in range of 0-8, Move class called to make a move
-		while ((rowNum && colNum) >= 0) && ((rowNum && colNum) <= 8) { 
+		while ((rowNum >= 0 && colNum >= 0) && (rowNum <= 8 && colNum <= 8)) { 
 			Move compMove = new Move(rowNum, colNum); //call Move class to make a move based on the row/column numbers of piece 
 			if (compMove.isValidMove() == true) { //check if move is valid
 				compMove.getTo(); //if valid, move piece to desired row and column number 
