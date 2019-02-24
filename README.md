@@ -1,6 +1,7 @@
 Chess Board Game
 
 Where to Find the Version for Demo 1:
+
 The classes required for demo 1 will be placed in one folder which will be uploaded to our repository
 
 Compiling Instructions:
