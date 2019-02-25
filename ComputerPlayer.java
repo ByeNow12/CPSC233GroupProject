@@ -2,6 +2,7 @@ public class ComputerPlayer {
 	private String token;
 	private Move lastMove; //computer considers the last move made by human player to make its move, used when AI developed
 	//lastMove will be left alone for now
+        private GameConfiguration config; //TODO This needs to be changed so that our gameconfig is passed into a constructor
 
   	//Constructors
 	public ComputerPlayer(String aToken) { //default
@@ -18,7 +19,7 @@ public class ComputerPlayer {
   	* @return a random valid move until we implement the AI
  	*/
   	public Move getMove(GameConfiguration currentConfig) {
-		return compMove; //obtain move based on values from the setter
+		return lastMove; //obtain move based on values from the setter
  	}
   
   	/** Setter method to make a random valid move for the computer player
@@ -31,7 +32,7 @@ public class ComputerPlayer {
 		//while the row/column numbers in range of 0-8, Move class called to make a move
 		while ((toRowNum >= 0 && toColNum >= 0) && (toRowNum <= 8 && toColNum <= 8)) {
 			Move compMove = new Move(token, fromRowNum, fromColNum, toRowNum, toColNum); //call Move class to make a move based on the row/column number 
-			if (compMove.isValidMove() == true) { //check if move is valid
+			if (config.isValidMove(compMove) == true) { //check if move is valid
 				compMove.getTo(); //if valid, move piece to desired row and column number 
 			}
 		}
