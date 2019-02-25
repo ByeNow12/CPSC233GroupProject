@@ -1,10 +1,10 @@
 Bugs:
-- Fix queen - can't capture vertically
-- Pawn cannot move 2 spaces at beginning
-- Castling needs to be implemented
-- Promotion needs to implemented
-- en passant needs to be implemented
-- check for checkmate, draws, stalemates (game end conditions)
+- Fix queen - can't capture vertically - Riley
+- Pawn cannot move 2 spaces at beginning - Carmen
+- Castling needs to be implemented - Tom
+- Promotion needs to implemented - Tom
+- en passant needs to be implemented - Tom
+- check for checkmate, draws, stalemates (game end conditions) - Dany
 
 Features:
 - Move draw method out of board class
