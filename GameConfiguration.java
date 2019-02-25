@@ -27,28 +27,27 @@ public class GameConfiguration {
 			pieceColorString = "black";
 		}
 		String pieceType = token.substring(3);
-		Piece selectedPiece = new Piece();
 		String[] pieces = {"Ro", "Kn", "Bi", "Qu", "Ki", "Pa"};
 		String[][] boardPositions = board.getBoardPosition();
 		for (String type : pieces) {
 			if (pieceType == type) {
 				if (type.equals("Ro")) {
-					return selectedPiece.calculateRookMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
+					return Piece.calculateRookMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
 				}
 				else if (type.equals("Kn")) {
-					return selectedPiece.calculateKnightMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
+					return Piece.calculateKnightMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
 				}
 				else if (type.equals("Bi")) {
-					return selectedPiece.calculateBishopMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
+					return Piece.calculateBishopMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
 				}
 				else if (type.equals("Qu")) {
-					return selectedPiece.calculateQueenMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
+					return Piece.calculateQueenMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
 				}
 				else if (type.equals("Ki")) {
-					return selectedPiece.calculateKingMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
+					return Piece.calculateKingMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
 				}
 				else {
-					return selectedPiece.calculatePawnMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
+					return Piece.calculatePawnMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
 				}
 			}
 		}
