@@ -18,7 +18,7 @@ public class GameConfiguration {
 		int[] lastMove = move.getFrom();
 		int[] currentMove = move.getTo();
 		String token = board.getBoardPosition()[lastMove[0]][lastMove[1]];
-		pieceColor = token.charAt(0);
+		char pieceColor = token.charAt(0);
 		String pieceColorString;
 		if (pieceColor == 'w') {
 			pieceColorString = "white";
@@ -52,6 +52,7 @@ public class GameConfiguration {
 				}
 			}
 		}
+                return false; // TODO I only put this here to make it compile, it should be checked to make sure it's actually correct
 	}
 	
 	public boolean hasWon(String token){
