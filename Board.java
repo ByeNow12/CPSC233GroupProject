@@ -41,19 +41,21 @@ public class Board {
 
     public void draw() {
         for (int i = 0; i < 8; i++) {
-            for (int x = 0; x < 8; x++) {
-                if (boardPositions[i][x] != "0") {
-                    System.out.print("|" + boardPositions[i][x]);
+            for (int j = 0; j < 8; j++) {
+                if (!boardPositions[i][j].equals("0")) {
+                    System.out.print("|" + boardPositions[i][j]);
                 }
                 else {
                     System.out.print("|____");
                 }
-                if (x == 7) {
-                    System.out.println("| " + Integer.toString(8 - i));
+                if (j == 7) {
+                    //System.out.println("| " + Integer.toString(8 - i));
+		    System.out.println("| " + Integer.toString(i));
                 }
             }
 			if (i == 7) {
-				System.out.println("   A    B    C    D    E    F    G    H");
+				//System.out.println("   A    B    C    D    E    F    G    H");
+				System.out.println("   0    1    2    3    4    5    6    7");
 			}
         }
     }
