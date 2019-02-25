@@ -1,6 +1,10 @@
 public class GameConfiguration {
 	
 	private Board board = new Board();
+
+	public GameConfiguration(){
+		board.defaultPositions();
+	}
 	
 	public Board getBoard() {
 		return board;
@@ -49,7 +53,7 @@ public class GameConfiguration {
                 return false; // TODO I only put this here to make it compile, it should be checked to make sure it's actually correct
 	}
 	
-	public boolean hasWon(String token){
+	public boolean hasWon(char token){
 		boolean wKingPresent = false;
 		boolean bKingPresent = false;
 		for (int i = 0; i < 8; i++) {
@@ -62,7 +66,8 @@ public class GameConfiguration {
 				}
 			}
 		}
-		return (!wKingPresent || !bKingPresent);
+                if (token == 'w') return !bKingPresent;
+		return !wKingPresent;
 	}
 	
 	public Move[] getAllValidMoves(String token){
