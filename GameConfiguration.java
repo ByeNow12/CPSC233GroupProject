@@ -1,16 +1,25 @@
 public class GameConfiguration {
 
 	private Board board;
-
+	
+	//Constructor
 	public GameConfiguration(){
 		board = new Board();
 		board.defaultPositions();
 	}
 
+	/**
+	*getter method for board instance variable
+	*@return: board:Board
+	*/
 	public Board getBoard() {
 		return board;
 	}
 
+	/**
+	* updates board positions in accordance with the passed move object
+	*@param: move: Move
+	*/
 	public void update(Move move){
 		int[] lastMove = move.getFrom();
 		int[] currentMove = move.getTo();
@@ -19,6 +28,11 @@ public class GameConfiguration {
 		board.setBoardPositions(currentMove[0], currentMove[1], token);
 	}
 
+	/**
+	* Checks if the passed move object is a valid move and returns true if it is
+	* @param: move:Move
+	* @return: boolean
+	*/
 	public boolean isValidMove(Move move){
 		int[] lastMove = move.getFrom();
 		int[] currentMove = move.getTo();
@@ -52,6 +66,11 @@ public class GameConfiguration {
                 return false; //just in case some fluke accident occurs
 	}
 
+	/**
+	* Checks if the king in belonging to token is captured. Checks if the game has ended.
+	* @param: token: char
+	* @return: boolean
+	*/
 	public boolean hasWon(char token){
 		boolean wKingPresent = false;
 		boolean bKingPresent = false;
@@ -69,6 +88,11 @@ public class GameConfiguration {
 		return !wKingPresent;
 	}
 
+	/**
+	* returns all the valid moves of the team belonging to token
+	* @param: token: String
+	* @return: array of Move objects
+	*/
 	public Move[] getAllValidMoves(String token){
 		//todo later
 		return new Move[0];
