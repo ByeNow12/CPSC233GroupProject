@@ -9,11 +9,12 @@ class Game{
 
   private Scanner m = new Scanner(System.in); // Scanner for getting input regarding move selection.
   private int fR, fC, tR, tC, turnCounter;  // Always used, the first four are for move selections.
+  private String c;
   
   public void setup(){
     Scanner format = new Scanner(System.in);
     System.out.println("Would you like to play a [H]uman or [C]omputer?");
-    String c = format.next();
+    c = format.next();
 
     if (c == "H"){
       human1 = new HumanPlayer("White");
@@ -36,9 +37,11 @@ class Game{
     tR = m.nextInt();
     System.out.println("What column would you like to move this piece to?");
     tC = m.nextInt();
+    
+    Move move = new Move("White",fC,fR,tR,tC);
 
-    if (config.isValidMove(new Move("White",fC,fR,tR,tC)))
-      config.update("White",fC,fR,tR,tC);
+    if (config.isValidMove(move))
+      config.update(move);
     else{ 
       System.out.println("You have made an invalid move selection.");
       whitePlay(); // Recursive call never made if move is valid, avoids infinite loop.
@@ -56,8 +59,10 @@ class Game{
     System.out.println("What column would you like to move this piece to?");
     tC = m.nextInt();
 
-    if (config.isValidMove(new Move("Black",fC,fR,tR,tC)))
-      config.update("Black",fC,fR,tR,tC);
+    Move move = new Move("Black",fC,fR,tR,tC);
+
+    if (config.isValidMove(move))
+      config.update(move);
     else{
       System.out.println("You have made an invalid move selection.");
       blackPlay(); // See above comment.
@@ -66,18 +71,21 @@ class Game{
 
 
   public void play(){
-    while (!hasWon("White") || !hasWon("Black")){
-      int turnCounter;
+    int turnCounter = 0;
+    while (!config.hasWon("White") || !config.hasWon("Black")){
       if (turnCounter % 2 == 0)
         whitePlay();
       if ((turnCounter % 2 == 1) && (c == "H"))
        blackPlay();
       if ((turnCounter % 2 == 1) && (c == "C"))
-       config.update(ai.getMove()); // Here I assume the ComputerPlayer cannot make invalid moves.
+       config.update(ai.getMove(config)); // Here I assume the ComputerPlayer cannot make invalid moves.
       // A method to check for draws/stalemates must be added to the GameConfiguration class, and incited here.
+      turnCounter++;
       }
   }
   public static void main(String[] args) {
-    play(); // This is the class incited to run the project as a whole.
+    Game g = new Game();
+    g.setup();
+    g.play(); // This is the class incited to run the project as a whole.
     }
 }
