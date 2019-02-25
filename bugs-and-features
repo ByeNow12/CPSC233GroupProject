@@ -1,0 +1,15 @@
+Bugs:
+- Fix queen - can't capture vertically
+- Pawn cannot move 2 spaces at beginning
+- Castling needs to be implemented
+- Promotion needs to implemented
+- en passant needs to be implemented
+- check for checkmate, draws, stalemates (game end conditions)
+
+Features:
+- Move draw method out of board class
+- add 2 classes: HandleCellClicked class and GUIGame class
+- Create graphics for pieces and board
+- indicate which team is going for human vs human
+- indication that computer made a move
+- Let player choose team colour
