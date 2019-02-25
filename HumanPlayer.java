@@ -8,6 +8,12 @@ public class HumanPlayer {
 		this.token = token;
 	}
 	
+	/** Retrieves move from the user playing the game. Prompts the user to enter the number for the row and column that their piece is moving from, to the row and column that their piece is moving to.
+	* If user enters invalid move, the method will loop from the beginning until a valid move is entered.
+	* An invalid move is when the piece is moved in a way that violates rules of chess, or if the player tries to move the piece to the same location that it is already in.
+	* @param gameConfiguration, the current status of the game 
+	* @return currentMove, the move that the user has selected to move a piece
+	*/
 	public Move getMove(GameConfiguration gameConfiguration){
 		Scanner userInput = new Scanner(System.in);
 		boolean moveIsValid = false;
