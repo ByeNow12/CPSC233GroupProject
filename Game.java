@@ -72,7 +72,7 @@ class Game{
 
   public void play(){
     int turnCounter = 0;
-    while (!config.hasWon("White") || !config.hasWon("Black")){
+    while (!config.hasWon('w') || !config.hasWon('b')){
       if (turnCounter % 2 == 0)
         whitePlay();
       if ((turnCounter % 2 == 1) && (c == "H"))
