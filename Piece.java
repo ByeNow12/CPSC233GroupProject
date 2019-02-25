@@ -1,6 +1,11 @@
-public class Piece{
-
-    //in calling this method one should already have determined the peice is a rook and it will return an array showing true for valid moves and false everyhere else
+public class Piece {
+    /** Method for calculating possible moves for rook piece based on what moves the pieces are allowed to make according to standard chess rules
+    * Creates a 8 by 8 board with valid moves marked as true and invalid moves marked as false
+    * @param String[][] board, an arraylist for the board
+    * @param int[] pos, array that contains index for position of the rook piece
+    * @param char team, a character for the team 
+    * @return an array that shows true for valid moves of rook and false everywhere else
+    */ 
     public static boolean[][] calculateRookMoves(String[][] board, int[] pos, char team){
         int x = pos[0];
         int y = pos[1];
@@ -47,7 +52,14 @@ public class Piece{
         }
         return moves;
     }
-
+    
+    /** Method for calculating possible moves for pawn piece based on what moves the pieces are allowed to make according to standard chess rules
+    * Creates a 8 by 8 board with valid moves marked as true and invalid moves marked as false
+    * @param String[][] board, an arraylist for the board
+    * @param int[] pos, array that contains index for position of the pawn piece
+    * @param char team, a character for the team 
+    * @return an array that shows true for valid moves of pawn and false everywhere else
+    */
     public static boolean[][] calculatePawnMoves(String[][] board, int[] pos, char team){
         int r = pos[0];
         int c = pos[1];
@@ -73,6 +85,13 @@ public class Piece{
 	return moves;
     }
 
+    /** Method for calculating possible moves for knight piece based on what moves the pieces are allowed to make according to standard chess rules
+    * Creates a 8 by 8 board with valid moves marked as true and invalid moves marked as false
+    * @param String[][] board, an arraylist for the board
+    * @param int[] pos, array that contains index for position of the knight piece
+    * @param char team, a character for the team 
+    * @return an array that shows true for valid moves of knight and false everywhere else
+    */
     public static boolean[][] calculateKnightMoves(String[][] board, int[] pos, char team){
         int x = pos[0];
         int y = pos[1];
@@ -88,6 +107,13 @@ public class Piece{
 	return moves;
     }
 
+    /** Method for calculating possible moves for bishop piece based on what moves the pieces are allowed to make according to standard chess rules
+    * Creates a 8 by 8 board with valid moves marked as true and invalid moves marked as false
+    * @param String[][] board, an arraylist for the board
+    * @param int[] pos, array that contains index for position of the bishop piece
+    * @param char team, a character for the team 
+    * @return an array that shows true for valid moves of bishop and false everywhere else
+    */
     public static boolean[][] calculateBishopMoves(String[][] board, int[] pos, char team){
 	int x = pos[0];
         int y = pos[1];
@@ -123,6 +149,13 @@ public class Piece{
 	return moves;
     }
 
+    /** Method for calculating possible moves for king piece based on what moves the pieces are allowed to make according to standard chess rules
+    * Creates a 8 by 8 board with valid moves marked as true and invalid moves marked as false
+    * @param String[][] board, an arraylist for the board
+    * @param int[] pos, array that contains index for position of the king piece
+    * @param char team, a character for the team 
+    * @return an array that shows true for valid moves of king and false everywhere else
+    */
     public static boolean[][] calculateKingMoves(String[][] board, int[] pos, char team){
 	int x = pos[0];
         int y = pos[1];
@@ -138,6 +171,13 @@ public class Piece{
 	return moves;
     }
 
+    /** method for calculating possible moves for queen piece based on what moves the pieces are allowed to make according to standard chess rules
+    * Creates a 8 by 8 board with valid moves marked as true and invalid moves marked as false
+    * @param String[][] board, an arraylist for the board
+    * @param int[] pos, array that contains index for position of the queen piece
+    * @param char team, a character for the team 
+    * @return an array that shows true for valid moves of queen and false everywhere else
+    */
     public static boolean[][] calculateQueenMoves(String[][] board, int[] pos, char team){
 	boolean[][] moves = new boolean[8][8];
 	boolean[][] rMoves = calculateRookMoves(board, pos, team);
@@ -149,6 +189,14 @@ public class Piece{
 	}
 	return moves;
     }
+
+    /** Method for ensuring that the pieces move within the 8 by 8 board  
+    * @param String[][] board, an arraylist for the board
+    * @param int[] pos, array that contains index for position of the pieces
+    * @param char team, a character for the team 
+    * @param boolean[][] moves, an array that shows if the moves are true
+    * @return moves, an array that shows true if the pieces move within the board range
+    */
     private static boolean[][] safeCheck(String[][] board, int[] pos, char team, boolean[][] moves){
 	int x = pos[0];
         int y = pos[1];
