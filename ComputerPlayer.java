@@ -17,7 +17,7 @@ public class ComputerPlayer {
   	}
   	
  	/** Getter method for getting the move for the computer player
-  	* @param currentConfig,
+  	* @param currentConfig, the variable that checks the state of the game
   	* @return a random valid move until we implement the AI
  	*/
   	public Move getMove(GameConfiguration currentConfig) {
@@ -40,6 +40,11 @@ public class ComputerPlayer {
 		}
     	}
 
+	/** Method that gets a random move for the computer player
+	* Checks if a move is valid, then we return that move
+	* @param config, a parameter from the state of the game
+	* @return a random valid move from the Move class
+	*/
 	public Move getRandomMove(GameConfiguration config){ //literally just brute forces until a valid move comes out
 		Random r = new Random();
 		int[] nums = new int[4];
