@@ -1,8 +1,9 @@
 public class GameConfiguration {
 	
-	private Board board = new Board();
+	private Board board;
 
 	public GameConfiguration(){
+		board = new Board();
 		board.defaultPositions();
 	}
 	
@@ -23,34 +24,29 @@ public class GameConfiguration {
 		int[] currentMove = move.getTo();
 		String token = board.getBoardPosition()[lastMove[0]][lastMove[1]];
 		char pieceColor = token.charAt(0);
-		String pieceColorString;
+		if (pieceColor == '0'){ return false;} //just for the random ai move method
 
-		String pieceType = token.substring(3);
-		String[] pieces = {"Ro", "Kn", "Bi", "Qu", "Ki", "Pa"};
+		String pieceType = token.substring(2);
 		String[][] boardPositions = board.getBoardPosition();
-		for (String type : pieces) {
-			if (pieceType == type) {
-				if (type.equals("Ro")) {
-					return Piece.calculateRookMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
-				}
-				else if (type.equals("Kn")) {
-					return Piece.calculateKnightMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
-				}
-				else if (type.equals("Bi")) {
-					return Piece.calculateBishopMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
-				}
-				else if (type.equals("Qu")) {
-					return Piece.calculateQueenMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
-				}
-				else if (type.equals("Ki")) {
-					return Piece.calculateKingMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
-				}
-				else {
-					return Piece.calculatePawnMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
-				}
-			}
+		if (pieceType.equals("Ro")) {		
+			return Piece.calculateRookMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
 		}
-                return false; // TODO I only put this here to make it compile, it should be checked to make sure it's actually correct
+		else if (pieceType.equals("Kn")) {
+			return Piece.calculateKnightMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
+		}
+		else if (pieceType.equals("Bi")) {
+			return Piece.calculateBishopMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
+		}
+		else if (pieceType.equals("Qu")) {
+			return Piece.calculateQueenMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
+		}
+		else if (pieceType.equals("Ki")) {
+			return Piece.calculateKingMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
+		}
+		else if (pieceType.equals("Pa")) {
+			return Piece.calculatePawnMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
+		}
+                return false; //just in case some fluke accident occurs
 	}
 	
 	public boolean hasWon(char token){
