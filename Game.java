@@ -38,7 +38,7 @@ class Game{
     System.out.println("What column would you like to move this piece to?");
     tC = m.nextInt();
     
-    Move move = new Move("White",fC,fR,tR,tC);
+    Move move = new Move("White",fR,fC,tR,tC);
 
     if (config.isValidMove(move))
       config.update(move);
@@ -59,7 +59,7 @@ class Game{
     System.out.println("What column would you like to move this piece to?");
     tC = m.nextInt();
 
-    Move move = new Move("Black",fC,fR,tR,tC);
+    Move move = new Move("Black",fR,fC,tR,tC);
 
     if (config.isValidMove(move))
       config.update(move);
@@ -72,6 +72,7 @@ class Game{
 
   public void play(){
     int turnCounter = 0;
+    config.getBoard().draw();
     while (!config.hasWon('w') || !config.hasWon('b')){
       if (turnCounter % 2 == 0)
         whitePlay();
@@ -81,6 +82,7 @@ class Game{
        config.update(ai.getMove(config)); // Here I assume the ComputerPlayer cannot make invalid moves.
       // A method to check for draws/stalemates must be added to the GameConfiguration class, and incited here.
       turnCounter++;
+	config.getBoard().draw();
       }
   }
   public static void main(String[] args) {
