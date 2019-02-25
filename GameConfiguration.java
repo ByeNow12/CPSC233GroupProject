@@ -20,34 +20,29 @@ public class GameConfiguration {
 		String token = board.getBoardPosition()[lastMove[0]][lastMove[1]];
 		char pieceColor = token.charAt(0);
 		String pieceColorString;
-		if (pieceColor == 'w') {
-			pieceColorString = "white";
-		}
-		else {
-			pieceColorString = "black";
-		}
+
 		String pieceType = token.substring(3);
 		String[] pieces = {"Ro", "Kn", "Bi", "Qu", "Ki", "Pa"};
 		String[][] boardPositions = board.getBoardPosition();
 		for (String type : pieces) {
 			if (pieceType == type) {
 				if (type.equals("Ro")) {
-					return Piece.calculateRookMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
+					return Piece.calculateRookMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
 				}
 				else if (type.equals("Kn")) {
-					return Piece.calculateKnightMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
+					return Piece.calculateKnightMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
 				}
 				else if (type.equals("Bi")) {
-					return Piece.calculateBishopMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
+					return Piece.calculateBishopMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
 				}
 				else if (type.equals("Qu")) {
-					return Piece.calculateQueenMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
+					return Piece.calculateQueenMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
 				}
 				else if (type.equals("Ki")) {
-					return Piece.calculateKingMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
+					return Piece.calculateKingMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
 				}
 				else {
-					return Piece.calculatePawnMoves(boardPositions, lastMove, pieceColorString)[currentMove[0]][currentMove[1]];
+					return Piece.calculatePawnMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
 				}
 			}
 		}
