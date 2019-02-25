@@ -11,4 +11,4 @@ Compiling Instructions:
 4. Compile the file(s) using the command javac (file name).java
 
 Run Instructions:
-1. Run the file using the command java (file name)
+1. Run the file using the command java Game
