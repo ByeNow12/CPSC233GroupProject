@@ -1,8 +1,7 @@
-
 public class Piece{
 
     //in calling this method one should already have determined the peice is a rook and it will return an array showing true for valid moves and false everyhere else
-    public static boolean[][] calculateRookMoves(String[][] board, int[] pos, char team){ 
+    public static boolean[][] calculateRookMoves(String[][] board, int[] pos, char team){
         int x = pos[0];
         int y = pos[1];
         boolean[][] moves = new boolean[8][8];
@@ -48,7 +47,7 @@ public class Piece{
         }
         return moves;
     }
-    
+
     public static boolean[][] calculatePawnMoves(String[][] board, int[] pos, char team){
         int r = pos[0];
         int c = pos[1];
@@ -73,7 +72,7 @@ public class Piece{
         }
 	return moves;
     }
-    
+
     public static boolean[][] calculateKnightMoves(String[][] board, int[] pos, char team){
         int x = pos[0];
         int y = pos[1];
@@ -123,7 +122,7 @@ public class Piece{
 	}
 	return moves;
     }
-	
+
     public static boolean[][] calculateKingMoves(String[][] board, int[] pos, char team){
 	int x = pos[0];
         int y = pos[1];
@@ -138,7 +137,7 @@ public class Piece{
         moves = safeCheck(board, new int[]{x, y+1}, team, moves);
 	return moves;
     }
-	
+
     public static boolean[][] calculateQueenMoves(String[][] board, int[] pos, char team){
 	boolean[][] moves = new boolean[8][8];
 	boolean[][] rMoves = calculateRookMoves(board, pos, team);
@@ -158,5 +157,5 @@ public class Piece{
 	}
 	return moves;
     }
-	
+
 }

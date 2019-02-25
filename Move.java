@@ -1,6 +1,6 @@
 public class Move {
 	//NEED TO ADD WHAT PIECE TYPE IS BEING MOVED (MAYBE)
-	
+
 	private String token;
 	private int fromRow;
 	private int fromCol;
@@ -13,6 +13,10 @@ public class Move {
 		this.fromCol = fromCol;
 		this.toRow = toRow;
 		this.toCol = toCol;
+	}
+
+	public String getTeam() {
+		return token;
 	}
 
 	public int[] getFrom(){
@@ -28,9 +32,9 @@ public class Move {
 		toVector[1] = toCol;
 		return toVector;
 	}
-	
+
 	public String toString(){
 		return token + " ("+fromRow+","+fromCol+") to ("+toRow+","+toCol+")";
 	}
-	
+
 }

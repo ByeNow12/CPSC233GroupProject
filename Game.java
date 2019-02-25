@@ -10,7 +10,7 @@ class Game{
   private Scanner m = new Scanner(System.in); // Scanner for getting input regarding move selection.
   private int fR, fC, tR, tC, turnCounter;  // Always used, the first four are for move selections.
   private String c;
-  
+
   public void setup(){
     config = new GameConfiguration();
     Scanner format = new Scanner(System.in);
@@ -38,12 +38,12 @@ class Game{
     tR = m.nextInt();
     System.out.println("What column would you like to move this piece to?");
     tC = m.nextInt();
-    
+
     Move move = new Move("White",fR,fC,tR,tC);
 
     if (config.isValidMove(move))
       config.update(move);
-    else{ 
+    else{
       System.out.println("You have made an invalid move selection.");
       whitePlay(); // Recursive call never made if move is valid, avoids infinite loop.
       }
@@ -73,7 +73,7 @@ class Game{
 
   public void play(){
     int turnCounter = 0;
-    while (!config.hasWon('w') || !config.hasWon('b')){
+    while (!config.hasWon('w') && !config.hasWon('b')){
       config.getBoard().draw();
       if (turnCounter % 2 == 0)
         whitePlay();

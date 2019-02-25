@@ -1,16 +1,16 @@
 public class GameConfiguration {
-	
+
 	private Board board;
 
 	public GameConfiguration(){
 		board = new Board();
 		board.defaultPositions();
 	}
-	
+
 	public Board getBoard() {
 		return board;
 	}
-	
+
 	public void update(Move move){
 		int[] lastMove = move.getFrom();
 		int[] currentMove = move.getTo();
@@ -18,7 +18,7 @@ public class GameConfiguration {
 		board.setBoardPositions(lastMove[0], lastMove[1], "0");
 		board.setBoardPositions(currentMove[0], currentMove[1], token);
 	}
-	
+
 	public boolean isValidMove(Move move){
 		int[] lastMove = move.getFrom();
 		int[] currentMove = move.getTo();
@@ -28,7 +28,10 @@ public class GameConfiguration {
 
 		String pieceType = token.substring(2);
 		String[][] boardPositions = board.getBoardPosition();
-		if (pieceType.equals("Ro")) {		
+		if (Character.toUpperCase(pieceColor) != move.getTeam().charAt(0)) {
+			return false;
+		}
+		else if (pieceType.equals("Ro")) {
 			return Piece.calculateRookMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
 		}
 		else if (pieceType.equals("Kn")) {
@@ -48,7 +51,7 @@ public class GameConfiguration {
 		}
                 return false; //just in case some fluke accident occurs
 	}
-	
+
 	public boolean hasWon(char token){
 		boolean wKingPresent = false;
 		boolean bKingPresent = false;
@@ -65,12 +68,12 @@ public class GameConfiguration {
                 if (token == 'w') return !bKingPresent;
 		return !wKingPresent;
 	}
-	
+
 	public Move[] getAllValidMoves(String token){
 		//todo later
 		return new Move[0];
 	}
-	
+
 	public static void main(String[] args) {
 		GameConfiguration config = new GameConfiguration();
 		Move m = new Move("t", 0, 0, 5, 5);
@@ -80,6 +83,6 @@ public class GameConfiguration {
 		config.update(m);
 		b.draw();
 	}
-	
-	
+
+
 }
