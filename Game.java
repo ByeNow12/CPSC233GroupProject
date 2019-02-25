@@ -11,6 +11,10 @@ class Game{
   private int fR, fC, tR, tC, turnCounter;  // Always used, the first four are for move selections.
   private String c;
 
+  /** Establishes the configuration of the game, prompts the user to decide whether they want to play against
+  a human or computer.
+ 	*/
+  
   public void setup(){
     config = new GameConfiguration();
     Scanner format = new Scanner(System.in);
@@ -27,7 +31,9 @@ class Game{
     }
 
   }
-
+  
+  /** Contains the prompt for what move White will make, recurses if an invalid move is made.
+ 	  */
 
   public void whitePlay(){
     System.out.println("What row is the piece you want to move in?");
@@ -48,7 +54,9 @@ class Game{
       whitePlay(); // Recursive call never made if move is valid, avoids infinite loop.
       }
   }
-
+  
+  /** Contains the prompt for what move Black will make, recurses if an invalid move is made.
+ 	  */
 
   public void blackPlay(){
     System.out.println("What row is the piece you want to move in?");
@@ -70,7 +78,9 @@ class Game{
       }
   }
 
-
+  /** The main game loop, runs whilst the game isn't won, and alternates between players.
+ 	  */
+  
   public void play(){
     int turnCounter = 0;
     while (!config.hasWon('w') && !config.hasWon('b')){
@@ -85,6 +95,10 @@ class Game{
       turnCounter++;
       }
   }
+  
+  /** Sets up and runs the game utilising the previously defined methods.
+ 	  */
+  
   public static void main(String[] args) {
     Game g = new Game();
     g.setup();
