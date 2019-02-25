@@ -18,7 +18,7 @@ public class GameConfiguration {
 
 	/**
 	* updates board positions in accordance with the passed move object
-	*@param: move: Move
+	*@param: move: Move, the change in the board position to be done.
 	*/
 	public void update(Move move){
 		int[] lastMove = move.getFrom();
@@ -30,8 +30,8 @@ public class GameConfiguration {
 
 	/**
 	* Checks if the passed move object is a valid move and returns true if it is
-	* @param: move:Move
-	* @return: boolean
+	* @param: move:Move, the change in the board position to be done.
+	* @return: boolean, whether or not the move is valid.
 	*/
 	public boolean isValidMove(Move move){
 		int[] lastMove = move.getFrom();
@@ -68,8 +68,8 @@ public class GameConfiguration {
 
 	/**
 	* Checks if the king in belonging to token is captured. Checks if the game has ended.
-	* @param: token: char
-	* @return: boolean
+	* @param: token: char, the team to be checked for winning
+	* @return: boolean, has the team won
 	*/
 	public boolean hasWon(char token){
 		boolean wKingPresent = false;
@@ -90,7 +90,7 @@ public class GameConfiguration {
 
 	/**
 	* returns all the valid moves of the team belonging to token
-	* @param: token: String
+	* @param: token: String, the team to find all valid moves
 	* @return: array of Move objects
 	*/
 	public Move[] getAllValidMoves(String token){
