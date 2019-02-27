@@ -36,13 +36,13 @@ class Game{
  	  */
 
   public void whitePlay(){
-    System.out.println("What row is the piece you want to move in?");
+    System.out.println("For the player on the white team, what row is the piece you want to move in?");
     fR = m.nextInt();
-    System.out.println("What column is the piece you want to move in?");
+    System.out.println("For the player on the white team, what column is the piece you want to move in?");
     fC = m.nextInt();
-    System.out.println("What row would you like to move this piece to?");
+    System.out.println("For the player on the white team, what row would you like to move this piece to?");
     tR = m.nextInt();
-    System.out.println("What column would you like to move this piece to?");
+    System.out.println("For the player on the white team, what column would you like to move this piece to?");
     tC = m.nextInt();
 
     Move move = new Move("White",fR,fC,tR,tC);
@@ -59,13 +59,13 @@ class Game{
  	  */
 
   public void blackPlay(){
-    System.out.println("What row is the piece you want to move in?");
+    System.out.println("For the player on the black team, what row is the piece you want to move in?");
     fR = m.nextInt();
-    System.out.println("What column is the piece you want to move in?");
+    System.out.println("For the player on the black team, what column is the piece you want to move in?");
     fC = m.nextInt();
-    System.out.println("What row would you like to move this piece to?");
+    System.out.println("For the player on the black team, what row would you like to move this piece to?");
     tR = m.nextInt();
-    System.out.println("What column would you like to move this piece to?");
+    System.out.println("For the player on the black team, what column would you like to move this piece to?");
     tC = m.nextInt();
 
     Move move = new Move("Black",fR,fC,tR,tC);
