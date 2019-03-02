@@ -91,6 +91,7 @@ class Game{
        blackPlay();
       if ((turnCounter % 2 == 1) && (c.equals("C")))
        config.update(ai.getMove(config)); // Here I assume the ComputerPlayer cannot make invalid moves.
+       System.out.println("The computer has made a move. It is your turn to make a move"); //tells you computer made a move
       // A method to check for draws/stalemates must be added to the GameConfiguration class, and incited here.
       turnCounter++;
       }
