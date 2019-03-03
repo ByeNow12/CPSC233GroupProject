@@ -1,3 +1,16 @@
+Date: 2019-03-02
+Updates:
+- Fixed getAllValidMoves method in GameConfiguration class (Dany)
+- Added a method to check if player is in check (Dany)
+- Updated Game class to indicate which team's turn is is (Shavonne)
+- Added print statement to indicate that the computer has made a move (Shavonne)
+- updated calculatePawnMoves method in Piece class so that a pawn can move 1 or 2 spaces forward during its first turn (Carmen)
+- created checssboad and pieces graphics (Carmen)
+
+
+
+Date: 2019-02-25
+
 Bugs:
 - Fix queen - can't capture vertically - Riley
 - Pawn cannot move 2 spaces at beginning - Carmen
