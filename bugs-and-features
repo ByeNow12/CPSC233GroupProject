@@ -8,6 +8,13 @@ Updates:
 - updated calculatePawnMoves method in Piece class so that a pawn can move 1 or 2 spaces forward during its first turn (Carmen)
 - created checssboad and pieces graphics (Carmen)
 
+Assigned tasks:
+- Finish checkmate method (Dany)
+- Start HandleCellClicked class (Dany)
+- Start GUI class (Shavonne)
+- Edit graphics for piecees, create a copy of white pieces (Carmen)
+- allow player to choose team colour (Carmen)
+
 
 
 Date: 2019-02-25
