@@ -55,34 +55,84 @@ public class Piece {
     
     /** Method for calculating possible moves for pawn piece based on what moves the pieces are allowed to make according to standard chess rules
     * Creates a 8 by 8 board with valid moves marked as true and invalid moves marked as false
+	* Updated so that the first move of a pawn is able to move forward one or two spaces
+	* @version 2.0
     * @param String[][] board, an arraylist for the board
     * @param int[] pos, array that contains index for position of the pawn piece
     * @param char team, a character for the team 
     * @return an array that shows true for valid moves of pawn and false everywhere else
     */
     public static boolean[][] calculatePawnMoves(String[][] board, int[] pos, char team){
-        int r = pos[0];
-        int c = pos[1];
-        boolean[][] moves = new boolean[8][8];
-        if (team == 'w' && r < 7){ //assuming white is on the top of the board
-            if (c < 7){
-		if ('b' == board[r+1][c+1].charAt(0)) moves[r+1][c+1] = true;
-	    }
-	    if (c > 1){
-		if ('b' == board[r+1][c-1].charAt(0)) moves[r+1][c-1] = true;
-	    }
-	    if ('0' == board[r+1][c].charAt(0)) moves[r+1][c] = true;
+		int r = pos[0];
+		int c = pos[1];
+		boolean[][] moves = new boolean[8][8];
+		if (r == 1 || r == 6){ // if the pawn is in row 1 or 6 (will be the first move the pawn makes), can move one or two spaces forward
+			if (team == 'w' && r < 7){ //assuming white is on the top of the board
+				if (c < 7){
+					for (int i=1; i<3; i++){
+						if ('b' == board[r+i][c+1].charAt(0)) {
+							moves[r+i][c+1] = true;
+						}
+					}
+                }
+                if (c > 1){
+                    for (int i=1; i<3; i++){
+                        if ('b' == board[r+i][c-1].charAt(0)) {
+							moves[r+i][c-1] = true;
+						}
+                    }
+                }
+                for (int i=1; i<3; i++){
+                    if ('0' == board[r+i][c].charAt(0)) {
+						moves[r+i][c] = true;
+					}
+                }
+            }
+            else if (r > 1){
+                if (c < 7){
+                    for (int i=1; i<3; i++){
+                        if ('w' == board[r-i][c+1].charAt(0)) {
+							moves[r-i][c+1] = true;
+						}
+                    }
+            }
+                if (c > 1){
+                    for (int i=1; i<3; i++){
+                        if ('w' == board[r-i][c-1].charAt(0)) {
+							moves[r-i][c-1] = true;
+						}
+                    }
+            }
+            for (int i=1; i<3; i++){
+                if ('0' == board[r-i][c].charAt(0)) {
+					moves[r-i][c] = true;
+				}
+            }
+            }
         }
-        else if (r > 1){
-            if (c < 7){
-		if ('w' == board[r-1][c+1].charAt(0)) moves[r-1][c+1] = true;
-	    }
-            if (c > 1){
-		if ('w' == board[r-1][c-1].charAt(0)) moves[r-1][c-1] = true;
-	    }
-	    if ('0' == board[r-1][c].charAt(0)) moves[r-1][c] = true;
+
+        else {
+            if (team == 'w' && r < 7){ //assuming white is on the top of the board
+                if (c < 7){
+                    if ('b' == board[r+1][c+1].charAt(0)) moves[r+1][c+1] = true;
+        	    }
+        	    if (c > 1){
+                    if ('b' == board[r+1][c-1].charAt(0)) moves[r+1][c-1] = true;
+        	    }
+        	    if ('0' == board[r+1][c].charAt(0)) moves[r+1][c] = true;
+            }
+            else if (r > 1){
+                if (c < 7){
+                    if ('w' == board[r-1][c+1].charAt(0)) moves[r-1][c+1] = true;
+    	    }
+                if (c > 1){
+                    if ('w' == board[r-1][c-1].charAt(0)) moves[r-1][c-1] = true;
+    	    }
+    	    if ('0' == board[r-1][c].charAt(0)) moves[r-1][c] = true;
+            }
         }
-	return moves;
+  
+		return moves;
     }
 
     /** Method for calculating possible moves for knight piece based on what moves the pieces are allowed to make according to standard chess rules
