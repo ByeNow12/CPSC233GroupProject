@@ -1,4 +1,5 @@
 Date: 2019-03-02
+
 Updates:
 - Fixed getAllValidMoves method in GameConfiguration class (Dany)
 - Added a method to check if player is in check (Dany)
