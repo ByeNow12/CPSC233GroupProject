@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class GameConfiguration {
 
 	private Board board;
@@ -90,23 +93,90 @@ public class GameConfiguration {
 
 	/**
 	* returns all the valid moves of the team belonging to token
-	* @param: token: String, the team to find all valid moves
-	* @return: array of Move objects
+	* @param: token: char, the team to find all valid moves
+	* @return: ArrayList of Move objects
 	*/
-	public Move[] getAllValidMoves(String token){
-		//todo later
-		return new Move[0];
+	public ArrayList<Move> getAllValidMoves(char token){
+		ArrayList<Move> moveArrayList = new ArrayList<Move>();
+		boolean[][] unconvertedMoves = new boolean[8][8];
+		for (int x = 0; x < 8; x++) {
+			for (int y = 0; y < 8; y++) {
+				if (board.getBoardPosition()[x][y].charAt(0) == token) {
+					int[] pos = new int[2];
+					pos[0] = x;
+					pos[1] = y;
+					if (board.getBoardPosition()[x][y].substring(2).equals("Ro")) {
+						unconvertedMoves = Piece.calculateRookMoves(board.getBoardPosition(), pos, token);
+					}
+					else if (board.getBoardPosition()[x][y].substring(2).equals("Pa")) {
+						unconvertedMoves = Piece.calculatePawnMoves(board.getBoardPosition(), pos, token);
+					}
+					else if (board.getBoardPosition()[x][y].substring(2).equals("Kn")) {
+						unconvertedMoves = Piece.calculateKnightMoves(board.getBoardPosition(), pos, token);
+					}
+					else if (board.getBoardPosition()[x][y].substring(2).equals("Bi")) {
+						unconvertedMoves = Piece.calculateBishopMoves(board.getBoardPosition(), pos, token);
+					}
+					else if (board.getBoardPosition()[x][y].substring(2).equals("Ki")) {
+						unconvertedMoves = Piece.calculateKingMoves(board.getBoardPosition(), pos, token);
+					}
+					else if (board.getBoardPosition()[x][y].substring(2).equals("Qu")) {
+						unconvertedMoves = Piece.calculateQueenMoves(board.getBoardPosition(), pos, token);
+					}
+					for (int i = 0; i < 8; i++) {
+						for (int n = 0; n < 8; n++) {
+							if (unconvertedMoves[i][n]) {
+								if (token == 'w') {
+									Move move = new Move("white", x, y, i, n);
+									moveArrayList.add(move);
+								}
+								else {
+									Move move = new Move("black", x, y, i, n);
+									moveArrayList.add(move);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return moveArrayList;
+	}
+	
+	public boolean isCheck(char team) {
+		ArrayList<Move> possibleMoves = this.getAllValidMoves(team);
+		int[] enemyKingLoc = new int[2];
+		enemyKingLoc[0] = 10;
+		enemyKingLoc[1] = 10;
+		boolean isCheckBoolean = false;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				if (board.getBoardPosition()[x][y].charAt(0) != team && board.getBoardPosition()[x][y].charAt(0) != '0') {
+					if (board.getBoardPosition()[x][y].substring(2).equals("Ki")) {
+						enemyKingLoc[0] = x;
+						enemyKingLoc[1] = y;
+					}
+				}
+			}
+		}
+		if (enemyKingLoc[0] == 10) {
+			return false;
+		}
+		for (Move move : possibleMoves) {
+			if (move.getTo()[0] == enemyKingLoc[0] && move.getTo()[1] == enemyKingLoc[1]) {
+				isCheckBoolean = true;
+			}
+		}
+		return isCheckBoolean;
 	}
 
 	public static void main(String[] args) {
 		GameConfiguration config = new GameConfiguration();
-		Move m = new Move("t", 0, 0, 5, 5);
-		Board b = config.getBoard();
-		b.defaultPositions();
-		b.draw();
-		config.update(m);
-		b.draw();
+		config.getBoard().draw();
+		config.getBoard().setBoardPositions(5, 4, "w_Qu");
+		config.getBoard().draw();
+		System.out.println(config.isCheck('w'));
 	}
-
 
 }
