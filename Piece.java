@@ -36,7 +36,7 @@ public class Piece {
                 moves[x][i] = true;
             }
             else{
-                moves[i][y] = true;
+                moves[x][i] = true;
                 break;
             }
         }
@@ -46,7 +46,7 @@ public class Piece {
                 moves[x][i] = true;
             }
             else{
-                moves[i][y] = true;
+                moves[x][i] = true;
                 break;
             }
         }
