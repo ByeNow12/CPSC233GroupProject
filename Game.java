@@ -89,9 +89,10 @@ class Game{
         whitePlay();
       if ((turnCounter % 2 == 1) && (c.equals("H")))
        blackPlay();
-      if ((turnCounter % 2 == 1) && (c.equals("C")))
+      if ((turnCounter % 2 == 1) && (c.equals("C"))){
        config.update(ai.getMove(config)); // Here I assume the ComputerPlayer cannot make invalid moves.
-       System.out.println("The computer has made a move. It is your turn to make a move"); //tells you computer made a move
+       System.out.println("The computer has made a move. It is your turn to make a move."); //tells you computer made a move
+      }
       // A method to check for draws/stalemates must be added to the GameConfiguration class, and incited here.
       turnCounter++;
       }
@@ -103,6 +104,6 @@ class Game{
   public static void main(String[] args) {
     Game g = new Game();
     g.setup();
-    g.play(); // This is the class incited to run the project as a whole.
+    g.play(); // This is the method incited to run the project as a whole.
     }
 }
