@@ -1,0 +1,1 @@
+Black pieces, no outline
