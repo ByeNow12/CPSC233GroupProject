@@ -1,3 +1,20 @@
+2019-03-06
+- way to highlight squares on board (clicking) - HandleCellClicked class - highlight possible moves
+- 450*450 window size
+- GUI - draw() - same as board but placing images in correct squares
+- update game class. instead of drawing with text, draw with GUI
+- Game class - allow user to choose between text and GUI
+- GUI extends Game(maybe) - choose which one to instantiate
+
+Assigned tasks:
+- Finish checkmate method (Dany)
+- Start HandleCellClicked class (Dany)
+- Draw method for GUI - (waiting on Pieces, use placeholder) - Riley
+- Update game method - Tom
+- Finish pieces - Carmen
+- square border - to highlight possible moves - Carmen
+- update UML diagram - Carmen
+
 Date: 2019-03-02
 
 Updates:
