@@ -52,7 +52,7 @@ public class GUIGame extends Application {
 		BorderPane pane = new BorderPane();
 		pane.setCenter(boardImageView);
 		
-		Scene scene = new Scene(pane, 450, 500); //window size is 450 pixels by 500 pixels
+		Scene scene = new Scene(pane, 450, 500); //window size is 450 by 500 pixels
 		primaryStage.setTitle("Chess Game"); //set title to stage
 		primaryStage.setScene(scene);
 		primaryStage.show();
