@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+/**
+* 2019-03-06
+* Author: Tom
+* The main class that allows users to actually play the game in the text based version
+*/
 class Game{
 
   private HumanPlayer human1;
