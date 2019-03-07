@@ -1,6 +1,11 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+* 2019-03-06
+* Authors: Riley, Dany
+* Class checks the current state of the game and conditions like moves, wins, draws, and game board updates
+*/
 public class GameConfiguration {
 
 	private Board board;
