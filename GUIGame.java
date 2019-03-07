@@ -9,10 +9,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 
 /**
-* 2019-03-05
+* 2019-03-06
 * Author: Shavonne
 * GUI class that displays the chess board and pieces of the game 
-* Responds to mouse events to move chess pieces 
+* Updates the board display after each move 
 */
 public class GUIGame extends Application {
 	
@@ -42,7 +42,7 @@ public class GUIGame extends Application {
 	*/
 	public void start(Stage primaryStage) throws FileNotFoundException {
 		//Image instance created, passing FileInputStream as parameter to the Image to load the image 
-		Image boardImage = new Image(new FileInputStream("C:\\Users\\Shavonne\\Desktop\\Chessboard.png")); //parameter is the image file path
+		Image boardImage = new Image(new FileInputStream("C:\\Users\\Shavonne\\Desktop\\Chessboard_brown.png")); //parameter is the image file path
 		//file path to image depends on where you save board image
 		
 		//ImageView instance created, passing Image instance as parameter
