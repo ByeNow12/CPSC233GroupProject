@@ -1,5 +1,11 @@
 import java.util.Arrays;
 
+/**
+* 2019-03-06
+* Author: Dany
+* Class creates the game board in a 2D array and sets intial piece positions
+* Contains data regarding the game board and drawing this board
+*/
 public class Board {
     private String[][] boardPositions = new String[8][8];
 
