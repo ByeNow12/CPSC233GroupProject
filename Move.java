@@ -1,3 +1,8 @@
+/**
+* 2019-03-06
+* Author: Carmen
+* Class contains data needed to make a single move for players
+*/
 public class Move {
 
 	private String token;
@@ -5,7 +10,15 @@ public class Move {
 	private int fromCol; //column that the piece is moving from
 	private int toRow; //row that the piece is moving to
 	private int toCol; //column that the piece is moving to
-
+	
+	/**
+	* Constructor 
+	* @param token: a String representing the team colour
+	* @param fromRow: the row number for the piece to move from
+	* @param fromCol: the column number for the piece to move from
+	* @param toRow: the row number for the piece to move to
+	* @param toCol: the column number for the piece to move to
+	*/
 	public Move(String token, int fromRow, int fromCol, int toRow, int toCol){
 		this.token = token;
 		this.fromRow = fromRow;
