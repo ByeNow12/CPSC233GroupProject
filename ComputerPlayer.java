@@ -2,7 +2,7 @@ import java.util.Random;
 
 /**
 * 2019-03-06
-* Author: Shavonne
+* Author: Shavonne, Riley
 * Class that allows the computer player to make a move and contains data related to the AI
 * Methods allow for computer to make a random move as long as it's valid and returns that move 
 * The AI method to be implemented will allow for the computer to do computation to determine a non random move
