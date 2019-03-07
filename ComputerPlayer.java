@@ -1,5 +1,9 @@
 import java.util.Random;
 
+/**
+* 2019-03-06
+* Class that allows the computer player to make a move and contains data related to the AI
+*/
 public class ComputerPlayer {
 	private String token;
 	private Move lastMove; //computer considers the last move made by human player to make its move, used when AI developed
