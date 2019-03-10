@@ -25,16 +25,65 @@ public class GUIGame extends Application {
 	* initializes the positions of the chess pieces on the board before the game starts
 	*/
 	public void initialize() {
-		
+		config.getBoard().defaultPositions();
+		//do more stuff too probably
+		draw();
 	}
 	
 	/**
 	* updates the state of the game and GUI display based on user input
 	*/
 	public void update() {
-		
+			
 	}
 	
+	public void draw(){
+		String[][] board = config.getBoard().getBoardPosition();
+		
+		//clear board
+		//put board back (the checkerboard) if necessary
+		//place pieces on board
+		for (int r = 0; r < 8; r++){
+			for (int c = 0; c < 8; c++){
+
+				String inputString = "D:\\CPSC 233\\Project\\CPSC233GroupProject\\graphical_assets\\";
+				if (board[r][c].charAt(0) == 'w'){
+					inputString += "white_pieces\\w_";
+				}
+				else{
+					inputString += "black_pieces\\b_";   //this is the only thing that has to be changed to put in the outline ones instead
+				}
+
+				String pieceType = board[r][c].substring(2);
+				if (pieceType.equals("Ro")) {
+					inputString += "rook";
+					//draw rook at position (r*50, c*50)
+				}
+				else if (pieceType.equals("Kn")) {
+					inputString += "knight";
+					//draw knight at position (r*50, c*50)
+				}
+				else if (pieceType.equals("Bi")) {
+					inputString += "bishop";
+					//draw bishop at position (r*50, c*50)
+				}
+				else if (pieceType.equals("Qu")) {
+					inputString += "queen";
+					//draw queen at position (r*50, c*50)
+				}
+				else if (pieceType.equals("Ki")) {
+					inputString += "king";
+					//draw king at position (r*50, c*50)
+				}
+				else if (pieceType.equals("Pa")) {
+					inputString += "pawn";
+					//draw pawn at position (r*50, c*50)
+				}
+			}
+		}
+		//write something below/above the board
+	}
+
 	/**
 	* Sets up the graphics to seen on screen with javafx
 	* Accepts Png images and displays them 
