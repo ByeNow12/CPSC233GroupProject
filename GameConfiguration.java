@@ -1,11 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
-* 2019-03-06
-* Authors: Riley, Dany
-* Class checks the current state of the game and conditions like moves, wins, draws, and game board updates
-*/
 public class GameConfiguration {
 
 	private Board board;
@@ -18,7 +13,7 @@ public class GameConfiguration {
 
 	/**
 	*getter method for board instance variable
-	*@return: board:Board
+	*@return board:Board
 	*/
 	public Board getBoard() {
 		return board;
@@ -26,7 +21,7 @@ public class GameConfiguration {
 
 	/**
 	* updates board positions in accordance with the passed move object
-	*@param: move: Move, the change in the board position to be done.
+	* @param move: Move, the change in the board position to be done.
 	*/
 	public void update(Move move){
 		int[] lastMove = move.getFrom();
@@ -35,11 +30,23 @@ public class GameConfiguration {
 		board.setBoardPositions(lastMove[0], lastMove[1], "0");
 		board.setBoardPositions(currentMove[0], currentMove[1], token);
 	}
+	
+	/**
+	* reverse the passed Move object
+	* @param move: Move, the change in the board to be reversed.
+	*/
+	public void reverseMove(Move move) {
+		int[] lastMove = move.getFrom();
+		int[] currentMove = move.getTo();
+		String token = board.getBoardPosition()[lastMove[0]][lastMove[1]];
+		board.setBoardPositions(currentMove[0], currentMove[1], "0");
+		board.setBoardPositions(lastMove[0], lastMove[1], token);
+	}
 
 	/**
 	* Checks if the passed move object is a valid move and returns true if it is
-	* @param: move:Move, the change in the board position to be done.
-	* @return: boolean, whether or not the move is valid.
+	* @param move:Move, the change in the board position to be done.
+	* @return boolean, whether or not the move is valid.
 	*/
 	public boolean isValidMove(Move move){
 		int[] lastMove = move.getFrom();
@@ -76,8 +83,8 @@ public class GameConfiguration {
 
 	/**
 	* Checks if the king in belonging to token is captured. Checks if the game has ended.
-	* @param: token: char, the team to be checked for winning
-	* @return: boolean, has the team won
+	* @param token: char, the team to be checked for winning
+	* @return boolean, has the team won
 	*/
 	public boolean hasWon(char token){
 		boolean wKingPresent = false;
@@ -98,8 +105,8 @@ public class GameConfiguration {
 
 	/**
 	* returns all the valid moves of the team belonging to token
-	* @param: token: char, the team to find all valid moves
-	* @return: ArrayList of Move objects
+	* @param token: char, the team to find all valid moves
+	* @return ArrayList of Move objects
 	*/
 	public ArrayList<Move> getAllValidMoves(char token){
 		ArrayList<Move> moveArrayList = new ArrayList<Move>();
@@ -149,8 +156,13 @@ public class GameConfiguration {
 		return moveArrayList;
 	}
 	
+	/**
+	* Checks wether the specified player is in check.
+	* @param char: team - Which color to check.
+	* @return boolean - true if in check false if not.
+	*/
 	public boolean isCheck(char team) {
-		ArrayList<Move> possibleMoves = this.getAllValidMoves(team);
+		ArrayList<Move> possibleMoves = getAllValidMoves(team);
 		int[] enemyKingLoc = new int[2];
 		enemyKingLoc[0] = 10;
 		enemyKingLoc[1] = 10;
@@ -165,7 +177,7 @@ public class GameConfiguration {
 				}
 			}
 		}
-		if (enemyKingLoc[0] == 10) {
+		if (enemyKingLoc[0] == 10 || enemyKingLoc[1] == 10) {
 			return false;
 		}
 		for (Move move : possibleMoves) {
@@ -175,13 +187,72 @@ public class GameConfiguration {
 		}
 		return isCheckBoolean;
 	}
+	
+	/**
+	* Checks wether the specified player is in check mate.
+	* @param char: team - Which color to check.
+	* @return boolean - true if in check mate false if not.
+	*/
+	/*public boolean isCheckMate(char team) {
+		char enemyColor;
+		boolean isCheckMateBool = true;
+		int[] kingLoc = new int[2];
+		kingLoc[0] = 10;
+		kingLoc[1] = 10;
+		if (team == 'w') {
+			enemyColor = 'b';
+		}
+		else {
+			enemyColor = 'w';
+		}
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				if (board.getBoardPosition()[x][y].charAt(0) == team) {
+					if (board.getBoardPosition()[x][y].substring(2).equals("Ki")) {
+						kingLoc[0] = x;
+						kingLoc[1] = y;
+					}
+				}
+			}
+		}
+		if (kingLoc[0] == 10 || kingLoc[1] == 10) {
+			return false;
+		}
+		Move[] allMoves = getAllValidMoves(team);
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				if (unconvertedKingMoves[x][y]) {
+					String pieceId = team + "_Ki";
+					String currentPiece = board.getBoardPosition()[x][y];
+					board.setBoardPositions(kingLoc[0], kingLoc[1], "0");
+					board.setBoardPositions(x, y, pieceId);
+					board.draw();
+					if (!isCheck(team)) {
+						isCheckMateBool = false;
+					}
+					board.setBoardPositions(x, y, currentPiece);
+					board.setBoardPositions(kingLoc[0], kingLoc[1], pieceId);
+				}
+			}
+		}
+		if (!isCheck(team)) {
+			isCheckMateBool = false;
+		}
+		System.out.println(kingLoc[0]);
+		System.out.println(kingLoc[1]);
+		return isCheckMateBool;
+	}*/
 
 	public static void main(String[] args) {
 		GameConfiguration config = new GameConfiguration();
+		config.getBoard().defaultPositions();
+		config.getBoard().setBoardPositions(0, 4, "0");
+		config.getBoard().setBoardPositions(4, 4, "w_Ki");
+		config.getBoard().setBoardPositions(5, 0, "b_Ro");
+		config.getBoard().setBoardPositions(3, 0, "b_Ro");
+		config.getBoard().setBoardPositions(4, 0, "b_Ro");
 		config.getBoard().draw();
-		config.getBoard().setBoardPositions(5, 4, "w_Qu");
-		config.getBoard().draw();
-		System.out.println(config.isCheck('w'));
+		System.out.println(config.isCheck('b'));
 	}
 
 }
