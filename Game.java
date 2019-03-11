@@ -14,7 +14,7 @@ class Game{
 
   private Scanner m = new Scanner(System.in); // Scanner for getting input regarding move selection.
   private int fR, fC, tR, tC, turnCounter;  // Always used, the first four are for move selections.
-  private String c,t;
+  private String c;
 
   /** Establishes the configuration of the game, prompts the user to decide whether they want to play against
   a human or computer.
@@ -128,6 +128,7 @@ class Game{
  	  */
   
   public static void main(String[] args) {
+    String t;
     Scanner type = new Scanner(System.in);
     System.out.println("Would you like to play a [T]ext-based implementation or a [G]raphical implemetation");
     t = type.next();
