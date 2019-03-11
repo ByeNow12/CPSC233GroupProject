@@ -1,3 +1,17 @@
+2019-03-11
+Features
+- reorganization of classes - do Wednesday
+- GUI Menu - choose to play with computer/human
+- Label:
+- show invalid moves
+- indicate when king is in check
+- whose turn it is
+- when the game ends
+- timer for who takes longer to capture king
+- move draw method from handle click class
+- save state (load from last save)
+
+
 2019-03-06
 - way to highlight squares on board (clicking) - HandleCellClicked class - highlight possible moves
 - 450*450 window size
