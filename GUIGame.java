@@ -56,12 +56,12 @@ public class GUIGame extends Application {
 			HBox row = new HBox();
 			for (int c = 0; c < 8; c++){
 
-				String inputString = "D:\\CPSC 233\\Project\\CPSC233GroupProject\\graphical_assets\\";
+				String inputString;
 				if (board[r][c].charAt(0) == 'w'){
-					inputString += "white_pieces\\w_";
+					inputString = "w_";
 				}
 				else{
-					inputString += "black_pieces\\b_";   //this is the only thing that has to be changed to put in the outline ones instead
+					inputString = "b_";   //this is the only thing that has to be changed to put in the outline ones instead
 				}
 
 				String pieceType = board[r][c].substring(2);
@@ -105,7 +105,7 @@ public class GUIGame extends Application {
 	*/
 	public void start(Stage primaryStage) throws FileNotFoundException {
 		//Image instance created, passing FileInputStream as parameter to the Image to load the image 
-		Image boardImage = new Image(new FileInputStream("C:\\Users\\Shavonne\\Desktop\\Chessboard_brown.png")); //parameter is the image file path
+		Image boardImage = new Image(new FileInputStream("Chessboard_brown.png")); //parameter is the image file path
 		//file path to image depends on where you save board image
 		
 		
