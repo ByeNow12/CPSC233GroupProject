@@ -207,11 +207,13 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 			else {
 				// Not a valid move.
 				if (position[0] != pieceSelected[0] || position[1] != pieceSelected[1]) {
-					board.setBoardPositions(position[0], position[1], board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]]);
-					board.setBoardPositions(pieceSelected[0], pieceSelected[1], "0");
-					board.draw();
-					if (config.hasWon('w') || config.hasWon('b')) {
-						System.exit(0);
+					if (board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]] != "0") {
+						board.setBoardPositions(position[0], position[1], board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]]);
+						board.setBoardPositions(pieceSelected[0], pieceSelected[1], "0");
+						board.draw();
+						if (config.hasWon('w') || config.hasWon('b')) {
+							System.exit(0);
+						}
 					}
 				}
 			}

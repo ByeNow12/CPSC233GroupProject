@@ -85,6 +85,8 @@ public class GUIGame extends Application {
 		primaryStage.setTitle("Chess Game"); //set title to stage
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		ClickHandle initDraw = new ClickHandle(config, 'w', wrap, eventPane);
+		initDraw.draw(config.getBoard().getBoardPosition());
 	}
 	
 	/**
