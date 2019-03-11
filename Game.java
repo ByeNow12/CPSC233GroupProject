@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 /**
 * 2019-03-06
@@ -85,15 +86,15 @@ class Game{
   /** The main game loop, runs whilst the game isn't won, and alternates between players.
  	  */
   
-  public void play(){
+  public void play() {
     int turnCounter = 0;
-    while (!config.hasWon('w') && !config.hasWon('b')){
+    while (!config.hasWon('w') && !config.hasWon('b')) {
       config.getBoard().draw();
       if (turnCounter % 2 == 0)
         whitePlay();
       if ((turnCounter % 2 == 1) && (c.equals("H")))
        blackPlay();
-      if ((turnCounter % 2 == 1) && (c.equals("C"))){
+      if ((turnCounter % 2 == 1) && (c.equals("C"))) {
        config.update(ai.getMove(config)); // Here I assume the ComputerPlayer cannot make invalid moves.
        System.out.println("The computer has made a move. It is your turn to make a move."); //tells you computer made a move
       }
@@ -102,11 +103,11 @@ class Game{
       }
   }
   
-  public void playGUI(){
+  public void playGUI() throws FileNotFoundException {
     GUIGame GUI = new GUIGame();
     GUI.initialize();
     int turnCounter = 0;
-    while (!config.hasWon('w') && !config.hasWon('b')){
+    while (!config.hasWon('w') && !config.hasWon('b')) {
       config.getBoard().draw();
       if (turnCounter % 2 == 0)
         whitePlay();
@@ -114,7 +115,7 @@ class Game{
       if ((turnCounter % 2 == 1) && (c.equals("H")))
        blackPlay();
        GUI.draw();
-      if ((turnCounter % 2 == 1) && (c.equals("C"))){
+      if ((turnCounter % 2 == 1) && (c.equals("C"))) {
        config.update(ai.getMove(config)); // Here I assume the ComputerPlayer cannot make invalid moves.
        GUI.draw();
        System.out.println("The computer has made a move. It is your turn to make a move."); //tells you computer made a move
@@ -127,18 +128,18 @@ class Game{
   /** Sets up and runs the game utilising the previously defined methods.
  	  */
   
-  public static void main(String[] args) {
+  public static void main(String[] args) throws FileNotFoundException {
     String t;
     Scanner type = new Scanner(System.in);
     System.out.println("Would you like to play a [T]ext-based implementation or a [G]raphical implemetation");
     t = type.next();
     
-    if (t.equals("T")){
+    if (t.equals("T")) {
       Game g = new Game();
       g.setup();
       g.play(); // This is the method incited to run the project as a whole.
     }
-    if (t.equals("G")){
+    if (t.equals("G")) {
       Game g = new Game();
       g.setup();
       g.playGUI(); // This is the method incited to run the project as a whole.
