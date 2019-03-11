@@ -14,7 +14,7 @@ class Game{
 
   private Scanner m = new Scanner(System.in); // Scanner for getting input regarding move selection.
   private int fR, fC, tR, tC, turnCounter;  // Always used, the first four are for move selections.
-  private String c;
+  private String c,t;
 
   /** Establishes the configuration of the game, prompts the user to decide whether they want to play against
   a human or computer.
@@ -34,7 +34,6 @@ class Game{
       human1 = new HumanPlayer("White"); // Default's the human to the slightly more advantageous side, may change in the future.
       ai = new ComputerPlayer("Black"); // Unsure of the purpose of the instance variable of Move type upon initialisation.
     }
-
   }
   
   /** Contains the prompt for what move White will make, recurses if an invalid move is made.
@@ -103,12 +102,45 @@ class Game{
       }
   }
   
+  public void playGUI(){
+    GUIGame GUI = new GUIGame();
+    GUI.initialize();
+    int turnCounter = 0;
+    while (!config.hasWon('w') && !config.hasWon('b')){
+      config.getBoard().draw();
+      if (turnCounter % 2 == 0)
+        whitePlay();
+        GUI.draw()
+      if ((turnCounter % 2 == 1) && (c.equals("H")))
+       blackPlay();
+       GUI.draw()
+      if ((turnCounter % 2 == 1) && (c.equals("C"))){
+       config.update(ai.getMove(config)); // Here I assume the ComputerPlayer cannot make invalid moves.
+       GUI.draw()
+       System.out.println("The computer has made a move. It is your turn to make a move."); //tells you computer made a move
+      }
+      // A method to check for draws/stalemates must be added to the GameConfiguration class, and incited here.
+      turnCounter++;
+      }
+  }
+  
   /** Sets up and runs the game utilising the previously defined methods.
  	  */
   
   public static void main(String[] args) {
-    Game g = new Game();
-    g.setup();
-    g.play(); // This is the method incited to run the project as a whole.
+    Scanner type = new Scanner(System.in);
+    System.out.println("Would you like to play a [T]ext-based implementation or a [G]raphical implemetation");
+    t = type.next();
+    
+    if (t.equals("T")){
+      Game g = new Game();
+      g.setup();
+      g.play(); // This is the method incited to run the project as a whole.
+    }
+    if (t.equals("G")){
+      Game g = new Game();
+      g.setup();
+      g.playGUI(); // This is the method incited to run the project as a whole.
+    }
     }
 }
