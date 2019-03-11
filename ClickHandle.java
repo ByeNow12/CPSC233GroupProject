@@ -9,6 +9,11 @@ import javafx.stage.Stage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+/**
+* Author: Dany
+* The event handling class. This class handle all mouse events
+*/
+
 public class ClickHandle implements EventHandler<MouseEvent> {
     private int[] pieceSelected = new int[] {10, 10};
     private GameConfiguration config;
@@ -23,6 +28,12 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 		this.eventPane = eventPane;
     }
 	
+	/**
+	* Draw the specified file onto screen on the specified coordinates
+	* @param String file, the name of the file to draw.
+	* @param int x, x coordinate.
+	* @param int y, y coordinate.
+	*/
 	public void drawPiece(String file, int x, int y) {
 		x = x*50;
 		y = y*50;
@@ -39,6 +50,10 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 		}
 	}
 	
+	/**
+	* Scans the board array looing for what needs to be drawn
+	* @param String[][] board, an arraylist of the board.
+	*/
 	public void draw(String[][] board){
 		//clear board
 		//put board back (the checkerboard) if necessary
@@ -91,6 +106,10 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 		//write something below/above the board
 	}
 	
+	/**
+	* Highlights the specified square.
+	* @param int[] pos, x and y coordinate of the square.
+	*/
 	public void highlightSelectedSquare(int[] pos) {
 		try {
 			Image selectSquare = new Image(new FileInputStream("blue.png"));
@@ -108,6 +127,9 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 		}
 	}
 	
+	/**
+	* Highlights the moves that can be made
+	*/
 	public void highlightMoves(int[] pos, char team, String pieceType, String[][] boardPositions) {
 		try {
 			Image possibleSquare = new Image(new FileInputStream("green.png"));
