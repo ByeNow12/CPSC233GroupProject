@@ -9,10 +9,15 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 
 /**
 * 2019-03-06
-* Author: Shavonne
+* Author: Riley, Shavonne
 * GUI class that displays the chess board and pieces of the game 
 * Updates the board display after each move 
 */
@@ -27,7 +32,7 @@ public class GUIGame extends Application {
 	/**
 	* initializes the positions of the chess pieces on the board before the game starts
 	*/
-	public void initialize() {
+	public void initialize() throws FileNotFoundException {
 		config.getBoard().defaultPositions();
 		//do more stuff too probably
 		draw();
@@ -36,7 +41,7 @@ public class GUIGame extends Application {
 	/**
 	* updates the state of the game and GUI display based on user input
 	*/
-	public void update() {
+	public void update() throws FileNotFoundException {
 		draw();//at the end
 	}
 	
@@ -111,10 +116,10 @@ public class GUIGame extends Application {
 		Background background = new Background(bi);
 		
 		//BorderPane to center the chess board image
-		//BorderPane pane = new BorderPane();              //sorry but I may have found a better way
+		//BorderPane pane = new BorderPane();              
 		//pane.setCenter(boardImageView);
 		flow = new FlowPane();
-		flow.setBackground(background);  //this may cause huge issues and I'm sorry
+		flow.setBackground(background);  
 		
 		Scene scene = new Scene(flow, 450, 500); //window size is 450 by 500 pixels
 		primaryStage.setTitle("Chess Game"); //set title to stage
