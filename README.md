@@ -11,7 +11,7 @@ Compiling Instructions:
 2. Download all the png images in the master class
 3. Navigate to the chosen directory
 4. Ensure all the required classes and images are in the chosen directory
-5. Compile the file(s) using the command javac GUIGame.java
+5. Compile the file(s) using the command javac Game.java
 
 Run Instructions:
-1. Run the program using the command java GUIGame 
+1. Run the program using the command java Game 
