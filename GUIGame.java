@@ -5,8 +5,10 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.image.Image; 
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
+import javafx.scene.shape.Rectangle;
 
 /**
 * 2019-03-06
@@ -20,6 +22,7 @@ public class GUIGame extends Application {
 	private GameConfiguration config;
 	private boolean gameOver;
 	private Button[][] boardButtons;
+	private FlowPane flow;
 	
 	/**
 	* initializes the positions of the chess pieces on the board before the game starts
@@ -34,16 +37,18 @@ public class GUIGame extends Application {
 	* updates the state of the game and GUI display based on user input
 	*/
 	public void update() {
-			
+		draw();//at the end
 	}
 	
-	public void draw(){
+	public void draw() throws FileNotFoundException{
 		String[][] board = config.getBoard().getBoardPosition();
 		
 		//clear board
-		//put board back (the checkerboard) if necessary
+		flow.getChildren().clear();
+
 		//place pieces on board
 		for (int r = 0; r < 8; r++){
+			HBox row = new HBox();
 			for (int c = 0; c < 8; c++){
 
 				String inputString = "D:\\CPSC 233\\Project\\CPSC233GroupProject\\graphical_assets\\";
@@ -57,29 +62,33 @@ public class GUIGame extends Application {
 				String pieceType = board[r][c].substring(2);
 				if (pieceType.equals("Ro")) {
 					inputString += "rook";
-					//draw rook at position (r*50, c*50)
 				}
 				else if (pieceType.equals("Kn")) {
 					inputString += "knight";
-					//draw knight at position (r*50, c*50)
 				}
 				else if (pieceType.equals("Bi")) {
 					inputString += "bishop";
-					//draw bishop at position (r*50, c*50)
 				}
 				else if (pieceType.equals("Qu")) {
 					inputString += "queen";
-					//draw queen at position (r*50, c*50)
 				}
 				else if (pieceType.equals("Ki")) {
 					inputString += "king";
-					//draw king at position (r*50, c*50)
 				}
 				else if (pieceType.equals("Pa")) {
 					inputString += "pawn";
-					//draw pawn at position (r*50, c*50)
 				}
+				else{
+					Rectangle rect = new Rectangle(0,0,50,50);    //makes an empty transparent rectangle, this may be a problem area
+					rect.opacityProperty().set(0.0);
+					row.getChildren().add(rect);
+					continue;
+				}
+				Image pieceImage = new Image(new FileInputStream(inputString));
+				ImageView pieceImageView = new ImageView(pieceImage);
+				row.getChildren().add(pieceImageView);
 			}
+			flow.getChildren().add(row);
 		}
 		//write something below/above the board
 	}
@@ -94,14 +103,20 @@ public class GUIGame extends Application {
 		Image boardImage = new Image(new FileInputStream("C:\\Users\\Shavonne\\Desktop\\Chessboard_brown.png")); //parameter is the image file path
 		//file path to image depends on where you save board image
 		
+		
 		//ImageView instance created, passing Image instance as parameter
-		ImageView boardImageView = new ImageView(boardImage);
+		//ImageView boardImageView = new ImageView(boardImage);
+
+		BackgroundImage bi= new BackgroundImage(boardImage,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+		Background background = new Background(bi);
 		
 		//BorderPane to center the chess board image
-		BorderPane pane = new BorderPane();
-		pane.setCenter(boardImageView);
+		//BorderPane pane = new BorderPane();              //sorry but I may have found a better way
+		//pane.setCenter(boardImageView);
+		flow = new FlowPane();
+		flow.setBackground(background);  //this may cause huge issues and I'm sorry
 		
-		Scene scene = new Scene(pane, 450, 500); //window size is 450 by 500 pixels
+		Scene scene = new Scene(flow, 450, 500); //window size is 450 by 500 pixels
 		primaryStage.setTitle("Chess Game"); //set title to stage
 		primaryStage.setScene(scene);
 		primaryStage.show();
