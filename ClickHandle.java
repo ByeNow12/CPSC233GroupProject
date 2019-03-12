@@ -18,14 +18,21 @@ public class ClickHandle implements EventHandler<MouseEvent> {
     private int[] pieceSelected = new int[] {10, 10};
     private GameConfiguration config;
     private char team;
-	private StackPane wrap;
-	private Pane eventPane;
+	//private StackPane wrap;
+	//private Pane eventPane;
+    private GUIGame gui;
 
-    public ClickHandle(GameConfiguration config, char team, StackPane wrap, Pane eventPane) {
-        this.config = config;
+    //public ClickHandle(GameConfiguration config, char team, StackPane wrap, Pane eventPane) {
+        //this.config = config;
         //this.team = team;
-		this.wrap = wrap;
-		this.eventPane = eventPane;
+		//this.wrap = wrap;
+		//this.eventPane = eventPane;
+    //}
+    
+    public ClickHandle(GUIGame gui, GameConfiguration config, char team){
+	this.gui = gui;
+	this.config = config;
+	this.team = team;
     }
 	
 	/**
@@ -33,7 +40,7 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 	* @param String file, the name of the file to draw.
 	* @param int x, x coordinate.
 	* @param int y, y coordinate.
-	*/
+	*
 	public void drawPiece(String file, int x, int y) {
 		x = x*50;
 		y = y*50;
@@ -49,11 +56,11 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 			System.out.println("File Not Found");
 		}
 	}
-	
+	*/
 	/**
 	* Scans the board array looing for what needs to be drawn
 	* @param String[][] board, an arraylist of the board.
-	*/
+	*
 	public void draw(String[][] board){
 		//clear board
 		//put board back (the checkerboard) if necessary
@@ -74,42 +81,38 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 				if (pieceType.equals("Ro")) {
 					inputString += "rook.png";
 					//draw rook at position (r*50, c*50)
-					drawPiece(inputString, r, c);
 				}
 				else if (pieceType.equals("Kn")) {
 					inputString += "knight.png";
 					//draw knight at position (r*50, c*50)
-					drawPiece(inputString, r, c);
 				}
 				else if (pieceType.equals("Bi")) {
 					inputString += "bishop.png";
 					//draw bishop at position (r*50, c*50)
-					drawPiece(inputString, r, c);
 				}
 				else if (pieceType.equals("Qu")) {
 					inputString += "queen.png";
 					//draw queen at position (r*50, c*50)
-					drawPiece(inputString, r, c);
 				}
 				else if (pieceType.equals("Ki")) {
 					inputString += "king.png";
 					//draw king at position (r*50, c*50)
-					drawPiece(inputString, r, c);
 				}
 				else if (pieceType.equals("Pa")) {
 					inputString += "pawn.png";
 					//draw pawn at position (r*50, c*50)
-					drawPiece(inputString, r, c);
 				}
+				gui.drawPiece(inputString, r, c);
 			}
 		}
 		//write something below/above the board
 	}
+	*/
 	
 	/**
 	* Highlights the specified square.
 	* @param int[] pos, x and y coordinate of the square.
-	*/
+	*
 	public void highlightSelectedSquare(int[] pos) {
 		try {
 			Image selectSquare = new Image(new FileInputStream("blue.png"));
@@ -126,10 +129,11 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 			System.out.println("File not Found");
 		}
 	}
+	*/
 	
 	/**
 	* Highlights the moves that can be made
-	*/
+	*
 	public void highlightMoves(int[] pos, char team, String pieceType, String[][] boardPositions) {
 		try {
 			Image possibleSquare = new Image(new FileInputStream("green.png"));
@@ -172,6 +176,7 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 			System.out.println("File not Found");
 		}
 	}
+	*/
 	
     @Override
     public void handle(MouseEvent event) {
@@ -202,9 +207,9 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 		char team = pieceId.charAt(0);
 
 		if (pieceSelected[0] == 10 && pieceSelected[1] == 10) {
-			draw(board.getBoardPosition());
-			highlightSelectedSquare(position);
-			highlightMoves(position, team, pieceType, board.getBoardPosition());
+			gui.draw();
+			gui.highlightSelectedSquare(position);
+			gui.highlightMoves(position, team, pieceType);
 			pieceSelected[0] = position[0];
 			pieceSelected[1] = position[1];
 		}
@@ -221,7 +226,7 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 				//update board. Display an error message of some kind. Perhaps a red square.
 				board.setBoardPositions(position[0], position[1], board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]]);
 				board.setBoardPositions(pieceSelected[0], pieceSelected[1], "0");
-				board.draw();
+				//board.draw();
 				if (config.hasWon('w') || config.hasWon('b')) {
 					System.exit(0);
 				}
@@ -232,7 +237,7 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 					if (board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]] != "0") {
 						board.setBoardPositions(position[0], position[1], board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]]);
 						board.setBoardPositions(pieceSelected[0], pieceSelected[1], "0");
-						board.draw();
+						//board.draw();
 						if (config.hasWon('w') || config.hasWon('b')) {
 							System.exit(0);
 						}
@@ -242,7 +247,7 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 			pieceSelected[0] = 10;
 			pieceSelected[1] = 10;
 			eventPane.getChildren().clear();
-			draw(board.getBoardPosition());
+			gui.draw();
 		}
     }
 
