@@ -5,19 +5,15 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.image.Image; 
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
 
 /**
 * 2019-03-06
-* Author: Riley, Shavonne
+* Author: Shavonne
 * GUI class that displays the chess board and pieces of the game 
 * Updates the board display after each move 
 */
@@ -27,75 +23,32 @@ public class GUIGame extends Application {
 	private GameConfiguration config;
 	private boolean gameOver;
 	private Button[][] boardButtons;
-	private FlowPane flow;
+	private StackPane wrap;
+	private Pane piecePane = new Pane();
+	private Pane eventPane;
 	
 	/**
 	* initializes the positions of the chess pieces on the board before the game starts
 	*/
-	public void initialize() throws FileNotFoundException {
-		config.getBoard().defaultPositions();
+	public void initialize() {
+		//config.getBoard().defaultPositions();
 		//do more stuff too probably
-		draw();
+		//draw();
 	}
 	
 	/**
 	* updates the state of the game and GUI display based on user input
 	*/
-	public void update() throws FileNotFoundException {
-		draw();//at the end
+	public void update() {
+			
 	}
 	
-	public void draw() throws FileNotFoundException{
-		String[][] board = config.getBoard().getBoardPosition();
-		
-		//clear board
-		flow.getChildren().clear();
-
-		//place pieces on board
-		for (int r = 0; r < 8; r++){
-			HBox row = new HBox();
-			for (int c = 0; c < 8; c++){
-
-				String inputString;
-				if (board[r][c].charAt(0) == 'w'){
-					inputString = "w_";
-				}
-				else{
-					inputString = "b_";   //this is the only thing that has to be changed to put in the outline ones instead
-				}
-
-				String pieceType = board[r][c].substring(2);
-				if (pieceType.equals("Ro")) {
-					inputString += "rook";
-				}
-				else if (pieceType.equals("Kn")) {
-					inputString += "knight";
-				}
-				else if (pieceType.equals("Bi")) {
-					inputString += "bishop";
-				}
-				else if (pieceType.equals("Qu")) {
-					inputString += "queen";
-				}
-				else if (pieceType.equals("Ki")) {
-					inputString += "king";
-				}
-				else if (pieceType.equals("Pa")) {
-					inputString += "pawn";
-				}
-				else{
-					Rectangle rect = new Rectangle(0,0,50,50);    //makes an empty transparent rectangle, this may be a problem area
-					rect.opacityProperty().set(0.0);
-					row.getChildren().add(rect);
-					continue;
-				}
-				Image pieceImage = new Image(new FileInputStream(inputString));
-				ImageView pieceImageView = new ImageView(pieceImage);
-				row.getChildren().add(pieceImageView);
-			}
-			flow.getChildren().add(row);
-		}
-		//write something below/above the board
+	public GameConfiguration getConfig() {
+		return config;
+	}
+	
+	public StackPane getWrap() {
+		return wrap;
 	}
 
 	/**
@@ -105,26 +58,35 @@ public class GUIGame extends Application {
 	*/
 	public void start(Stage primaryStage) throws FileNotFoundException {
 		//Image instance created, passing FileInputStream as parameter to the Image to load the image 
-		Image boardImage = new Image(new FileInputStream("Chessboard_brown.png")); //parameter is the image file path
+		Image boardImage = new Image(new FileInputStream("Chessboard.png")); //parameter is the image file path
 		//file path to image depends on where you save board image
 		
-		
 		//ImageView instance created, passing Image instance as parameter
-		//ImageView boardImageView = new ImageView(boardImage);
-
-		BackgroundImage bi= new BackgroundImage(boardImage,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-		Background background = new Background(bi);
+		ImageView boardImageView = new ImageView(boardImage);
 		
 		//BorderPane to center the chess board image
-		//BorderPane pane = new BorderPane();              
-		//pane.setCenter(boardImageView);
-		flow = new FlowPane();
-		flow.setBackground(background);  
+		BorderPane pane = new BorderPane();
+		//wrap for the center of the border pane
+		wrap = new StackPane();
+		//pane that handle all event handling
+		eventPane = new Pane();
+		wrap.setMaxSize(400, 400);
+		wrap.getChildren().add(boardImageView);
+		wrap.getChildren().add(eventPane);
+		wrap.getChildren().add(piecePane);
+		pane.setCenter(wrap);
 		
-		Scene scene = new Scene(flow, 450, 500); //window size is 450 by 500 pixels
+		config = new GameConfiguration();
+		config.getBoard().defaultPositions();
+		
+		Scene scene = new Scene(pane, 450, 500); //window size is 450 by 500 pixels
+		//tie the mouse event to the wrapping pane. The team must be specified
+		wrap.setOnMouseClicked(new ClickHandle(config, 'w', wrap, eventPane));
 		primaryStage.setTitle("Chess Game"); //set title to stage
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		ClickHandle initDraw = new ClickHandle(config, 'w', wrap, eventPane);
+		initDraw.draw(config.getBoard().getBoardPosition());
 	}
 	
 	/**
