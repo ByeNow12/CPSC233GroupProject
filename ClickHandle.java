@@ -179,7 +179,7 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 	*/
 	
     @Override
-    public void handle(MouseEvent event) {
+    public void handle(MouseEvent event){
         Board board = config.getBoard();
         int width = 400;
         int height = 400;
@@ -246,7 +246,7 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 			}
 			pieceSelected[0] = 10;
 			pieceSelected[1] = 10;
-			eventPane.getChildren().clear();
+			gui.clear();
 			gui.draw();
 		}
     }
