@@ -1,14 +1,43 @@
+2019-03-13
+Bugs
+- calculatePawnMoves - may move 1 more square past end of board
+- calculatePawnMoves - pawn allowed to move diagonally before it's in the position where it's allowed to
+
+JUNIT TESTS
+- in Board class - add setBoard method that takes specific 2D string to test edge cases
+- check isValidMove
+- check calculate[Piece]Move
+- make moves outside of board
+- make moves to try to take own king
+- make moves for piece to take itself
+- make moves to take own pieces
+- set up certain board positions to check
+
+Features
+- Separate into Packages - GUI package and Text package
+- GUI Menu - choose to play with computer/human
+- start menu - Text of Graphics version, load or new game, human or computer opponent.
+- end menu - who won, save score for leaderboard, play again option
+- Labels that indicate whose turn it is, invalid moves, when game ends
+- save state
+- load state 
+
+
+Tasks - do by Wednesday Morning
+- HumanPlayers - Riley
+- Draw - Carmen
+- GUIGame - Shavonne
+- ClickHandle - Tom
+- GameConfigClickHandle - Dany
+
+
 2019-03-11
 Features
-- reorganization of classes - do Wednesday
-- GUI Menu - choose to play with computer/human
-- Label:
-- show invalid moves
+- reorganization of classes - do Wednesday - done 03-13
 - indicate when king is in check
-- whose turn it is
-- when the game ends
-- timer for who takes longer to capture king
-- move draw method from handle click class
+- timer for who takes longer to capture king (maybe)
+- point system (maybe)
+- move draw method from handle click class - done 03-13
 - save state (load from last save)
 
 
