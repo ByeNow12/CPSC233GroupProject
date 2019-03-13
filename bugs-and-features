@@ -32,6 +32,32 @@ Tasks - do by Wednesday Morning
 - GameConfigClickHandle - Dany
 
 
+Meeting Notes:
+GUIGame – main class. Run this one.
+Draw class – new class just for drawing
+- draws chessboard
+- draws ending screen – win/lose status. Play again
+
+rename game class  - TextGame – only runs text version
+AI class – extend ComputerPlayer
+- AI class more “intelligent” computer player
+
+Labels – at bottom to chessboard. Whose turn it is, invalid move explanation, etc.
+
+all instance variables of token: String has been renamed to team: char
+
+Save state – GameConfig – can load game back up
+- separated by []
+
+Maybe:
+Break Piece class into each piece. Make piece class superclass.
+Timer? - GameConfig retrieves time at beginning end
+
+
+
+
+
+
 2019-03-11
 Features
 - reorganization of classes - do Wednesday - done 03-13
