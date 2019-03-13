@@ -51,6 +51,10 @@ public class GUIGame extends Application {
 		return wrap;
 	}
 	
+	public void clear(){
+			eventPane.getChildren().clear();
+	}
+	
 	public void draw(){
 		String[][] board = config.getBoard().getBoardPosition();
 		//place pieces on board
@@ -70,28 +74,33 @@ public class GUIGame extends Application {
 				if (pieceType.equals("Ro")) {
 					inputString += "rook.png";
 					//draw rook at position (r*50, c*50)
+					drawPiece(inputString, r, c);
 				}
 				else if (pieceType.equals("Kn")) {
 					inputString += "knight.png";
 					//draw knight at position (r*50, c*50)
+					drawPiece(inputString, r, c);
 				}
 				else if (pieceType.equals("Bi")) {
 					inputString += "bishop.png";
 					//draw bishop at position (r*50, c*50)
+					drawPiece(inputString, r, c);
 				}
 				else if (pieceType.equals("Qu")) {
 					inputString += "queen.png";
 					//draw queen at position (r*50, c*50)
+					drawPiece(inputString, r, c);
 				}
 				else if (pieceType.equals("Ki")) {
 					inputString += "king.png";
 					//draw king at position (r*50, c*50)
+					drawPiece(inputString, r, c);
 				}
 				else if (pieceType.equals("Pa")) {
 					inputString += "pawn.png";
 					//draw pawn at position (r*50, c*50)
+					drawPiece(inputString, r, c);
 				}
-				drawPiece(inputString, r, c);
 			}
 		}
 		//write something below/above the board
@@ -115,7 +124,7 @@ public class GUIGame extends Application {
 			eventPane.getChildren().add(pieceImageView);
 		}
 		catch (FileNotFoundException error) {
-			System.out.println("File Not Found");
+			//error.printStackTrace();
 		}
 	}
 
@@ -136,14 +145,14 @@ public class GUIGame extends Application {
 			eventPane.getChildren().add(selectSquareView);
 		}
 		catch (FileNotFoundException error) {
-			System.out.println("File not Found");
+			System.out.println("Blue File not Found");
 		}
 	}
 	
 	/**
 	* Highlights the moves that can be made
 	*/
-	public void highlightMoves(int[] pos, char team, String pieceType) {
+	public void highlightMoves(int[] pos, char team, String pieceType){
 		String[][] boardPositions = config.getBoard().getBoardPosition();
 		try {
 			Image possibleSquare = new Image(new FileInputStream("green.png"));
@@ -183,7 +192,7 @@ public class GUIGame extends Application {
 			}
 		}
 		catch(FileNotFoundException error) {
-			System.out.println("File not Found");
+			error.printStackTrace();
 		}
 	}
 
