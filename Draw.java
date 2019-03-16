@@ -1,3 +1,8 @@
+import javafx.application.Application;
+
+/**
+* Draw class
+*/
 public class Draw {
 	private StackPane wrappingPane;
 	
