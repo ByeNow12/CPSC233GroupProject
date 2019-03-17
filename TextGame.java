@@ -4,9 +4,9 @@ import java.io.FileNotFoundException;
 /**
 * 2019-03-06
 * Author: Tom
-* The main class that allows users to actually play the game in the text based version
+* TextGame class, the main class that allows users to actually play the game in the text based version
 */
-class Game{
+public class TextGame{
 
   private HumanPlayer human1;
   private HumanPlayer human2;  // May go unused in a particular instance, where a human plays against a computer.
@@ -17,10 +17,8 @@ class Game{
   private int fR, fC, tR, tC, turnCounter;  // Always used, the first four are for move selections.
   private String c;
 
-  /** Establishes the configuration of the game, prompts the user to decide whether they want to play against
-  a human or computer.
- 	*/
-  
+  /** Establishes the configuration of the game, prompts the user to decide whether they want to play against a human or computer.
+  */
   public void setup(){
     config = new GameConfiguration();
     Scanner format = new Scanner(System.in);
@@ -37,9 +35,8 @@ class Game{
     }
   }
   
-  /** Contains the prompt for what move White will make, recurses if an invalid move is made.
- 	  */
-
+   /** Contains the prompt for what move White will make, recurses if an invalid move is made.
+  */
   public void whitePlay(){
     System.out.println("For the player on the white team, what row is the piece you want to move in?");
     fR = m.nextInt();
@@ -60,9 +57,8 @@ class Game{
       }
   }
   
-  /** Contains the prompt for what move Black will make, recurses if an invalid move is made.
- 	  */
-
+   /** Contains the prompt for what move Black will make, recurses if an invalid move is made.
+  */
   public void blackPlay(){
     System.out.println("For the player on the black team, what row is the piece you want to move in?");
     fR = m.nextInt();
@@ -84,8 +80,7 @@ class Game{
   }
 
   /** The main game loop, runs whilst the game isn't won, and alternates between players.
- 	  */
-  
+  */
   public void play() {
     int turnCounter = 0;
     while (!config.hasWon('w') && !config.hasWon('b')) {
@@ -127,8 +122,7 @@ class Game{
     }
   
   /** Sets up and runs the game utilising the previously defined methods.
- 	  */
-  
+  */
   public static void main(String[] args) throws FileNotFoundException {
     String t;
     Scanner type = new Scanner(System.in);
@@ -136,12 +130,12 @@ class Game{
     t = type.next();
     
     if (t.equals("T")) {
-      Game g = new Game();
+      TextGame g = new TextGame();
       g.setup();
       g.play(); // This is the method incited to run the project as a whole.
     }
     if (t.equals("G")) {
-      Game g = new Game();
+      TextGame g = new TextGame();
       g.setup();
       g.playGUI(); // This is the method incited to run the project as a whole.
     }
