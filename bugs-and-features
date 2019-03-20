@@ -60,11 +60,9 @@ Timer? - GameConfig retrieves time at beginning end
 
 2019-03-11
 Features
-- reorganization of classes - do Wednesday - done 03-13
 - indicate when king is in check
 - timer for who takes longer to capture king (maybe)
 - point system (maybe)
-- move draw method from handle click class - done 03-13
 - save state (load from last save)
 
 
@@ -84,16 +82,6 @@ Assigned tasks:
 - Finish pieces - Carmen
 - square border - to highlight possible moves - Carmen
 - update UML diagram - Carmen
-
-Date: 2019-03-02
-
-Updates:
-- Fixed getAllValidMoves method in GameConfiguration class (Dany)
-- Added a method to check if player is in check (Dany)
-- Updated Game class to indicate which team's turn is is (Shavonne)
-- Added print statement to indicate that the computer has made a move (Shavonne)
-- updated calculatePawnMoves method in Piece class so that a pawn can move 1 or 2 spaces forward during its first turn (Carmen)
-- created checssboad and pieces graphics (Carmen)
 
 Assigned tasks:
 - Finish checkmate method (Dany)
@@ -116,8 +104,6 @@ Bugs:
 
 Features:
 - Move draw method out of board class
-- add 2 classes: HandleCellClicked class and GUIGame class
-- Create graphics for pieces and board
 - indicate which team is going for human vs human
 - indication that computer made a move
 - Let player choose team colour
