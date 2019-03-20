@@ -25,6 +25,10 @@ public class Board {
     public String[][] getBoardPosition() {
         return this.boardPositions;
     }
+	
+     public String[][] getBoardPositionPieceInfo(int i, int x) {
+        return this.boardPositions[i][x];
+    }
 
 	/**
 	* sets an index of the boardPositions varible to a particular value
