@@ -29,6 +29,19 @@ public class GameConfiguration {
 		String token = board.getBoardPosition()[lastMove[0]][lastMove[1]];
 		board.setBoardPositions(lastMove[0], lastMove[1], "0");
 		board.setBoardPositions(currentMove[0], currentMove[1], token);
+		promotion();
+	}
+	
+	public void promotion(){
+		for (int i = 0; int <=7; i++){
+		  if (board.getBoardPositionPieceInfo(0,i) == "b_Pa"){
+			  setBoardPositions(0,i,"b_Qu");
+		}
+		  if (board.getBoardPositionPieceInfo(7,i) == "w_Pa"){
+			  setBoardPositions(0,i,"w_Qu");
+		}
+		}
+		
 	}
 	
 	/**
