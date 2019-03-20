@@ -8,6 +8,7 @@ import java.util.Arrays;
 */
 public class Board {
     private String[][] boardPositions = new String[8][8];
+    String[] pieces = {"w_Ro", "w_Kn", "w_Bi", "b_Ro", "b_Kn", "b_Bi"};
 
 	//Constructor
     public Board() {
@@ -40,7 +41,6 @@ public class Board {
 	* Sets the defualt positions of all the pieces on the boardPositions array.
 	*/
     public void defaultPositions() {
-        String[] pieces = {"w_Ro", "w_Kn", "w_Bi", "b_Ro", "b_Kn", "b_Bi"};
         for (int i = 0; i < 8; i++) {
             boardPositions[1][i] = "w_Pa";
         }
