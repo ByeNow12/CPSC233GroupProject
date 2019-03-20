@@ -1,12 +1,24 @@
 import javafx.application.Application;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.image.Image; 
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
 
-/**
-* Draw class
-*/
-public class Draw {
-	private StackPane wrappingPane;
-	
-	public void draw(){
+public class Draw extends Application {
+		private StackPane wrappingPane;
+		private Pane eventPane;
+		private StackPane wrap;
+		private GameConfiguration config;
+		private Pane piecePane = new Pane();
+		
+		public void draw(){
 		String[][] board = config.getBoard().getBoardPosition();
 		//place pieces on board
 		for (int r = 0; r < 8; r++){
@@ -54,6 +66,7 @@ public class Draw {
 				}
 			}
 		}
+		//write something below/above the board
 	}
 	
 	/**
@@ -77,7 +90,7 @@ public class Draw {
 			//error.printStackTrace();
 		}
 	}
-
+	
 	/**
 	* Highlights the specified square.
 	* @param int[] pos, x and y coordinate of the square.
@@ -145,4 +158,5 @@ public class Draw {
 			error.printStackTrace();
 		}
 	}
+	
 }
