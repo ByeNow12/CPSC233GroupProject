@@ -72,6 +72,8 @@ public class Piece {
 		int r = pos[0];
 		int c = pos[1];
 		boolean[][] moves = new boolean[8][8];
+	    
+	    	//conditions for pawn to be able to move 2 spaces forward on first move
 		if ((r == 1 && team =='w') || (r == 6 && team == 'b')){ // if the pawn is in row 1 or 6 (will be the first move the pawn makes), can move one or two spaces forward
 			if (team == 'w' && r < 7){ //assuming white is on the top of the board
 				if (c < 7){
@@ -117,6 +119,7 @@ public class Piece {
             }
         }
 
+	// after making first move, conditiosn so that pawn can only move forward one space
         else {
             if (team == 'w' && r < 7){ //assuming white is on the top of the board
                 if (c < 7){
