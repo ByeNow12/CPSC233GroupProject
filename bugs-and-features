@@ -1,3 +1,23 @@
+2019-03-20
+
+TASKS:
+Create and place classes inside packages - 3 packages (Text, GUI, Logic) - Shavonne
+  - GUIGame is main class (can be out of folder but import packages)
+Organize diagram - Carmen
+Finish Draw class - Carmen
+JUnit Test for Piece - Riley
+JUnit Test for TextGame - Tom
+JUnit Test for GameConfig - UNASSIGNED - does in check currently work??
+Check for privacy leaks - Dany(?)
+save state - Riley
+load state - Riley
+GUI Menu - choose to play with computer/human - Carmen
+start menu - Text of Graphics version, load or new game, human or computer opponent. - Carmen
+end menu - who won, save score for leaderboard, play again option - Carmen
+Labels that indicate whose turn it is, invalid moves, when game ends - Carmen
+
+
+
 2019-03-13
 Bugs
 - calculatePawnMoves - may move 1 more square past end of board
@@ -12,15 +32,6 @@ JUNIT TESTS
 - make moves for piece to take itself
 - make moves to take own pieces
 - set up certain board positions to check
-
-Features
-- Separate into Packages - GUI package and Text package
-- GUI Menu - choose to play with computer/human
-- start menu - Text of Graphics version, load or new game, human or computer opponent.
-- end menu - who won, save score for leaderboard, play again option
-- Labels that indicate whose turn it is, invalid moves, when game ends
-- save state
-- load state 
 
 
 Tasks - do by Wednesday Morning
