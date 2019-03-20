@@ -119,7 +119,7 @@ public class Piece {
             }
         }
 
-	// after making first move, conditiosn so that pawn can only move forward one space
+	// after making first move, a pawn can only move forward one space
         else {
             if (team == 'w' && r < 7){ //assuming white is on the top of the board
                 if (c < 7){
