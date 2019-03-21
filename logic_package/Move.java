@@ -1,3 +1,5 @@
+package logic_package;
+
 /**
 * 2019-03-06
 * Author: Carmen
@@ -36,7 +38,7 @@ public class Move {
 
 	/** Gets the row and column that the user is moving the piece from and presents it as an integer array of size 2
 	* Changed from int to int[2] so that it accomodates the format of the piece positions in Piece class
-	@return fromVector, the user's input as an integer array of size 2
+	* @return fromVector, the user's input as an integer array of size 2
 	*/
 	public int[] getFrom(){
 		int[] fromVector = new int[2];
@@ -47,7 +49,7 @@ public class Move {
 
 	/** Gets the row and column that the user is moving the piece to and presents it as an integer array of size 2
 	* Changed from int to int[2] so that it accomodates the format of the piece positions in Piece class
-	@return toVector, the user's input (for the position that they want to move the piece to) as an integer array of size 2
+	* @return toVector, the user's input (for the position that they want to move the piece to) as an integer array of size 2
 	*/
 	public int[] getTo(){
 	int[] toVector = new int[2];
