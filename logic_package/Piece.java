@@ -1,3 +1,5 @@
+package logic_package;
+
 /**
 * 2019-03-09
 * Authors: Riley
@@ -264,5 +266,4 @@ public class Piece {
 	}
 	return moves;
     }
-
 }
