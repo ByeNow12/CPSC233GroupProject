@@ -1,10 +1,13 @@
+package text_package;
+
+import logic_package.*; //import the logic package to use Gameconfiguration, ComputerPlayers class
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
 /**
 * 2019-03-06
 * Author: Tom
-* TextGame class, the main class that allows users to actually play the game in the text based version
+* TextGame class allows users to play the game in the text based version
 */
 public class TextGame{
 
@@ -12,12 +15,12 @@ public class TextGame{
   private HumanPlayer human2;  // May go unused in a particular instance, where a human plays against a computer.
   private ComputerPlayer ai;
   private GameConfiguration config;
-
   private Scanner m = new Scanner(System.in); // Scanner for getting input regarding move selection.
   private int fR, fC, tR, tC, turnCounter;  // Always used, the first four are for move selections.
   private String c;
 
-  /** Establishes the configuration of the game, prompts the user to decide whether they want to play against a human or computer.
+  /** 
+  * Establishes the configuration of the game, prompts the user to decide whether they want to play against a human or computer
   */
   public void setup(){
     config = new GameConfiguration();
@@ -35,7 +38,8 @@ public class TextGame{
     }
   }
   
-   /** Contains the prompt for what move White will make, recurses if an invalid move is made.
+  /** 
+  * Contains the prompt for what move White will make, recurses if an invalid move is made
   */
   public void whitePlay(){
     System.out.println("For the player on the white team, what row is the piece you want to move in?");
@@ -57,7 +61,8 @@ public class TextGame{
       }
   }
   
-   /** Contains the prompt for what move Black will make, recurses if an invalid move is made.
+  /** 
+  * Contains the prompt for what move Black will make, recurses if an invalid move is made
   */
   public void blackPlay(){
     System.out.println("For the player on the black team, what row is the piece you want to move in?");
@@ -79,7 +84,8 @@ public class TextGame{
       }
   }
 
-  /** The main game loop, runs whilst the game isn't won, and alternates between players.
+  /** 
+  * The main game loop, runs whilst the game isn't won, and alternates between players
   */
   public void play() {
     int turnCounter = 0;
@@ -121,7 +127,8 @@ public class TextGame{
         }*/
     }
   
-  /** Sets up and runs the game utilising the previously defined methods.
+  /** 
+  * Sets up and runs the game utilising the previously defined methods
   */
   public static void main(String[] args) throws FileNotFoundException {
     String t;
