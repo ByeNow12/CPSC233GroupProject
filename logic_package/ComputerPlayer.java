@@ -1,3 +1,5 @@
+package logic_package;
+
 import java.util.Random;
 
 /**
@@ -23,7 +25,8 @@ public class ComputerPlayer {
     		this.lastMove = toCopy.lastMove;
   	}
   	
- 	/** Getter method for getting the move for the computer player
+ 	/** 
+	* Getter method for getting the move for the computer player
   	* @param currentConfig, the variable that checks the state of the game
   	* @return a random valid move until we implement the AI
  	*/
@@ -31,7 +34,8 @@ public class ComputerPlayer {
 		return getRandomMove(currentConfig); //obtain move based on values from the setter
  	}
   
-  	/** Setter method to make a random valid move for the computer player
+  	/** 
+	* Setter method to make a random valid move for the computer player
  	* @param fromRowNum, the row number of the piece the computer wants to move from
 	* @param fromColNum, the column number of the piece the computer wants to move from
 	* @param toRowNum, the row number the computer wants to move to 
@@ -47,8 +51,8 @@ public class ComputerPlayer {
 		}
     	}
 
-	/** Method that gets a random move for the computer player
-	* Checks if a move is valid, then we return that move
+	/** 
+	* Gets a random move for the computer player and checks if a move is valid, then we return that move
 	* @param config, a parameter from the state of the game
 	* @return a random valid move from the Move class
 	*/
@@ -73,4 +77,3 @@ public class ComputerPlayer {
 		GameConfiguration config = new GameConfiguration();
 	}
 }
-
