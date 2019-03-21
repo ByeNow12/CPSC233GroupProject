@@ -1,7 +1,7 @@
 //import packages
 import GUI_package.*;
 import text_package.*; 
-import logic package.*; 
+import logic_package.*; 
 
 import javafx.application.Application;
 import java.io.FileInputStream;
