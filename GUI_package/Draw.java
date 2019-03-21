@@ -1,3 +1,5 @@
+package GUI_package;
+
 import javafx.application.Application;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
