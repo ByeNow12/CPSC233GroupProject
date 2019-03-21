@@ -1,14 +1,17 @@
+package logic_package;
+
 /**
-* 2019-03-06
+* 2019-03-20
 * Author: Riley
-* Words about class
+* AI class that evaluates the game condition and makes non-random moves to play against the player
 */
 public class AI extends ComputerPlayer {
 
 	String[][] currentBoard;
 	String[][][] hBoards;
 
- 	/** Getter method for getting the move for the computer player
+ 	/** 
+	* Getter method for getting the move for the computer player
   	* @param
   	* @return 
  	*/
@@ -21,4 +24,3 @@ public class AI extends ComputerPlayer {
 
 	}
 }
-
