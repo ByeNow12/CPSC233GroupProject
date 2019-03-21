@@ -1,6 +1,14 @@
+package logic_package;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+* 2019-03-20
+* Authors: Riley, Dany, Tom
+* GameConfiguration class checks the current state of the game
+* Methods check for piece positions, moves conditions and updates, and game conditions including when a player wins
+*/
 public class GameConfiguration {
 
 	private Board board;
@@ -12,16 +20,16 @@ public class GameConfiguration {
 	}
 
 	/**
-	*getter method for board instance variable
-	*@return board:Board
+	* Getter method for board instance variable
+	* @return board, the board
 	*/
 	public Board getBoard() {
 		return board;
 	}
 
 	/**
-	* updates board positions in accordance with the passed move object
-	* @param move: Move, the change in the board position to be done.
+	* Updates board positions in accordance with the passed move object
+	* @param move: Move, the change in the board position to be done
 	*/
 	public void update(Move move){
 		int[] lastMove = move.getFrom();
@@ -45,7 +53,7 @@ public class GameConfiguration {
 	}
 	
 	/**
-	* reverse the passed Move object
+	* Reverse the passed Move object
 	* @param move: Move, the change in the board to be reversed.
 	*/
 	public void reverseMove(Move move) {
@@ -58,8 +66,8 @@ public class GameConfiguration {
 
 	/**
 	* Checks if the passed move object is a valid move and returns true if it is
-	* @param move:Move, the change in the board position to be done.
-	* @return boolean, whether or not the move is valid.
+	* @param move, the change in the board position to be done
+	* @return boolean, whether or not the move is valid
 	*/
 	public boolean isValidMove(Move move){
 		int[] lastMove = move.getFrom();
@@ -96,8 +104,8 @@ public class GameConfiguration {
 
 	/**
 	* Checks if the king in belonging to token is captured. Checks if the game has ended.
-	* @param token: char, the team to be checked for winning
-	* @return boolean, has the team won
+	* @param token, the team to be checked for winning
+	* @return boolean, true or false whether the team has won 
 	*/
 	public boolean hasWon(char token){
 		boolean wKingPresent = false;
@@ -117,8 +125,8 @@ public class GameConfiguration {
 	}
 
 	/**
-	* returns all the valid moves of the team belonging to token
-	* @param token: char, the team to find all valid moves
+	* Returns all the valid moves of the team belonging to token
+	* @param token, the team colour to find all valid moves for
 	* @return ArrayList of Move objects
 	*/
 	public ArrayList<Move> getAllValidMoves(char token){
@@ -170,9 +178,9 @@ public class GameConfiguration {
 	}
 	
 	/**
-	* Checks wether the specified player is in check.
-	* @param char: team - Which color to check.
-	* @return boolean - true if in check false if not.
+	* Checks whether the specified player is in check
+	* @param char, the team colour that is checked
+	* @return boolean, true if in check and false if not
 	*/
 	public boolean isCheck(char team) {
 		ArrayList<Move> possibleMoves = getAllValidMoves(team);
@@ -202,9 +210,9 @@ public class GameConfiguration {
 	}
 	
 	/**
-	* Checks wether the specified player is in check mate.
-	* @param char: team - Which color to check.
-	* @return boolean - true if in check mate false if not.
+	* Checks whether the specified player is in check mate
+	* @param char, the team color that is checked
+	* @return boolean, true if in check mate and false if not
 	*/
 	/*public boolean isCheckMate(char team) {
 		char enemyColor;
@@ -267,5 +275,4 @@ public class GameConfiguration {
 		config.getBoard().draw();
 		System.out.println(config.isCheck('b'));
 	}
-
 }
