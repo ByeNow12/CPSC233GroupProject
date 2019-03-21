@@ -1,3 +1,8 @@
+//import packages
+import GUI_package.*;
+import text_package.*; 
+import logic package.*; 
+
 import javafx.application.Application;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,9 +16,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.Pane;
 
 /**
-* 2019-03-15
+* 2019-03-20
 * Author: Shavonne
-* GUI class that displays the chess board and pieces of the game 
+* GUI class, the main class that displays the chess board and pieces of the game for the GUI version
 * Updates the board display after each move 
 */
 public class GUIGame extends Application {
@@ -28,7 +33,7 @@ public class GUIGame extends Application {
 	/**
 	* Sets up the graphics to seen on screen with javafx
 	* Accepts Png images and displays them 
-	* @param primaryStage: a Stage object that is used to set the scene
+	* @param primaryStage, a Stage object that is used to set the scene
 	*/
 	public void start(Stage primaryStage) throws FileNotFoundException {
 		//Image instance created, passing FileInputStream as parameter to the Image to load the image 
