@@ -1,12 +1,19 @@
+package GUI_package;
+
+//import needed classes from logic package
+import logic_package.GameConfiguration;
+import logic_package.Board;
+import logic_package.Move;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 /**
+* 2019-03-20
 * Author: Dany
 * The event handling class. This class handle all mouse events
 */
-
 public class ClickHandle implements EventHandler<MouseEvent> {
     private int[] pieceSelected = new int[] {10, 10};
     private GameConfiguration config;
