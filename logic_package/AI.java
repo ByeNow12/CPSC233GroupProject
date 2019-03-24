@@ -10,6 +10,9 @@ public class AI extends ComputerPlayer {
 	String[][] currentBoard;
 	String[][][] hBoards;
 
+	public AI(String aToken){
+		super(aToken);
+	}
  	/** 
 	* Getter method for getting the move for the computer player
   	* @param
@@ -17,7 +20,7 @@ public class AI extends ComputerPlayer {
  	*/
  	@Override
   	public Move getMove(GameConfiguration currentConfig) {
-		
+		return null;
  	}
   
  	public static void main(String[] args) {

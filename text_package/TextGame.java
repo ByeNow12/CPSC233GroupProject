@@ -1,5 +1,6 @@
 package text_package;
 
+import GUI_package.GUIGame;
 import logic_package.*; //import the logic package to use Gameconfiguration, ComputerPlayers class
 import java.util.Scanner;
 import java.io.FileNotFoundException;
@@ -105,26 +106,6 @@ public class TextGame{
   }
   
   public void playGUI() throws FileNotFoundException {
-	  String[] args = new String[1];
-      GUIGame GUI = new GUIGame();
-	  GUI.main(args);
-	  //GUI.draw(config.getBoard().getBoardPosition());
-      int turnCounter = 0;
-      /*while (!GUI.getConfig().hasWon('w') && !GUI.getConfig().hasWon('b')) {
-        if (turnCounter % 2 == 0)
-			GUI.getWrap().setOnMouseClicked(new ClickHandle(GUI.getConfig(), 'w', GUI.getWrap(), GUI.getEventPane()));
-            GUI.(args);
-        if ((turnCounter % 2 == 1) && (c.equals("H")))
-           GUI.getWrap().setOnMouseClicked(new ClickHandle(GUI.getConfig(), 'b', GUI.getWrap(), GUI.getEventPane()));
-           GUI.main(args);
-        /*if ((turnCounter % 2 == 1) && (c.equals("C"))) {
-         config.update(ai.getMove(config)); // Here I assume the ComputerPlayer cannot make invalid moves.
-         GUI.draw();
-         System.out.println("The computer has made a move. It is your turn to make a move."); //tells you computer made a move
-        }
-        // A method to check for draws/stalemates must be added to the GameConfiguration class, and incited here.
-        turnCounter++;
-        }*/
     }
   
   /** 

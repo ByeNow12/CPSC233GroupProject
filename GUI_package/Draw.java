@@ -1,11 +1,12 @@
 package GUI_package;
+import logic_package.*;
 
 import javafx.application.Application;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.image.Image; 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
@@ -14,13 +15,17 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.Pane;
 
 public class Draw extends Application {
-		private StackPane wrappingPane;
-		private Pane eventPane;
-		private StackPane wrap;
-		private GameConfiguration config;
-		private Pane piecePane = new Pane();
-		
-		public void draw(){
+	private StackPane wrappingPane;
+	private Pane eventPane;
+	private StackPane wrap;
+	private GameConfiguration config;
+	private Pane piecePane = new Pane();
+
+	public Draw(GameConfiguration config){
+		this.config = config;
+	}
+
+	public void draw(){
 		String[][] board = config.getBoard().getBoardPosition();
 		//place pieces on board
 		for (int r = 0; r < 8; r++){
@@ -70,20 +75,23 @@ public class Draw extends Application {
 		}
 		//write something below/above the board
 	}
-	
+
+	public void clear(){
+		eventPane.getChildren().clear();
+	}
 	/**
-	* Draw the specified file onto screen on the specified coordinates
-	* @param String file, the name of the file to draw.
-	* @param int x, x coordinate.
-	* @param int y, y coordinate.
-	*/
+	 * Draw the specified file onto screen on the specified coordinates
+	 * @param String file, the name of the file to draw.
+	 * @param int x, x coordinate.
+	 * @param int y, y coordinate.
+	 */
 	public void drawPiece(String file, int x, int y) {
 		x = x*50;
 		y = y*50;
 		try {
 			Image pieceImage = new Image(new FileInputStream(file));
 			ImageView pieceImageView = new ImageView(pieceImage);
-		
+
 			pieceImageView.setLayoutX(y);
 			pieceImageView.setLayoutY(x);
 			eventPane.getChildren().add(pieceImageView);
@@ -92,19 +100,19 @@ public class Draw extends Application {
 			//error.printStackTrace();
 		}
 	}
-	
+
 	/**
-	* Highlights the specified square.
-	* @param int[] pos, x and y coordinate of the square.
-	*/
+	 * Highlights the specified square.
+	 * @param int[] pos, x and y coordinate of the square.
+	 */
 	public void highlightSelectedSquare(int[] pos) {
 		try {
 			Image selectSquare = new Image(new FileInputStream("blue.png"));
 			ImageView selectSquareView = new ImageView(selectSquare);
-			
+
 			int x = pos[1]*50;
 			int y = pos[0]*50;
-		
+
 			selectSquareView.setLayoutX(x);
 			selectSquareView.setLayoutY(y);
 			eventPane.getChildren().add(selectSquareView);
@@ -113,10 +121,10 @@ public class Draw extends Application {
 			System.out.println("Blue File not Found");
 		}
 	}
-	
+
 	/**
-	* Highlights the moves that can be made
-	*/
+	 * Highlights the moves that can be made
+	 */
 	public void highlightMoves(int[] pos, char team, String pieceType){
 		String[][] boardPositions = config.getBoard().getBoardPosition();
 		try {
@@ -142,7 +150,7 @@ public class Draw extends Application {
 			else if (pieceType.equals("Pa")) {
 				possibleMoves = Piece.calculatePawnMoves(boardPositions, pos, team);
 			}
-			
+
 			for (int i = 0; i < 8; i++) {
 				for (int n = 0; n < 8; n++) {
 					if (possibleMoves[i][n]) {
@@ -160,15 +168,23 @@ public class Draw extends Application {
 			error.printStackTrace();
 		}
 	}
-	
+
 	public void start(Stage primaryStage) throws FileNotFoundException {
+
+		// START MENU
+		//BorderPane startPane = new BorderPane();
+		//Label welcomeMessage = new Label("Welcome to Chess!");
+		//Button playGUI = new Button("Play Chess ");
+
+		//Scene startMenu = new Scene(startPane, 450, 500); //menu scene. first scene that appears when you open game
+
 		//Image instance created, passing FileInputStream as parameter to the Image to load the image 
 		Image boardImage = new Image(new FileInputStream("Chessboard.png")); //parameter is the image file path
 		//file path to image depends on where you save board image
-		
+
 		//ImageView instance created, passing Image instance as parameter
 		ImageView boardImageView = new ImageView(boardImage);
-		
+
 		//BorderPane to center the chess board image
 		BorderPane pane = new BorderPane();
 		//wrap for the center of the border pane
@@ -180,10 +196,9 @@ public class Draw extends Application {
 		wrap.getChildren().add(eventPane);
 		wrap.getChildren().add(piecePane);
 		pane.setCenter(wrap);
-		
-		config = new GameConfiguration();
+
 		config.getBoard().defaultPositions();
-		
+
 		Scene scene = new Scene(pane, 450, 500); //window size is 450 by 500 pixels
 		//tie the mouse event to the wrapping pane. The team must be specified
 		wrap.setOnMouseClicked(new ClickHandle(this, config, 'w'));
@@ -192,4 +207,6 @@ public class Draw extends Application {
 		primaryStage.show();
 		draw();
 	}
+
+
 }

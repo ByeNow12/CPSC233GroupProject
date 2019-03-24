@@ -34,7 +34,7 @@ public class Board {
     * @param x, int: second index
     * @return boardPositions[i][x], the positions for the board at index i and index x
     */
-    public String[][] getBoardPositionPieceInfo(int i, int x) {
+    public String getBoardPositionPieceInfo(int i, int x) {
         return this.boardPositions[i][x];
     }
 

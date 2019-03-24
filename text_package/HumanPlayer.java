@@ -1,8 +1,10 @@
+package text_package;
+
 import java.util.Scanner;
 
 /**
 * 2019-03-06
-* Author: Carmen
+* Author: Riley
 * Class that allows human players to make a move and contains data related to the player 
 * Methods allow for interaction with the users, validate input and return the data entered by the user as a Move object
 */
@@ -13,6 +15,10 @@ public class HumanPlayer {
 	
 	//need to make a method that constructs leaderboard from text file and has an empty slot for the current game
 	//also one that saves leaderboard
+
+	public HumanPlayer(String name){
+		this.name = name;
+	}
 	
 	public void setName(String name){
 		this.name = name;
@@ -22,9 +28,9 @@ public class HumanPlayer {
 		this.score = score;
 	}
 	
-	public String getName(){
+	public String getName() {
 		return name;
-	
+	}
 	public int getScore(){
 		return score;
 	}
