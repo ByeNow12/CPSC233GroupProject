@@ -1,17 +1,21 @@
 Chess Board Game
 
-Where to Find the Version for Demo 2:
+Where to Find the Version for Demo 3:
 
-All the classes required for demo 2 will be placed uploaded to our repository under the master branch
+All the classes required for demo 3 will be uploaded to our repository under the master branch. The classes are separated into 3 packages; the logic_package, text_package, and GUI_package. The GUIGame class is the main class used to run the program and can be found in the GUI_package. The TextGame class is the class used to run the text based version and can be found in the text_package.
 
-For demo 2, we will be running the GUI version of the game
+Compiling Instructions for Text Based Version:
+1. Download the ZIP file under the master branch containing all the classes and png images and place the file in your chosen directory
+2. Navigate to the chosen directory
+3. Compile the file(s) using the command: javac TextGame.java
 
-Compiling Instructions:
-1. Download the classes under the master branch in a zip file and place it in your chosen directory
-2. Download all the png images in the master class
-3. Navigate to the chosen directory
-4. Ensure all the required classes and images are in the chosen directory
-5. Compile the file(s) using the command javac Game.java
+Run Instructions for Text Based Version:
+1. Run the program using the command: java TextGame 
 
-Run Instructions:
-1. Run the program using the command java Game 
+Compiling Instructions for GUI Version:
+1. Download the ZIP file under the master branch containing all the classes and png images and place the file in your chosen directory
+2. Navigate to the chosen directory
+3. Compile the file(s) using the command: javac GUIGame.java 
+
+Run Instructions for GUI version:
+1. Run the program using the command: java GUIGame 
