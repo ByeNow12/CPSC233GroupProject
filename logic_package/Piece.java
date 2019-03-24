@@ -76,72 +76,28 @@ public class Piece {
 		boolean[][] moves = new boolean[8][8];
 	    
 	    	//conditions for pawn to be able to move 2 spaces forward on first move
-		if ((r == 1 && team =='w') || (r == 6 && team == 'b')){ // if the pawn is in row 1 or 6 (will be the first move the pawn makes), can move one or two spaces forward
-			if (team == 'w' && r < 7){ //assuming white is on the top of the board
-				if (c < 7){
-					for (int i=1; i<3; i++){
-						if ('b' == board[r+i][c+1].charAt(0)) {
-							moves[r+i][c+1] = true;
-						}
-					}
-                }
-                if (c > 1){
-                    for (int i=1; i<3; i++){
-                        if ('b' == board[r+i][c-1].charAt(0)) {
-							moves[r+i][c-1] = true;
-						}
-                    }
-                }
-                for (int i=1; i<3; i++){
-                    if ('0' == board[r+i][c].charAt(0)) {
-						moves[r+i][c] = true;
-					}
-                }
-            }
-            else if (r > 1){
-                if (c < 7){
-                    for (int i=1; i<3; i++){
-                        if ('w' == board[r-i][c+1].charAt(0)) {
-							moves[r-i][c+1] = true;
-						}
-                    }
-            }
-                if (c > 1){
-                    for (int i=1; i<3; i++){
-                        if ('w' == board[r-i][c-1].charAt(0)) {
-							moves[r-i][c-1] = true;
-						}
-                    }
-            }
-            for (int i=1; i<3; i++){
-                if ('0' == board[r-i][c].charAt(0)) {
-					moves[r-i][c] = true;
-				}
-            }
-            }
-        }
-
-	// after making first move, a pawn can only move forward one space
-        else {
-            if (team == 'w' && r < 7){ //assuming white is on the top of the board
-                if (c < 7){
-                    if ('b' == board[r+1][c+1].charAt(0)) moves[r+1][c+1] = true;
-        	    }
-        	    if (c > 1){
-                    if ('b' == board[r+1][c-1].charAt(0)) moves[r+1][c-1] = true;
-        	    }
-        	    if ('0' == board[r+1][c].charAt(0)) moves[r+1][c] = true;
-            }
-            else if (r > 1){
-                if (c < 7){
-                    if ('w' == board[r-1][c+1].charAt(0)) moves[r-1][c+1] = true;
-    	    }
-                if (c > 1){
-                    if ('w' == board[r-1][c-1].charAt(0)) moves[r-1][c-1] = true;
-    	    }
-    	    if ('0' == board[r-1][c].charAt(0)) moves[r-1][c] = true;
-            }
-        }
+		if (r == 1 && team == 'w' && board[r+2][c].equals("0")) // if the pawn is in row 1 or 6 (will be the first move the pawn makes), can move one or two spaces forward
+			moves[r+2][c] = true;
+		if (r == 6 && team == 'b' && board[r-2][c].equals("0"))
+			moves[r-2][c] = true;
+            	if (team == 'w' && r < 7){ //assuming white is on the top of the board
+                	if (c < 7){
+                    		if ('b' == board[r+1][c+1].charAt(0)) moves[r+1][c+1] = true;
+        	    	}
+        	    	if (c > 0){
+                    		if ('b' == board[r+1][c-1].charAt(0)) moves[r+1][c-1] = true;
+        	    	}
+        	    	if ('0' == board[r+1][c].charAt(0)) moves[r+1][c] = true;
+            	}
+            	else if (r > 0){//black
+                	if (c < 7){
+                    		if ('w' == board[r-1][c+1].charAt(0)) moves[r-1][c+1] = true;
+    	    		}
+                	if (c > 0){
+                    		if ('w' == board[r-1][c-1].charAt(0)) moves[r-1][c-1] = true;
+    	    		}
+    	    		if ('0' == board[r-1][c].charAt(0)) moves[r-1][c] = true;
+            	}
   
 		return moves;
     }
