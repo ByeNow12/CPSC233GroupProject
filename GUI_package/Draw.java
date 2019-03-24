@@ -1,4 +1,7 @@
 package GUI_package;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import logic_package.*;
 
 import javafx.application.Application;
@@ -13,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.Pane;
+
 
 public class Draw extends Application {
 	private StackPane wrappingPane;
@@ -169,14 +173,22 @@ public class Draw extends Application {
 		}
 	}
 
+	/**
+	 * changes text based on which team it is
+	 **/
+	public String bottomLabel (char team) {
+		String currentTeam = "";
+		if (team == 'w'){
+			currentTeam = "White team";
+		}
+		else if (team == 'b' ){
+			currentTeam = "Black team";
+		}
+		return ("Current turn: "+currentTeam);
+	}
+
 	public void start(Stage primaryStage) throws FileNotFoundException {
-
-		// START MENU
-		//BorderPane startPane = new BorderPane();
-		//Label welcomeMessage = new Label("Welcome to Chess!");
-		//Button playGUI = new Button("Play Chess ");
-
-		//Scene startMenu = new Scene(startPane, 450, 500); //menu scene. first scene that appears when you open game
+		//GAME GUI
 
 		//Image instance created, passing FileInputStream as parameter to the Image to load the image 
 		Image boardImage = new Image(new FileInputStream("Chessboard.png")); //parameter is the image file path
@@ -197,13 +209,140 @@ public class Draw extends Application {
 		wrap.getChildren().add(piecePane);
 		pane.setCenter(wrap);
 
+		/* Label in game - incomplete
+		Pane bottomPane = new Pane();
+		bottomPane.getChildren().add(bottomLabel('w'));
+		pane.setBottom(bottomPane);
+		*/
+
 		config.getBoard().defaultPositions();
 
-		Scene scene = new Scene(pane, 450, 500); //window size is 450 by 500 pixels
+		Scene gameScene = new Scene(pane, 450, 500); //window size is 450 by 500 pixels
+
+		// START MENU GUI
+		BorderPane startPane = new BorderPane();
+
+		// Labels on start menu - VBox to hold welcome message and sub message labels
+		VBox topPane = new VBox(5);
+		topPane.setPrefWidth(100); //setting pref width and height so that text inside VBox is vertically centred
+		topPane.setPrefHeight(200);
+		topPane.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
+		Label welcomeMessage = new Label("Welcome to Chess!");
+		Label subMessage = new Label("Select from the options below");
+		// increase font size of labels
+		welcomeMessage.setStyle("-fx-font-size: 40px;");
+		subMessage.setStyle("-fx-font-size: 20px;");
+		//adds labels to VBox
+		topPane.getChildren().add(welcomeMessage);
+		topPane.getChildren().add(subMessage);
+
+		//Buttons on Start Menu - VBox to hold 3 buttons
+		VBox centrePane = new VBox(10);
+		centrePane.setPrefWidth(100); //setting pref width and height so that text inside VBox is vertically centred
+		centrePane.setPrefHeight(300);
+		centrePane.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
+		//Start menu buttons
+		Button playGUI = new Button("Play Chess (GUI Version)");
+		Button playText = new Button("Play Chess (Text Version)");
+		Button viewScoreboard = new Button("View Scoreboard");
+		//increase font size of buttons
+		playGUI.setStyle("-fx-font-size: 16px;");
+		playText.setStyle("-fx-font-size: 16px;");
+		viewScoreboard.setStyle("-fx-font-size: 16px;");
+		//Adds labels to VBox
+		centrePane.getChildren().add(playGUI);
+		centrePane.getChildren().add(playText);
+		centrePane.getChildren().add(viewScoreboard);
+
+		//Adds the VBox for labels and buttons to the BorderPane
+		startPane.setTop(topPane);
+		startPane.setCenter(centrePane);
+
+		Scene startMenu = new Scene(startPane, 450, 500);
+
+		//MENU AFTER CLICKING GUI VERSION
+		BorderPane subPane = new BorderPane();
+		//Vbox for labels on top
+		VBox subTop = new VBox();
+		subTop.setPrefWidth(100); //setting pref width and height so that text inside VBox is vertically centred
+		subTop.setPrefHeight(200);
+		subTop.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
+		Label chooseBelow = new Label("Choose from an option below:");
+		// increase font size of labels
+		chooseBelow.setStyle("-fx-font-size: 20px;");
+		//adds labels to VBox
+		subTop.getChildren().add(chooseBelow);
+
+		//VBox with buttons
+		VBox subCentre = new VBox(10);
+		subCentre.setPrefWidth(100); //setting pref width and height so that text inside VBox is vertically centred
+		subCentre.setPrefHeight(300);
+		subCentre.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
+		//buttons on sub menu
+		Button newGameHuman = new Button("New Game (vs human player)");
+		Button newGameComputer = new Button("New Game (vs computer player)");
+		Button loadGame = new Button("Load Game");
+		//increase font size of buttons
+		newGameHuman.setStyle("-fx-font-size: 16px;");
+		newGameComputer.setStyle("-fx-font-size: 16px;");
+		loadGame.setStyle("-fx-font-size: 16px;");
+		//Adds labels to VBox
+		subCentre.getChildren().add(newGameHuman);
+		subCentre.getChildren().add(newGameComputer);
+		subCentre.getChildren().add(loadGame);
+
+		subPane.setTop(subTop);
+		subPane.setCenter(subCentre);
+
+		Scene subMenu = new Scene(subPane, 450,500);
+
+		// END MENU GUI
+		BorderPane endPane = new BorderPane();
+
+		// Labels on end menu - VBox to hold win/lost message and sub message labels
+		VBox endTop = new VBox(5);
+		endTop.setPrefWidth(100); //setting pref width and height so that text inside VBox is vertically centred
+		endTop.setPrefHeight(200);
+		endTop.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
+		Label winStatus = new Label("You won/lost!"); //NEEDS TO BE DYNAMIC
+		Label playAgain = new Label("Play again?");
+		// increase font size of labels
+		winStatus.setStyle("-fx-font-size: 40px;");
+		playAgain.setStyle("-fx-font-size: 20px;");
+		//adds labels to VBox
+		endTop.getChildren().add(winStatus);
+		endTop.getChildren().add(playAgain);
+
+		//Buttons on End Menu - VBox to hold 3 buttons - Same as Start buttons
+		VBox endCentre = new VBox(10);
+		endCentre.setPrefWidth(100); //setting pref width and height so that text inside VBox is vertically centred
+		endCentre.setPrefHeight(300);
+		endCentre.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
+		//end menu buttons
+		Button playAgainGUI = new Button("Play Chess (GUI Version)");
+		Button playAgainText = new Button("Play Chess (Text Version)");
+		Button playAgainScoreboard = new Button("View Scoreboard");
+		//increases size of buttons
+		playAgainGUI.setStyle("-fx-font-size: 16px;");
+		playAgainText.setStyle("-fx-font-size: 16px;");
+		playAgainScoreboard.setStyle("-fx-font-size: 16px;");
+		//Adds labels to VBox
+		endCentre.getChildren().add(playAgainGUI);
+		endCentre.getChildren().add(playAgainText);
+		endCentre.getChildren().add(playAgainScoreboard);
+
+		//Adds the VBox for labels and buttons to the BorderPane
+		endPane.setTop(endTop);
+		endPane.setCenter(endCentre);
+
+		Scene endMenu = new Scene(endPane, 450, 500);
+
 		//tie the mouse event to the wrapping pane. The team must be specified
 		wrap.setOnMouseClicked(new ClickHandle(this, config, 'w'));
 		primaryStage.setTitle("Chess Game"); //set title to stage
-		primaryStage.setScene(scene);
+
+		//For testing purposes: start Menu = (startMenu), game = (gameScene), end menu (endMenu)
+		primaryStage.setScene(startMenu);
 		primaryStage.show();
 		draw();
 	}
