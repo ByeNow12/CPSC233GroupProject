@@ -52,6 +52,11 @@ public class Board {
     * Sets the defualt positions of all the pieces on the boardPositions array
     */
     public void defaultPositions() {
+		for (int i = 0; i < 8; i++) {
+			for (int x = 0; x < 8; x++) {
+				setBoardPositions(i, x, "0");
+			}
+		}
 	String[] pieces = {"w_Ro", "w_Kn", "w_Bi", "b_Ro", "b_Kn", "b_Bi"};
 	
         for (int i = 0; i < 8; i++) {
@@ -75,6 +80,7 @@ public class Board {
     /**
     * Draws boardPositions to the screen according to the value each index contains
     */
+	
     public void draw() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {

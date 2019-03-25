@@ -1,3 +1,4 @@
+
 package logic_package;
 
 import java.util.ArrayList;
@@ -299,7 +300,9 @@ public class GameConfiguration {
 
 		for (int i = 0; i < 8; i++){
 			String line = br.readLine();
-			board.getBoardPosition()[i] = line.split(" ");
+			for (int x = 0; x < 8; x++) {
+				board.setBoardPositions(i, x, line.split(" ")[x]);
+			}
 		}
 
 		return true;
@@ -309,11 +312,6 @@ public class GameConfiguration {
 	public static void main(String[] args) {
 		GameConfiguration config = new GameConfiguration();
 		config.getBoard().defaultPositions();
-		config.getBoard().setBoardPositions(0, 4, "0");
-		config.getBoard().setBoardPositions(4, 4, "w_Ki");
-		config.getBoard().setBoardPositions(5, 0, "b_Ro");
-		config.getBoard().setBoardPositions(3, 0, "b_Ro");
-		config.getBoard().setBoardPositions(4, 0, "b_Ro");
 		System.out.println("Got here :)");
 		try{
 		config.save();}
