@@ -293,6 +293,15 @@ public class GameConfiguration {
 			file.delete();
 			return false;
 		}
+
+		FileReader fr = new FileReader(file);
+		BufferedReader br = new BufferedReader(fr);
+
+		for (int i = 0; i < 8; i++){
+			String line = br.readLine();
+			board.getBoardPosition()[i] = line.split(" ");
+		}
+
 		return true;
 	}
 		
