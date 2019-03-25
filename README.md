@@ -19,3 +19,8 @@ Compiling Instructions for GUI Version:
 
 Run Instructions for GUI version:
 1. Run the program using the command: java GUIGame 
+
+Compiling and Run Instructions for JUnit test PieceTest.java
+1. Copy JUnit Jar files into JUnit Tests folder
+2. Compile files with command: javac -cp .;junit-4.12.jar;hamcrest-core-1.3.jar *.java
+3. Run test by using command: java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore PieceTest
