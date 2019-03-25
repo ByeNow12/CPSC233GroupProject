@@ -18,7 +18,7 @@ Compiling Instructions for GUI Version:
 3. Compile the file(s) using the command: javac GUI_package/\*.java logic_package/\*.java text_package/\*.java
 
 Run Instructions for GUI version:
-1. Run the program using the command: java GUIGame 
+1. Run the program using the command: java GUI_package.GUIGame 
 
 Compiling and Run Instructions for JUnit test PieceTest.java
 1. Copy JUnit Jar files into JUnit Tests folder
