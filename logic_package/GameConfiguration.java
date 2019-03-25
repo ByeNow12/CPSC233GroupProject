@@ -20,12 +20,15 @@ import logic_package.Move;
 public class GameConfiguration {
 
 	private Board board;
+	private boolean wTurn;
 	
 	//Constructor
 	public GameConfiguration(){
 		board = new Board();
 		board.defaultPositions();
 	}
+
+	public boolean whiteTurn(){ return wTurn;}
 
 	/**
 	* Getter method for board instance variable
@@ -46,6 +49,7 @@ public class GameConfiguration {
 		board.setBoardPositions(lastMove[0], lastMove[1], "0");
 		board.setBoardPositions(currentMove[0], currentMove[1], token);
 		promotion();
+		wTurn = !wTurn;
 	}
 	
 	public void promotion(){
