@@ -2,6 +2,14 @@ package logic_package;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.File;
+
+import logic_package.Move;
 
 /**
 * 2019-03-20
@@ -264,6 +272,40 @@ public class GameConfiguration {
 		return isCheckMateBool;
 	}*/
 
+	public void save() throws IOException{	//only call at the end when you want to save and exit
+		File file = new File("savegame.txt");
+		file.createNewFile();
+		FileWriter fw = new FileWriter(file);
+		BufferedWriter bw = new BufferedWriter(fw);
+		String[][] b = board.getBoardPosition();
+		for (int r = 0; r < 8; r++){
+			for (int c = 0; c < 8; c++){
+				bw.write(b[r][c] + " ", 0, b[r][c].length() + 1);
+			}
+			bw.newLine();
+		}
+		bw.close();
+	}
+			
+	public boolean load() throws IOException{
+		File file = new File("savegame.txt");
+		if (file.createNewFile()){
+			file.delete();
+			return false;
+		}
+
+		FileReader fr = new FileReader(file);
+		BufferedReader br = new BufferedReader(fr);
+
+		for (int i = 0; i < 8; i++){
+			String line = br.readLine();
+			board.getBoardPosition()[i] = line.split(" ");
+		}
+
+		return true;
+	}
+		
+		
 	public static void main(String[] args) {
 		GameConfiguration config = new GameConfiguration();
 		config.getBoard().defaultPositions();
@@ -272,7 +314,11 @@ public class GameConfiguration {
 		config.getBoard().setBoardPositions(5, 0, "b_Ro");
 		config.getBoard().setBoardPositions(3, 0, "b_Ro");
 		config.getBoard().setBoardPositions(4, 0, "b_Ro");
-		config.getBoard().draw();
-		System.out.println(config.isCheck('b'));
+		System.out.println("Got here :)");
+		try{
+		config.save();}
+		catch(Exception e){e.printStackTrace();}
+		//config.getBoard().draw();
+		//System.out.println(config.isCheck('b'));
 	}
 }
