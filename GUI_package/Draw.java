@@ -224,7 +224,6 @@ public class Draw extends Application {
 		
 		//gamePane.setBottom(whitePlaying); //set the labels displayed in gamePane to bottom of board
 		//gamePane.setBottom(blackPlaying);
-		config = new GameConfiguration();
 		config.getBoard().defaultPositions();
 
 
