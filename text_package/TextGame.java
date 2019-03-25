@@ -103,6 +103,17 @@ public class TextGame{
       }
   }
   
+  public void playText(){
+	  try {
+		  TextGame g = new TextGame();
+		  g.setup();
+		  g.play();
+	  }
+	  catch(IOException error) {
+		  System.out.println(error);
+	  }
+  }
+  
   public void playGUI() throws FileNotFoundException {
     }
   
