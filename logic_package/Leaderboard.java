@@ -11,7 +11,7 @@ import java.io.File;
 /**
 * 2019-03-06
 * Author: Riley
-* Class that allows human players to make a move and contains data related to the player 
+* Class that stores and saves the leaderboard 
 * Methods allow for interaction with the users, validate input and return the data entered by the user as a Move object
 */
 public class Leaderboard {
@@ -23,7 +23,7 @@ public class Leaderboard {
 	//need to make a method that constructs leaderboard from text file and has an empty slot for the current game
 	//also one that saves leaderboard
 
-	public HumanPlayer(String name) throws IOException{
+	public Leaderboard(String name) throws IOException{
 		rankings = new File("rankings.txt");
 		rankings.createNewFile();
 
@@ -89,9 +89,9 @@ public class Leaderboard {
 
 	public static void main(String args[]) {
 		try{
-			HumanPlayer h = new HumanPlayer("Met");
-			h.setScore(9384767);
-			h.save();
+			Leaderboard l = new Leaderboard("Met");
+			l.setScore(9384767);
+			l.save();
 		}
 		catch(Exception e){
 			System.out.println("it went wrong");
