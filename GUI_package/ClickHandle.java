@@ -8,6 +8,8 @@ import logic_package.Move;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 
 /**
  * 2019-03-20
@@ -19,11 +21,15 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 	private GameConfiguration config;
 	private char team;
 	private Draw drawGame;
+	private Stage primaryStage;
+	private Scene scene;
 
-	public ClickHandle(Draw drawGame, GameConfiguration config, char team){
+	public ClickHandle(Draw drawGame, GameConfiguration config, Stage primaryStage, Scene scene, char team){
 		this.drawGame = drawGame;
 		this.config = config;
 		this.team = team;
+		this.primaryStage = primaryStage;
+		this.scene = scene;
 	}
 
 	@Override
@@ -76,7 +82,17 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 				board.setBoardPositions(pieceSelected[0], pieceSelected[1], "0");
 				//board.draw();
 				if (config.hasWon('w') || config.hasWon('b')) {
-					System.exit(0);
+					if (config.hasWon('w')) {
+						drawGame.setEndText("You Won!");
+						scene = drawGame.buildEndMenuScene();
+					}
+					else {
+						drawGame.setEndText("You Lost!");
+						scene = drawGame.buildEndMenuScene();
+					}
+					config.getBoard().defaultPositions();
+					primaryStage.setScene(scene);
+					drawGame.draw();
 				}
 			}
 			else {
@@ -87,7 +103,17 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 						board.setBoardPositions(pieceSelected[0], pieceSelected[1], "0");
 						//board.draw();
 						if (config.hasWon('w') || config.hasWon('b')) {
-							System.exit(0);
+							if (config.hasWon('w')) {
+								drawGame.setEndText("White Won!");
+								scene = drawGame.buildEndMenuScene();
+							}
+							else {
+								drawGame.setEndText("Black Won");
+								scene = drawGame.buildEndMenuScene();
+							}
+							config.getBoard().defaultPositions();
+							primaryStage.setScene(scene);
+							drawGame.draw();
 						}
 					}
 				}

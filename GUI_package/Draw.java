@@ -27,9 +27,18 @@ public class Draw extends Application {
 	private StackPane wrap;
 	private GameConfiguration config;
 	private Pane piecePane = new Pane();
+	private Stage primaryStageCopy;
+	private Scene gameSceneCopy;
+	private Scene subMenuCopy;
+	private Scene endMenuCopy;
+	private String endText = "You Won!";
 
 	public Draw(GameConfiguration config){
 		this.config = config;
+	}
+	
+	public void setEndText(String t) {
+		endText = t;
 	}
 
 	public void draw(){
@@ -202,6 +211,10 @@ public class Draw extends Application {
 
 		//BorderPane to center the chess board image
 		BorderPane pane = new BorderPane();
+		
+		Button saveGameButton = new Button("Save and Quit");
+		saveGameButton.setOnMouseClicked(new GameConfigClickHandle(primaryStage, endMenuCopy, config, this, 's'));
+		
 		//wrap for the center of the border pane
 		wrap = new StackPane();
 		//pane that handle all event handling
@@ -212,6 +225,7 @@ public class Draw extends Application {
 		wrap.getChildren().add(eventPane);
 		wrap.getChildren().add(piecePane);
 		pane.setCenter(wrap);
+		pane.setBottom(saveGameButton);
 
 		/* Label in game - incomplete
 		*/ 
@@ -225,19 +239,25 @@ public class Draw extends Application {
 		//gamePane.setBottom(whitePlaying); //set the labels displayed in gamePane to bottom of board
 		//gamePane.setBottom(blackPlaying);
 		config.getBoard().defaultPositions();
+		primaryStageCopy = primaryStage;
+		gameSceneCopy = gameScene;
 
 
 		//creates new instances of start menu, sub menu and end menu
-		Scene startMenu = buildStartMenuScene();
 		Scene subMenu = buildSubMenuScene();
+		subMenuCopy = subMenu;
+		
+		Scene startMenu = buildStartMenuScene();
 		Scene endMenu = buildEndMenuScene();
+		
+		endMenuCopy = endMenu;
 
 		//tie the mouse event to the wrapping pane. The team must be specified
-		wrap.setOnMouseClicked(new ClickHandle(this, config, 'w'));
+		wrap.setOnMouseClicked(new ClickHandle(this, config, primaryStage, endMenuCopy, 'w'));
 		primaryStage.setTitle("Chess Game"); //set title to stage
 
 		//For testing purposes: start Menu = (startMenu), game = (gameScene), end menu (endMenu)
-		primaryStage.setScene(gameScene);
+		primaryStage.setScene(startMenu);
 		primaryStage.show();
 		draw();
 	}
@@ -273,7 +293,13 @@ public class Draw extends Application {
 		centrePane.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
 		//Start menu buttons
 		Button playGUI = new Button("Play Chess (GUI Version)");
+		
+		playGUI.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, subMenuCopy, config, this, 'g'));
+		
 		Button playText = new Button("Play Chess (Text Version)");
+		
+		playText.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, gameSceneCopy, config, this, 't'));
+		
 		Button viewScoreboard = new Button("View Scoreboard");
 		//increase font size of buttons
 		playGUI.setStyle("-fx-font-size: 16px;");
@@ -317,8 +343,17 @@ public class Draw extends Application {
 		subCentre.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
 		//buttons on sub menu
 		Button newGameHuman = new Button("New Game (VS human player)");
+		
+		newGameHuman.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, gameSceneCopy, config, this, 'g'));
+		
 		Button newGameComputer = new Button("New Game (VS computer)");
+		
+		// AI not implemented yet
+		
 		Button loadGame = new Button("Load Game from Save");
+		
+		loadGame.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, gameSceneCopy, config, this, 'l'));
+		
 		//increase font size of buttons
 		newGameHuman.setStyle("-fx-font-size: 16px;");
 		newGameComputer.setStyle("-fx-font-size: 16px;");
@@ -338,7 +373,7 @@ public class Draw extends Application {
 	 * player can choose from playing again (returns to start menu), saving their score or to view the scoreboard
 	 * @return Scene for end menu
 	 * */
-	private Scene buildEndMenuScene() {
+	public Scene buildEndMenuScene() {
 		// END MENU GUI
 		BorderPane endPane = new BorderPane();
 
@@ -347,7 +382,7 @@ public class Draw extends Application {
 		endTop.setPrefWidth(100); //setting pref width and height so that text inside VBox is vertically centred
 		endTop.setPrefHeight(200);
 		endTop.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
-		Label winStatus = new Label("You won/lost!"); //NEEDS TO BE DYNAMIC
+		Label winStatus = new Label(endText); //NEEDS TO BE DYNAMIC
 		Label playAgain = new Label("Play again?");
 		// increase font size of labels
 		winStatus.setStyle("-fx-font-size: 40px;");
@@ -362,7 +397,10 @@ public class Draw extends Application {
 		endCentre.setPrefHeight(300);
 		endCentre.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
 		//end menu buttons
+		
 		Button playAgainBtn = new Button("Play Again!");
+		playAgainBtn.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, gameSceneCopy, config, this, 'g'));
+		
 		Button saveScore = new Button("Save Score to Scoreboard");
 		Button playAgainScoreboard = new Button("View Scoreboard");
 		//increases size of buttons
