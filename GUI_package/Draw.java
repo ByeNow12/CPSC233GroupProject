@@ -364,7 +364,7 @@ public class Draw extends Application {
 		endCentre.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
 		//end menu buttons
 		Button playAgainBtn = new Button("Play Again!");
-		Button saveScore = new Button("Save My Score");
+		Button saveScore = new Button("Save Score to Scoreboard");
 		Button playAgainScoreboard = new Button("View Scoreboard");
 		//increases size of buttons
 		playAgainBtn.setStyle("-fx-font-size: 16px;");
