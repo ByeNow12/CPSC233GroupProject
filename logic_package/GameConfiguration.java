@@ -50,10 +50,10 @@ public class GameConfiguration {
 	
 	public void promotion(){
 		for (int i = 0; i <=7; i++){
-		  if (board.getBoardPositionPieceInfo(0,i) == "b_Pa"){
+		  if (board.getBoardPositionPieceInfo(0,i).equals("b_Pa")){
 			  board.setBoardPositions(0,i,"b_Qu");
 		}
-		  if (board.getBoardPositionPieceInfo(7,i) == "w_Pa"){
+		  if (board.getBoardPositionPieceInfo(7,i).equals("w_Pa")){
 			  board.setBoardPositions(0,i,"w_Qu");
 		}
 		}
