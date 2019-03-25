@@ -14,8 +14,6 @@ import java.io.FileNotFoundException;
 */
 public class TextGame{
 
-  private HumanPlayer human1;
-  private HumanPlayer human2;  // May go unused in a particular instance, where a human plays against a computer.
   private ComputerPlayer ai;
   private GameConfiguration config;
   private Scanner m = new Scanner(System.in); // Scanner for getting input regarding move selection.
@@ -32,11 +30,9 @@ public class TextGame{
     c = format.next();
 
     if (c.equals("H")){
-      human1 = new HumanPlayer("White");
-      human2 = new HumanPlayer("Black");
+      
     }
     if (c.equals("C")){
-      human1 = new HumanPlayer("White"); // Default's the human to the slightly more advantageous side, may change in the future.
       ai = new ComputerPlayer("Black"); // Unsure of the purpose of the instance variable of Move type upon initialisation.
     }
   }
