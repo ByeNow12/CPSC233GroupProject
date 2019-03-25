@@ -1,4 +1,4 @@
-package text_package;
+package logic_package;
 
 import java.util.Arrays;
 import java.io.FileReader;
@@ -14,7 +14,7 @@ import java.io.File;
 * Class that allows human players to make a move and contains data related to the player 
 * Methods allow for interaction with the users, validate input and return the data entered by the user as a Move object
 */
-public class HumanPlayer {
+public class Leaderboard {
 	private File rankings;
 	private String name;
 	private int score;
