@@ -206,6 +206,7 @@ public class Draw extends Application {
 		wrap = new StackPane();
 		//pane that handle all event handling
 		eventPane = new Pane();
+		Scene gameScene = new Scene(pane, 450, 500); //window size is 450 by 500 pixels
 		wrap.setMaxSize(400, 400);
 		wrap.getChildren().add(boardImageView);
 		wrap.getChildren().add(eventPane);
@@ -214,19 +215,40 @@ public class Draw extends Application {
 
 		/* Label in game - incomplete
 		*/ 
-		BorderPane gamePane = new BorderPane();
-		Label whitePlaying = new Label(bottomLabel('w')); //label reads Current turn: White team
-		Label blackPlaying = new Label(bottomLabel('b')); //label reads Current turn: Black team
-		
-		gamePane.getChildren().add(whitePlaying); //add labels to gamePane
-		gamePane.getChildren().add(blackPlaying);
-		
-		gamePane.setBottom(whitePlaying); //set the labels displayed in gamePane to bottom of board 
-		gamePane.setBottom(blackPlaying); 
 
+		//Label whitePlaying = new Label(bottomLabel('w')); //label reads Current turn: White team
+		//Label blackPlaying = new Label(bottomLabel('b')); //label reads Current turn: Black team
+		
+		//gamePane.getChildren().add(whitePlaying); //add labels to gamePane
+		//gamePane.getChildren().add(blackPlaying);
+		
+		//gamePane.setBottom(whitePlaying); //set the labels displayed in gamePane to bottom of board
+		//gamePane.setBottom(blackPlaying);
 		config.getBoard().defaultPositions();
-		Scene gameScene = new Scene(gamePane, 450, 500); //window size is 450 by 500 pixels
 
+
+		//creates new instances of start menu, sub menu and end menu
+		Scene startMenu = buildStartMenuScene();
+		Scene subMenu = buildSubMenuScene();
+		Scene endMenu = buildEndMenuScene();
+
+		//tie the mouse event to the wrapping pane. The team must be specified
+		wrap.setOnMouseClicked(new ClickHandle(this, config, 'w'));
+		primaryStage.setTitle("Chess Game"); //set title to stage
+
+		//For testing purposes: start Menu = (startMenu), game = (gameScene), end menu (endMenu)
+		primaryStage.setScene(gameScene);
+		primaryStage.show();
+		draw();
+	}
+
+	/**
+	 * Creates start menu, which is the first scene that players will see upon opening game
+	 * Includes welcome message and allows user to choose from 3 buttons - to play the GUI version of the game, to play the text version,
+	 * or to view the scoreboard
+	 * @return Scene for the start menu
+	 */
+	private Scene buildStartMenuScene() {
 		// START MENU GUI
 		BorderPane startPane = new BorderPane();
 
@@ -236,7 +258,7 @@ public class Draw extends Application {
 		topPane.setPrefHeight(200);
 		topPane.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
 		Label welcomeMessage = new Label("Welcome to Chess!");
-		Label subMessage = new Label("Select from the options below");
+		Label subMessage = new Label("Select from the options below:");
 		// increase font size of labels
 		welcomeMessage.setStyle("-fx-font-size: 40px;");
 		subMessage.setStyle("-fx-font-size: 20px;");
@@ -266,9 +288,16 @@ public class Draw extends Application {
 		startPane.setTop(topPane);
 		startPane.setCenter(centrePane);
 
-		Scene startMenu = new Scene(startPane, 450, 500);
+		return new Scene(startPane, 450, 500);
+	}
 
-		//MENU AFTER CLICKING GUI VERSION
+	/**
+	 * builds the sub menu, which is presented upon clickin on the GUI version of the game in the start menu
+	 * users are presented with options to play a new game against a human or computer, or to load their game from a previous save
+	 * @return Scene for the sub menu
+	 */
+	private Scene buildSubMenuScene() {
+		//SUB MENU GUI
 		BorderPane subPane = new BorderPane();
 		//Vbox for labels on top
 		VBox subTop = new VBox();
@@ -287,9 +316,9 @@ public class Draw extends Application {
 		subCentre.setPrefHeight(300);
 		subCentre.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
 		//buttons on sub menu
-		Button newGameHuman = new Button("New Game (vs human player)");
-		Button newGameComputer = new Button("New Game (vs computer player)");
-		Button loadGame = new Button("Load Game");
+		Button newGameHuman = new Button("New Game (VS human player)");
+		Button newGameComputer = new Button("New Game (VS computer)");
+		Button loadGame = new Button("Load Game from Save");
 		//increase font size of buttons
 		newGameHuman.setStyle("-fx-font-size: 16px;");
 		newGameComputer.setStyle("-fx-font-size: 16px;");
@@ -302,8 +331,14 @@ public class Draw extends Application {
 		subPane.setTop(subTop);
 		subPane.setCenter(subCentre);
 
-		Scene subMenu = new Scene(subPane, 450,500);
+		return new Scene(subPane, 450,500);
+	}
 
+	/** Creates end menu for game. Includes message of game win/lose and gives options for player to play again
+	 * player can choose from playing again (returns to start menu), saving their score or to view the scoreboard
+	 * @return Scene for end menu
+	 * */
+	private Scene buildEndMenuScene() {
 		// END MENU GUI
 		BorderPane endPane = new BorderPane();
 
@@ -327,31 +362,22 @@ public class Draw extends Application {
 		endCentre.setPrefHeight(300);
 		endCentre.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
 		//end menu buttons
-		Button playAgainGUI = new Button("Play Chess (GUI Version)");
-		Button playAgainText = new Button("Play Chess (Text Version)");
+		Button playAgainBtn = new Button("Play Again!");
+		Button saveScore = new Button("Save Score to Scoreboard");
 		Button playAgainScoreboard = new Button("View Scoreboard");
 		//increases size of buttons
-		playAgainGUI.setStyle("-fx-font-size: 16px;");
-		playAgainText.setStyle("-fx-font-size: 16px;");
+		playAgainBtn.setStyle("-fx-font-size: 16px;");
+		saveScore.setStyle("-fx-font-size: 16px;");
 		playAgainScoreboard.setStyle("-fx-font-size: 16px;");
 		//Adds labels to VBox
-		endCentre.getChildren().add(playAgainGUI);
-		endCentre.getChildren().add(playAgainText);
+		endCentre.getChildren().add(playAgainBtn);
+		endCentre.getChildren().add(saveScore);
 		endCentre.getChildren().add(playAgainScoreboard);
 
 		//Adds the VBox for labels and buttons to the BorderPane
 		endPane.setTop(endTop);
 		endPane.setCenter(endCentre);
 
-		Scene endMenu = new Scene(endPane, 450, 500);
-
-		//tie the mouse event to the wrapping pane. The team must be specified
-		wrap.setOnMouseClicked(new ClickHandle(this, config, 'w'));
-		primaryStage.setTitle("Chess Game"); //set title to stage
-
-		//For testing purposes: start Menu = (startMenu), game = (gameScene), end menu (endMenu)
-		primaryStage.setScene(startMenu);
-		primaryStage.show();
-		draw();
+		return new Scene(endPane, 450, 500);
 	}
 }
