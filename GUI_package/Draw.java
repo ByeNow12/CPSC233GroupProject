@@ -341,7 +341,7 @@ public class Draw extends Application {
 		primaryStage.setTitle("Chess Game"); //set title to stage
 
 		//For testing purposes: start Menu = (startMenu), game = (gameScene), end menu (endMenu)
-		primaryStage.setScene(gameScene);
+		primaryStage.setScene(startMenu);
 		primaryStage.show();
 		draw();
 	}
