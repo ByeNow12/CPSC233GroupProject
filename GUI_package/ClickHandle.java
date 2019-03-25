@@ -53,58 +53,49 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 			pieceType = pieceId.substring(2);
 		}
 		char team = pieceId.charAt(0);
-		if ((team == 'w' && config.whiteTurn()) || (team == 'b' && !config.whiteTurn())){ 	//checks for player turn
-			if (pieceSelected[0] == 10 && pieceSelected[1] == 10) {
-				drawGame.draw();
-				drawGame.highlightSelectedSquare(position);
-				drawGame.highlightMoves(position, team, pieceType);
-				pieceSelected[0] = position[0];
-				pieceSelected[1] = position[1];
+
+		if (pieceSelected[0] == 10 && pieceSelected[1] == 10) {
+			drawGame.draw();
+			drawGame.highlightSelectedSquare(position);
+			drawGame.highlightMoves(position, team, pieceType);
+			pieceSelected[0] = position[0];
+			pieceSelected[1] = position[1];
+		}
+		else {
+			String color;
+			if (team == 'w') {
+				color = "white";
 			}
 			else {
-				String color;
-				if (team == 'w') {
-					color = "white";
+				color = "black";
+			}
+			Move move = new Move(color, position[0], position[1], pieceSelected[0], pieceSelected[1]);
+			if (config.isValidMove(move)) {
+				//update board. Display an error message of some kind. Perhaps a red square.
+				board.setBoardPositions(position[0], position[1], board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]]);
+				board.setBoardPositions(pieceSelected[0], pieceSelected[1], "0");
+				//board.draw();
+				if (config.hasWon('w') || config.hasWon('b')) {
+					System.exit(0);
 				}
-				else {
-					color = "black";
-				}
-				Move move = new Move(color, position[0], position[1], pieceSelected[0], pieceSelected[1]);
-				if (config.isValidMove(move)) {
-					//update board. Display an error message of some kind. Perhaps a red square.
-					board.setBoardPositions(position[0], position[1], board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]]);
-					board.setBoardPositions(pieceSelected[0], pieceSelected[1], "0");
-					//board.draw();
-					if (config.hasWon('w') || config.hasWon('b')) {
-						System.exit(0);
-					}
-				}
-				else {
-					// Not a valid move.
-					if (position[0] != pieceSelected[0] || position[1] != pieceSelected[1]) {
-						if (board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]] != "0") {//this will always be true because non-primitive data types don't work with == comparator like primitive ones do
-
-							board.setBoardPositions(position[0], position[1], board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]]);
-							board.setBoardPositions(pieceSelected[0], pieceSelected[1], "0");
-							//board.draw();
-							if (config.hasWon('w') || config.hasWon('b')) {
-								System.exit(0);
-							}
+			}
+			else {
+				// Not a valid move.
+				if (position[0] != pieceSelected[0] || position[1] != pieceSelected[1]) {
+					if (board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]] != "0") {
+						board.setBoardPositions(position[0], position[1], board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]]);
+						board.setBoardPositions(pieceSelected[0], pieceSelected[1], "0");
+						//board.draw();
+						if (config.hasWon('w') || config.hasWon('b')) {
+							System.exit(0);
 						}
 					}
 				}
-				pieceSelected[0] = 10;
-				pieceSelected[1] = 10;
-				drawGame.clear();
-				drawGame.draw();
 			}
+			pieceSelected[0] = 10;
+			pieceSelected[1] = 10;
+			drawGame.clear();
+			drawGame.draw();
 		}
-		else{
-			//display something about it not being this player's turn
-		}
-		drawGame.clear();
-		drawGame.draw();
-
-		
 	}
 }
