@@ -17,7 +17,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.Pane;
 
-
+/**
+* 2019-03-24
+* Authors: Dany, Carmen, Shavonne
+* Draw class that does the drawing of the board, pieces and start/end menus of the game
+*/
 public class Draw extends Application {
 	private StackPane wrappingPane;
 	private Pane eventPane;
