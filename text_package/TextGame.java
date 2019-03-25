@@ -1,7 +1,9 @@
 package text_package;
 
-import GUI_package.GUIGame;
-import logic_package.*; //import the logic package to use Gameconfiguration, ComputerPlayers class
+import logic_package.*; //import the logic package to use GameConfiguration, ComputerPlayers class
+import GUI_package.*;
+
+import java.io.IOException;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
@@ -23,7 +25,7 @@ public class TextGame{
   /** 
   * Establishes the configuration of the game, prompts the user to decide whether they want to play against a human or computer
   */
-  public void setup(){
+  public void setup() throws IOException {
     config = new GameConfiguration();
     Scanner format = new Scanner(System.in);
     System.out.println("Would you like to play a [H]uman or [C]omputer?");
@@ -111,7 +113,7 @@ public class TextGame{
   /** 
   * Sets up and runs the game utilising the previously defined methods
   */
-  public static void main(String[] args) throws FileNotFoundException {
+  public static void main(String[] args) throws IOException {
     String t;
     Scanner type = new Scanner(System.in);
     System.out.println("Would you like to play a [T]ext-based implementation or a [G]raphical implemetation");

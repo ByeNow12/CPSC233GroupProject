@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.Pane;
 
@@ -342,7 +341,7 @@ public class Draw extends Application {
 		primaryStage.setTitle("Chess Game"); //set title to stage
 
 		//For testing purposes: start Menu = (startMenu), game = (gameScene), end menu (endMenu)
-		primaryStage.setScene(startMenu);
+		primaryStage.setScene(gameScene);
 		primaryStage.show();
 		draw();
 	}
