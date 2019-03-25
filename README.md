@@ -15,7 +15,7 @@ Run Instructions for Text Based Version:
 Compiling Instructions for GUI Version:
 1. Download the ZIP file under the master branch containing all the classes and png images and place the file in your chosen directory
 2. Navigate to the chosen directory
-3. Compile the file(s) using the command: javac GUI_package/*.java logic_package/*.java text_package/*.java
+3. Compile the file(s) using the command: javac GUI_package/\*.java logic_package/\*.java text_package/\*.java
 
 Run Instructions for GUI version:
 1. Run the program using the command: java GUIGame 
