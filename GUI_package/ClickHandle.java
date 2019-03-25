@@ -81,7 +81,7 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 				}
 				else {
 					// Not a valid move.
-					/*if (position[0] != pieceSelected[0] || position[1] != pieceSelected[1]) {
+					if (position[0] != pieceSelected[0] || position[1] != pieceSelected[1]) {
 						if (board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]] != "0") {//this will always be true because non-primitive data types don't work with == comparator like primitive ones do
 
 							board.setBoardPositions(position[0], position[1], board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]]);
@@ -91,7 +91,7 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 								System.exit(0);
 							}
 						}
-					}*/
+					}
 				}
 				pieceSelected[0] = 10;
 				pieceSelected[1] = 10;
@@ -102,6 +102,8 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 		else{
 			//display something about it not being this player's turn
 		}
+		drawGame.clear();
+		drawGame.draw();
 
 		
 	}
