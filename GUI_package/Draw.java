@@ -210,14 +210,19 @@ public class Draw extends Application {
 		pane.setCenter(wrap);
 
 		/* Label in game - incomplete
-		Pane bottomPane = new Pane();
-		bottomPane.getChildren().add(bottomLabel('w'));
-		pane.setBottom(bottomPane);
-		*/
+		*/ 
+		BorderPane gamePane = new BorderPane();
+		Label whitePlaying = new Label(bottomLabel('w')); //label reads Current turn: White team
+		Label blackPlaying = new Label(bottomLabel('b')); //label reads Current turn: Black team
+		
+		gamePane.getChildren().add(whitePlaying); //add labels to gamePane
+		gamePane.getChildren().add(blackPlaying);
+		
+		gamePane.setBottom(whitePlaying); //set the labels displayed in gamePane to bottom of board 
+		gamePane.setBottom(blackPlaying); 
 
 		config.getBoard().defaultPositions();
-
-		Scene gameScene = new Scene(pane, 450, 500); //window size is 450 by 500 pixels
+		Scene gameScene = new Scene(gamePane, 450, 500); //window size is 450 by 500 pixels
 
 		// START MENU GUI
 		BorderPane startPane = new BorderPane();
@@ -346,6 +351,4 @@ public class Draw extends Application {
 		primaryStage.show();
 		draw();
 	}
-
-
 }
