@@ -4,7 +4,7 @@ TASKS:
 JUnit Test for TextGame - Tom
 JUnit Test for GameConfig - UNASSIGNED - does in check currently work??
 Check for privacy leaks - Dany(?)
-Labels that indicate whose turn it is, invalid moves, when game ends - Carmen
+Labels that indicate whose turn it is, invalid moves, when game ends displayed at bottom of board
 Fix invalid move
 Track team playing
 When King is in check - move to make king out of check
@@ -12,7 +12,6 @@ Get scoreboard working
 Get promotion working with code
 TextGame - needs to be fully functioning
 AI - get AI working
-
 
 2019-03-13
 Bugs
@@ -29,28 +28,6 @@ JUNIT TESTS
 - make moves to take own pieces
 - set up certain board positions to check
 
-
-Tasks - do by Wednesday Morning
-- HumanPlayers - Riley
-- Draw - Carmen
-- update UML diagram - Carmen
-- GUIGame - Shavonne
-- ClickHandle - Tom
-- GameConfigClickHandle - Dany
-
-
-Meeting Notes:
-GUIGame – main class. Run this one.
-Draw class – new class just for drawing
-- draws chessboard
-- draws ending screen – win/lose status. Play again
-
-rename game class  - TextGame – only runs text version
-AI class – extend ComputerPlayer
-- AI class more “intelligent” computer player
-
-Labels – at bottom to chessboard. Whose turn it is, invalid move explanation, etc.
-
 all instance variables of token: String has been renamed to team: char
 
 Save state – GameConfig – can load game back up
@@ -60,46 +37,12 @@ Maybe:
 Break Piece class into each piece. Make piece class superclass.
 Timer? - GameConfig retrieves time at beginning end
 
-
-
-
-
-
 2019-03-11
 Features
 - indicate when king is in check
 - timer for who takes longer to capture king (maybe)
 - point system (maybe)
 - save state (load from last save)
-
-
-2019-03-06
-- way to highlight squares on board (clicking) - HandleCellClicked class - highlight possible moves
-- 450*450 window size
-- GUI - draw() - same as board but placing images in correct squares
-- update game class. instead of drawing with text, draw with GUI
-- Game class - allow user to choose between text and GUI
-- GUI extends Game(maybe) - choose which one to instantiate
-
-Assigned tasks:
-- Finish checkmate method (Dany)
-- Start HandleCellClicked class (Dany)
-- Draw method for GUI - (waiting on Pieces, use placeholder) - Riley
-- Update game method - Tom
-- Finish pieces - Carmen
-- square border - to highlight possible moves - Carmen
-- update UML diagram - Carmen
-
-Assigned tasks:
-- Finish checkmate method (Dany)
-- Start HandleCellClicked class (Dany)
-- Start GUI class (Shavonne)
-- Edit graphics for piecees, create a copy of white pieces (Carmen)
-- allow player to choose team colour (Carmen)
-
-
-
-Date: 2019-02-25
 
 Bugs:
 - Fix queen - can't capture vertically - Riley
@@ -108,9 +51,3 @@ Bugs:
 - Promotion needs to implemented - Tom
 - en passant needs to be implemented - Tom
 - check for checkmate, draws, stalemates (game end conditions) - Dany
-
-Features:
-- Move draw method out of board class
-- indicate which team is going for human vs human
-- indication that computer made a move
-- Let player choose team colour
