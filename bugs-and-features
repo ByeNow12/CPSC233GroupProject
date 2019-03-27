@@ -11,6 +11,10 @@ When King is in check - move to make king out of check
 Get scoreboard working
 TextGame - needs to be fully functioning
 AI - get AI working
+Castling needs to be implemented 
+En passant needs to be implemented 
+Checkmate, draws, stalemates (game end conditions) 
+
 
 2019-03-13
 Bugs
@@ -30,20 +34,13 @@ JUNIT TESTS
 all instance variables of token: String has been renamed to team: char
 
 Save state – GameConfig – can load game back up
-- separated by []
+- separated by [] 
 
-Maybe:
-Break Piece class into each piece. Make piece class superclass.
-Timer? - GameConfig retrieves time at beginning end
-
-2019-03-11
 Features
 - indicate when king is in check
-- timer for who takes longer to capture king (maybe)
+- timer for who takes longer to capture king, GameConfig retrieves time at beginning end (maybe)
 - point system (maybe)
 - save state (load from last save)
 
-Bugs:
-- Castling needs to be implemented - Tom
-- en passant needs to be implemented - Tom
-- check for checkmate, draws, stalemates (game end conditions) - Dany
+Maybe
+- Break Piece class into each piece. Make piece class superclass.
