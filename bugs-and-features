@@ -9,7 +9,6 @@ Fix invalid move
 Track team playing
 When King is in check - move to make king out of check
 Get scoreboard working
-Get promotion working with code
 TextGame - needs to be fully functioning
 AI - get AI working
 
@@ -45,9 +44,6 @@ Features
 - save state (load from last save)
 
 Bugs:
-- Fix queen - can't capture vertically - Riley
-- Pawn cannot move 2 spaces at beginning - Carmen
 - Castling needs to be implemented - Tom
-- Promotion needs to implemented - Tom
 - en passant needs to be implemented - Tom
 - check for checkmate, draws, stalemates (game end conditions) - Dany
