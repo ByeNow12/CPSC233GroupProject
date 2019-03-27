@@ -19,7 +19,7 @@ import javafx.scene.layout.Pane;
 /**
 * 2019-03-24
 * Authors: Dany, Carmen, Shavonne
-* Draw class that does the drawing of the board, pieces and start/end menus of the game
+* Draw class that does the drawing of the board, pieces, labels during the game and start/end menus 
 */
 public class Draw extends Application {
 	private StackPane wrappingPane;
@@ -89,7 +89,6 @@ public class Draw extends Application {
 				}
 			}
 		}
-		//write something below/above the board
 	}
 
 	public void clear(){
@@ -198,7 +197,10 @@ public class Draw extends Application {
 		}
 		return ("Current turn: "+currentTeam);
 	}
-
+	
+	/**
+	*
+	*/
 	public void start(Stage primaryStage) throws FileNotFoundException {
 		//GAME GUI
 
@@ -227,17 +229,6 @@ public class Draw extends Application {
 		pane.setCenter(wrap);
 		pane.setBottom(saveGameButton);
 
-		/* Label in game - incomplete
-		*/ 
-
-		//Label whitePlaying = new Label(bottomLabel('w')); //label reads Current turn: White team
-		//Label blackPlaying = new Label(bottomLabel('b')); //label reads Current turn: Black team
-		
-		//gamePane.getChildren().add(whitePlaying); //add labels to gamePane
-		//gamePane.getChildren().add(blackPlaying);
-		
-		//gamePane.setBottom(whitePlaying); //set the labels displayed in gamePane to bottom of board
-		//gamePane.setBottom(blackPlaying);
 		config.getBoard().defaultPositions();
 		primaryStageCopy = primaryStage;
 		gameSceneCopy = gameScene;
@@ -417,5 +408,46 @@ public class Draw extends Application {
 		endPane.setCenter(endCentre);
 
 		return new Scene(endPane, 450, 500);
+	
+	/**
+	* Displays a label that the player made an invalid move if they made one
+	* @return Scene for the invalid move label
+	*/
+	public Scene buildInvalidMoveLabel() {
+		//Label to be displayed when player makes invalid move
+		BorderPane gameLabelPane1 = new BorderPane();
+		Label invalidMove = new Label("You made an invalid move, please make another move");
+		gameLabelPane1.getChildren().add(invalidMove);
+		gameLabelPane1.setTop(invalidMove);
+		
+		return new Scene(gameLabelPane1, 450, 500);
+	}
+	
+	/**
+	* Displays a label that indicates when team white is making a move
+	* @return Scene for the white turn label
+	*/
+	public Scene buildWhiteTurnLabel() {
+		//Label to be displayed when it's white team's turn
+		BorderPane gameLabelPane2 = new BorderPane();
+		Label whiteTurn = new Label("Team white will make a move now");
+		gameLabelPane2.getChildren().add(whiteTurn);
+		gameLabelPane2.setTop(whiteTurn);
+		
+		return new Scene(gameLabelPane2, 450, 500);
+	}
+	
+	/**
+	* Displays a label that indicates when team black is making a move
+	* @return Scene for the black turn label
+	*/
+	public Scene buildBlackTurnLabel() {
+		//Label to be displayed when it's black team's turn
+		BorderPane gameLabelPane3 = new BorderPane();
+		Label blackTurn = new Label("Team black will make a move now");
+		gameLabelPane3.getChildren().add(blackTurn);
+		gameLabelPane3.setTop(blackTurn);
+		
+		return new Scene(gameLabelPane3, 450, 500);
 	}
 }
