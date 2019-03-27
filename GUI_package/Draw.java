@@ -361,9 +361,9 @@ public class Draw extends Application {
 	}
 
 	/** Creates end menu for game. Includes message of game win/lose and gives options for player to play again
-	 * player can choose from playing again (returns to start menu), saving their score or to view the scoreboard
-	 * @return Scene for end menu
-	 * */
+	* player can choose from playing again (returns to start menu), saving their score or to view the scoreboard
+	* @return Scene for end menu
+	*/
 	public Scene buildEndMenuScene() {
 		// END MENU GUI
 		BorderPane endPane = new BorderPane();
@@ -408,6 +408,7 @@ public class Draw extends Application {
 		endPane.setCenter(endCentre);
 
 		return new Scene(endPane, 450, 500);
+	}
 	
 	/**
 	* Displays a label that the player made an invalid move if they made one
