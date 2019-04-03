@@ -70,12 +70,12 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 		else {
 			String color;
 			if (team == 'w') {
-				color = "white";
+				color = "White";
 			}
 			else {
-				color = "black";
+				color = "Black";
 			}
-			Move move = new Move(color, position[0], position[1], pieceSelected[0], pieceSelected[1]);
+			Move move = new Move(color, pieceSelected[0], pieceSelected[1], position[0], position[1]);
 			if (config.isValidMove(move)) {
 				//update board. Display an error message of some kind. Perhaps a red square.
 				board.setBoardPositions(position[0], position[1], board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]]);
@@ -97,7 +97,7 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 			}
 			else {
 				// Not a valid move.
-				if (position[0] != pieceSelected[0] || position[1] != pieceSelected[1]) {
+				/*if (position[0] != pieceSelected[0] || position[1] != pieceSelected[1]) {
 					if (board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]] != "0") {
 						board.setBoardPositions(position[0], position[1], board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]]);
 						board.setBoardPositions(pieceSelected[0], pieceSelected[1], "0");
@@ -116,7 +116,7 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 							drawGame.draw();
 						}
 					}
-				}
+				}*/
 			}
 			pieceSelected[0] = 10;
 			pieceSelected[1] = 10;
