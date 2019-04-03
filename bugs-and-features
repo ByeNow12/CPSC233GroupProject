@@ -2,18 +2,20 @@
 
 TASKS:
 JUnit Test for TextGame - Tom
-JUnit Test for GameConfig - UNASSIGNED - does in check currently work??
 Check for privacy leaks - Dany(?)
-Labels that indicate whose turn it is, invalid moves, when game ends displayed at bottom of board
-Fix invalid move
-Track team playing
-When King is in check - move to make king out of check
-Get scoreboard working
-TextGame - needs to be fully functioning
-AI - get AI working
-Castling needs to be implemented 
+Labels that indicate whose turn it is, invalid moves, when game ends displayed at bottom of board - Carmen
+When King is in check - move to make king out of check - Tom - test for it
+Get scoreboard working - Carmen
+AI - get AI working - Riley
+stalemates (game end conditions) - Tom
+Package PNGS - Carmen
+Javadoc everything (everyone go over methods you worked on) - everyone do their own
+TextGame - needs to be fully functioning - account for incheck instead of actually checking king - Tom
+
+NICE TO HAVE:
+Castling needs to be implemented (if in check method works)
 En passant needs to be implemented 
-Checkmate, draws, stalemates (game end conditions) 
+
 
 
 2019-03-13
