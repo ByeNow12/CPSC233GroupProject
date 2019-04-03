@@ -83,14 +83,16 @@ public class GameConfiguration {
 		int[] currentMove = move.getTo();
 		String token = board.getBoardPosition()[lastMove[0]][lastMove[1]];
 		char pieceColor = token.charAt(0);
+
 		if (pieceColor == '0'){ return false;} //just for the random ai move method
 
 		String pieceType = token.substring(2);
 		String[][] boardPositions = board.getBoardPosition();
-		if (Character.toUpperCase(pieceColor) != move.getTeam().charAt(0)) {
+		/*if (Character.toUpperCase(pieceColor) != move.getTeam().charAt(0)) {
+						System.out.println("This is the problem");
 			return false;
 		}
-		else if (pieceType.equals("Ro")) {
+		else */if (pieceType.equals("Ro")) {
 			return Piece.calculateRookMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
 		}
 		else if (pieceType.equals("Kn")) {
