@@ -7,6 +7,14 @@ package logic_package;
 * Returns all the possible moves for each piece
 */
 public class Piece {
+
+    public static final int PAWN_VALUE = 1;
+    public static final int BISHOP_VALUE = 3;
+    public static final int KNIGHT_VALUE = 3;
+    public static final int ROOK_VALUE = 5;
+    public static final int QUEEN_VALUE = 9;
+    public static final int KING_VALUE = 10;	//for AI purposes
+
     /** Method for calculating possible moves for rook piece based on what moves it is allowed to make
     * Creates a 8 by 8 board with valid moves marked as true and invalid moves marked as false
     * @param String[][] board, an arraylist for the board
