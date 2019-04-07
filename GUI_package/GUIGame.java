@@ -21,7 +21,7 @@ public class GUIGame extends Application{
 		config = new GameConfiguration();
 		draw = new Draw(config);
 	}
-
+	
 	/**
 	* java main method. It starts javafx and calls the start method
 	*/

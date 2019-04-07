@@ -50,11 +50,11 @@ public class Draw extends Application {
 				String inputString = "";
 				String pieceType = "";
 				if (board[r][c].charAt(0) == 'w'){
-					inputString = "w_";
+					inputString = "graphics_package/w_";
 					pieceType = board[r][c].substring(2);
 				}
 				else if (board[r][c].charAt(0) == 'b'){
-					inputString = "b_";   //this is the only thing that has to be changed to put in the outline ones instead
+					inputString = "graphics_package/b_";   //this is the only thing that has to be changed to put in the outline ones instead
 					pieceType = board[r][c].substring(2);
 				}
 				if (pieceType.equals("Ro")) {
@@ -122,7 +122,7 @@ public class Draw extends Application {
 	 */
 	public void highlightSelectedSquare(int[] pos) {
 		try {
-			Image selectSquare = new Image(new FileInputStream("blue.png"));
+			Image selectSquare = new Image(new FileInputStream("graphics_package/blue.png"));
 			ImageView selectSquareView = new ImageView(selectSquare);
 
 			int x = pos[1]*50;
@@ -143,7 +143,7 @@ public class Draw extends Application {
 	public void highlightMoves(int[] pos, char team, String pieceType){
 		String[][] boardPositions = config.getBoard().getBoardPosition();
 		try {
-			Image possibleSquare = new Image(new FileInputStream("green.png"));
+			Image possibleSquare = new Image(new FileInputStream("graphics_package/green.png"));
 			int x;
 			int y;
 			boolean[][] possibleMoves = new boolean[8][8];
@@ -205,7 +205,7 @@ public class Draw extends Application {
 		//GAME GUI
 
 		//Image instance created, passing FileInputStream as parameter to the Image to load the image 
-		Image boardImage = new Image(new FileInputStream("Chessboard.png")); //parameter is the image file path
+		Image boardImage = new Image(new FileInputStream("graphics_package/Chessboard.png")); //parameter is the image file path
 		//file path to image depends on where you save board image
 
 		//ImageView instance created, passing Image instance as parameter
