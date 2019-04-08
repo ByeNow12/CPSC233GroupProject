@@ -85,12 +85,12 @@ public class AI extends ComputerPlayer {
 
 				if (pValue > takenValue){
 					takenValue = pValue;
-					move = {row,col};
+					move = new int[] {row,col};
 				}
 			}
 		}
 		value = takenValue - pieceValue;
-		return {value, move[0], move[1]};
+		return new int[] {value, move[0], move[1]};
 }
 
  	public static void main(String[] args) {
