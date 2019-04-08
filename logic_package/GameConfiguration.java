@@ -21,11 +21,13 @@ import logic_package.Move;
 public class GameConfiguration {
 
 	private Board board;
+	private boolean whiteTurn;
 	
 	//Constructor
 	public GameConfiguration(){
 		board = new Board();
 		board.defaultPositions();
+		whiteTurn = true;
 	}
 
 	/**
@@ -47,6 +49,7 @@ public class GameConfiguration {
 		board.setBoardPositions(lastMove[0], lastMove[1], "0");
 		board.setBoardPositions(currentMove[0], currentMove[1], token);
 		promotion();
+		whiteTurn = !whiteTurn;  	//this way it will cycle between white and black team's turns
 	}
 	
 	public void promotion(){
@@ -55,7 +58,7 @@ public class GameConfiguration {
 			  board.setBoardPositions(0,i,"b_Qu");
 		}
 		  if (board.getBoardPositionPieceInfo(7,i).equals("w_Pa")){
-			  board.setBoardPositions(0,i,"w_Qu");
+			  board.setBoardPositions(7,i,"w_Qu");
 		}
 		}
 		
@@ -85,6 +88,9 @@ public class GameConfiguration {
 		char pieceColor = token.charAt(0);
 
 		if (pieceColor == '0'){ return false;} //just for the random ai move method
+
+		//determining if it is this player's turn
+		if ((whiteTurn && pieceColor == 'b') || (!whiteTurn && pieceColor == 'w')) return false;
 
 		String pieceType = token.substring(2);
 		String[][] boardPositions = board.getBoardPosition();
