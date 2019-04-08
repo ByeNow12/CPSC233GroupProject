@@ -279,17 +279,20 @@ public class Draw extends Application {
 		BorderPane startPane = new BorderPane();
 
 		// Labels on start menu - VBox to hold welcome message and sub message labels
-		VBox topPane = new VBox(5);
+		VBox topPane = new VBox(15);
 		topPane.setPrefWidth(100); //setting pref width and height so that text inside VBox is vertically centred
 		topPane.setPrefHeight(200);
 		topPane.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
 		Label welcomeMessage = new Label("Welcome to Chess!");
+		Label authors = new Label("Created by: Carmen, Dany, Riley, Shavonne, Tom");
 		Label subMessage = new Label("Select from the options below:");
 		// increase font size of labels
 		welcomeMessage.setStyle("-fx-font-size: 40px;");
+		authors.setStyle("-fx-font-size: 16px;");
 		subMessage.setStyle("-fx-font-size: 20px;");
 		//adds labels to VBox
 		topPane.getChildren().add(welcomeMessage);
+		topPane.getChildren().add(authors);
 		topPane.getChildren().add(subMessage);
 
 		//Buttons on Start Menu - VBox to hold 3 buttons
