@@ -17,11 +17,15 @@ public class GUIGame extends Application{
 	private GameConfiguration config;
 	private Draw draw;
 
+	/**
+	 * Constructor for GUIGame, creates new GameConfiguration and Draw classes
+	 * Passes config into Draw class
+	 */
 	public GUIGame (){
 		config = new GameConfiguration();
 		draw = new Draw(config);
 	}
-
+	
 	/**
 	* java main method. It starts javafx and calls the start method
 	*/
