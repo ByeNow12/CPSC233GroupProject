@@ -1,4 +1,5 @@
 Chess Board Game
+CPSC 233 T09-G03
 
 Where to Find the Version for Demo 3:
 
@@ -24,3 +25,8 @@ Compiling and Run Instructions for JUnit test PieceTest.java
 1. Copy JUnit Jar files into JUnit Tests folder
 2. Compile files with command: javac -cp .;junit-4.12.jar;hamcrest-core-1.3.jar *.java
 3. Run test by using command: java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore PieceTest
+
+Compiling and Run Instructions for JUnit test MoveTest.java
+1. Copy JUnit Jar files into JUnit Tests folder
+2. Compile files with command: javac -cp .;junit-4.12.jar;hamcrest-core-1.3.jar *.java
+3. Run test by using command: java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore MoveTest
