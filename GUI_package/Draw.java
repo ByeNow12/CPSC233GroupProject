@@ -1,6 +1,8 @@
 package GUI_package;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import logic_package.*;
 
@@ -29,8 +31,10 @@ public class Draw extends Application {
 	private Pane piecePane = new Pane();
 	private Stage primaryStageCopy;
 	private Scene gameSceneCopy;
+	private Scene startMenuCopy;
 	private Scene subMenuCopy;
 	private Scene endMenuCopy;
+	private Scene leaderboardCopy;
 	private String endText = "You Won!";
 
 	public Draw(GameConfiguration config){
@@ -117,7 +121,7 @@ public class Draw extends Application {
 	}
 
 	/**
-	 * Highlights the specified square.
+	 * Highlights the square selected by player.
 	 * @param int[] pos, x and y coordinate of the square.
 	 */
 	public void highlightSelectedSquare(int[] pos) {
@@ -138,7 +142,11 @@ public class Draw extends Application {
 	}
 
 	/**
-	 * Highlights the moves that can be made
+	 * Highlights the moves that can be made when player clicks on a piece
+	 * @param int[] pos, x and y coordinate of the square
+	 * @param char team, to identify the player as white or black team
+	 * @param String piecType, to classify piece as one out for the 6 possible pieces in the game
+	 *
 	 */
 	public void highlightMoves(int[] pos, char team, String pieceType){
 		String[][] boardPositions = config.getBoard().getBoardPosition();
@@ -186,6 +194,7 @@ public class Draw extends Application {
 
 	/**
 	 * changes text based on which team it is
+	 * @param char team, the team  that is playing
 	 **/
 	public String bottomLabel (char team) {
 		String currentTeam = "";
@@ -199,7 +208,7 @@ public class Draw extends Application {
 	}
 	
 	/**
-	*
+	* Start of Draw class
 	*/
 	public void start(Stage primaryStage) throws FileNotFoundException {
 		//GAME GUI
@@ -239,9 +248,15 @@ public class Draw extends Application {
 		subMenuCopy = subMenu;
 		
 		Scene startMenu = buildStartMenuScene();
+		startMenuCopy = startMenu;
+
 		Scene endMenu = buildEndMenuScene();
-		
 		endMenuCopy = endMenu;
+
+		Scene enterName = buildEnterNameScene();
+
+		Scene leaderboard = buildLeaderboardScene();
+		leaderboardCopy = leaderboard;
 
 		//tie the mouse event to the wrapping pane. The team must be specified
 		wrap.setOnMouseClicked(new ClickHandle(this, config, primaryStage, endMenuCopy, 'w'));
@@ -259,7 +274,7 @@ public class Draw extends Application {
 	 * or to view the scoreboard
 	 * @return Scene for the start menu
 	 */
-	private Scene buildStartMenuScene() {
+	public Scene buildStartMenuScene() {
 		// START MENU GUI
 		BorderPane startPane = new BorderPane();
 
@@ -292,6 +307,8 @@ public class Draw extends Application {
 		playText.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, gameSceneCopy, config, this, 't'));
 		
 		Button viewScoreboard = new Button("View Scoreboard");
+		viewScoreboard.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, leaderboardCopy, config, this, 'h'));
+
 		//increase font size of buttons
 		playGUI.setStyle("-fx-font-size: 16px;");
 		playText.setStyle("-fx-font-size: 16px;");
@@ -313,7 +330,7 @@ public class Draw extends Application {
 	 * users are presented with options to play a new game against a human or computer, or to load their game from a previous save
 	 * @return Scene for the sub menu
 	 */
-	private Scene buildSubMenuScene() {
+	public Scene buildSubMenuScene() {
 		//SUB MENU GUI
 		BorderPane subPane = new BorderPane();
 		//Vbox for labels on top
@@ -344,15 +361,25 @@ public class Draw extends Application {
 		Button loadGame = new Button("Load Game from Save");
 		
 		loadGame.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, gameSceneCopy, config, this, 'l'));
-		
+
+
+		//BUTTON TO GO BACK
+		 Button goBack = new Button("Back to main menu");
+
+		goBack.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, startMenuCopy, config, this, 'b'));
+
+
 		//increase font size of buttons
 		newGameHuman.setStyle("-fx-font-size: 16px;");
 		newGameComputer.setStyle("-fx-font-size: 16px;");
 		loadGame.setStyle("-fx-font-size: 16px;");
+		goBack.setStyle("-fx-font-size: 16px;");
+
 		//Adds labels to VBox
 		subCentre.getChildren().add(newGameHuman);
 		subCentre.getChildren().add(newGameComputer);
 		subCentre.getChildren().add(loadGame);
+		subCentre.getChildren().add(goBack);
 
 		subPane.setTop(subTop);
 		subPane.setCenter(subCentre);
@@ -408,6 +435,90 @@ public class Draw extends Application {
 		endPane.setCenter(endCentre);
 
 		return new Scene(endPane, 450, 500);
+	}
+
+	public Scene buildEnterNameScene(){
+		BorderPane startPane = new BorderPane();
+
+		// VBox to hold welcome message and sub message labels
+		VBox topPane = new VBox(5);
+		topPane.setPrefWidth(100); //setting pref width and height so that text inside VBox is vertically centred
+		topPane.setPrefHeight(400);
+		topPane.setPadding(new Insets(10, 50, 50, 50));
+		topPane.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
+		Label leaderboardMessage = new Label("Enter your name to scoreboard here:");
+		TextField enterName = new TextField();
+		// increase font size of labels
+		leaderboardMessage.setStyle("-fx-font-size: 20px;");
+		enterName.setStyle("-fx-font-size: 12px;");
+		//adds labels to VBox
+		topPane.getChildren().add(leaderboardMessage);
+		topPane.getChildren().add(enterName);
+
+		//Buttons - VBox to hold 2 buttons
+		VBox centrePane = new VBox(10);
+		centrePane.setPrefWidth(100); //setting pref width and height so that text inside VBox is vertically centred
+		centrePane.setPrefHeight(50);
+		centrePane.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
+		//Start menu buttons
+		Button saveName = new Button("Save name to leaderboard");
+		Button startMenu = new Button("Go back to main menu");
+
+		startMenu.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, startMenuCopy, config, this, 'b'));
+
+		//increase font size of buttons
+		startMenu.setStyle("-fx-font-size: 12px;");
+
+		//Adds labels to VBox
+		centrePane.getChildren().add(saveName);
+		centrePane.getChildren().add(startMenu);
+
+		//Adds the VBox for labels and buttons to the BorderPane
+		startPane.setTop(topPane);
+		startPane.setCenter(centrePane);
+
+		return new Scene(startPane, 450, 500);
+	}
+
+	public Scene buildLeaderboardScene() {
+		// LEADERBOARD
+		BorderPane startPane = new BorderPane();
+
+		// Labels on leaderboard - VBox to hold welcome message and sub message labels
+		VBox topPane = new VBox(5);
+		topPane.setPrefWidth(100); //setting pref width and height so that text inside VBox is vertically centred
+		topPane.setPrefHeight(400);
+		topPane.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
+		Label leaderboardMessage = new Label("Leaderboard - High Scores");
+		Label namesandScores = new Label("names and scores here");
+		// increase font size of labels
+		leaderboardMessage.setStyle("-fx-font-size: 20px;");
+		namesandScores.setStyle("-fx-font-size: 16px;");
+		//adds labels to VBox
+		topPane.getChildren().add(leaderboardMessage);
+		topPane.getChildren().add(namesandScores);
+
+		//Buttons on leaderboard - VBox to hold button
+		VBox centrePane = new VBox(10);
+		centrePane.setPrefWidth(100); //setting pref width and height so that text inside VBox is vertically centred
+		centrePane.setPrefHeight(50);
+		centrePane.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
+		//leaderboard menu buttons
+		Button startMenu = new Button("Go back to main menu");
+
+		startMenu.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, startMenuCopy, config, this, 'b'));
+
+		//increase font size of buttons
+		startMenu.setStyle("-fx-font-size: 12px;");
+
+		//Adds labels to VBox
+		centrePane.getChildren().add(startMenu);
+
+		//Adds the VBox for labels and buttons to the BorderPane
+		startPane.setTop(topPane);
+		startPane.setCenter(centrePane);
+
+		return new Scene(startPane, 450, 500);
 	}
 	
 	/**

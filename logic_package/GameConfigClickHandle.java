@@ -32,11 +32,24 @@ public class GameConfigClickHandle implements EventHandler<MouseEvent> {
 			config.getBoard().defaultPositions();
 			primaryStage.setScene(scene);
 		}
+
+/*		//MAIN MENU clickhandle
+		 else if (pressedButton == 'b'){
+			primaryStage.setScene(scene);
+		}
+*/
 		else if (pressedButton == 't') {
 			primaryStage.close();
 			TextGame textVersion = new TextGame();
 			textVersion.playText();
 		}
+/*
+		//leaderboard clickhandle
+		else if (pressedButton == 'h'){
+			config.getBoard().defaultPositions();
+			primaryStage.setScene(scene);
+		}
+*/
 		else if (pressedButton == 'l') {
 			try {
 				config.load();
