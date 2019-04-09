@@ -1,5 +1,7 @@
 
 import static org.junit.Assert.*;
+
+import logic_package.Piece;
 import org.junit.Test;
 import java.util.Arrays;
 

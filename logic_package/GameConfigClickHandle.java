@@ -31,25 +31,45 @@ public class GameConfigClickHandle implements EventHandler<MouseEvent> {
 		if (pressedButton == 'g') {
 			config.getBoard().defaultPositions();
 			primaryStage.setScene(scene);
+			config.resetPlayerTimes();
+			config.takeTime();
 		}
 
-/*		//MAIN MENU clickhandle
+		//MAIN MENU clickhandle
 		 else if (pressedButton == 'b'){
 			primaryStage.setScene(scene);
 		}
-*/
+
 		else if (pressedButton == 't') {
 			primaryStage.close();
 			TextGame textVersion = new TextGame();
 			textVersion.playText();
 		}
-/*
+
 		//leaderboard clickhandle
 		else if (pressedButton == 'h'){
-			config.getBoard().defaultPositions();
 			primaryStage.setScene(scene);
 		}
-*/
+
+		// Save to leaderboard click handle
+		else if (pressedButton == 'z'){
+			String name = config.getEnterPlayerName().getText();
+			config.getLeaderboard().setName(name);
+			config.getLeaderboard().setScore(config.getWinningTime());
+			try {
+				config.getLeaderboard().save();
+				config.getLeaderboard().refreshLeaderboard();
+				config.updateNamesAndScores();
+			} catch (Exception e) {
+				System.out.println("Problems saving score to file");
+			}
+			primaryStage.setScene(scene);
+		}
+
+		else if (pressedButton == 'n'){
+			primaryStage.setScene(scene);
+		}
+
 		else if (pressedButton == 'l') {
 			try {
 				config.load();

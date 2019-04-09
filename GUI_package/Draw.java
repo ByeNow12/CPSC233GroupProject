@@ -35,7 +35,14 @@ public class Draw extends Application {
 	private Scene subMenuCopy;
 	private Scene endMenuCopy;
 	private Scene leaderboardCopy;
+	private Scene enterNameCopy;
 	private String endText = "You Won!";
+
+	//global button so that you can go back to start menu from leaderboard and submenu later
+	Button goBack = new Button("Back to main menu");
+	Button goBackFromLeaderboard = new Button("Back to main menu");
+
+
 
 	public Draw(GameConfiguration config){
 		this.config = config;
@@ -246,17 +253,23 @@ public class Draw extends Application {
 		//creates new instances of start menu, sub menu and end menu
 		Scene subMenu = buildSubMenuScene();
 		subMenuCopy = subMenu;
-		
+
+		Scene leaderboard = buildLeaderboardScene();
+		leaderboardCopy = leaderboard;
+
 		Scene startMenu = buildStartMenuScene();
 		startMenuCopy = startMenu;
+		// BUTTON TO GO BACK - need to re-wire button in subMenu with the newly created startMenu
+		goBack.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, startMenuCopy, config, this, 'b'));
+		goBackFromLeaderboard.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, startMenuCopy, config, this, 'b'));
+
 
 		Scene endMenu = buildEndMenuScene();
 		endMenuCopy = endMenu;
 
 		Scene enterName = buildEnterNameScene();
+		enterNameCopy = enterName;
 
-		Scene leaderboard = buildLeaderboardScene();
-		leaderboardCopy = leaderboard;
 
 		//tie the mouse event to the wrapping pane. The team must be specified
 		wrap.setOnMouseClicked(new ClickHandle(this, config, primaryStage, endMenuCopy, 'w'));
@@ -309,7 +322,7 @@ public class Draw extends Application {
 		
 		playText.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, gameSceneCopy, config, this, 't'));
 		
-		Button viewScoreboard = new Button("View Scoreboard");
+		Button viewScoreboard = new Button("View Leaderboard");
 		viewScoreboard.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, leaderboardCopy, config, this, 'h'));
 
 		//increase font size of buttons
@@ -366,10 +379,6 @@ public class Draw extends Application {
 		loadGame.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, gameSceneCopy, config, this, 'l'));
 
 
-		//BUTTON TO GO BACK
-		 Button goBack = new Button("Back to main menu");
-
-		goBack.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, startMenuCopy, config, this, 'b'));
 
 
 		//increase font size of buttons
@@ -382,6 +391,7 @@ public class Draw extends Application {
 		subCentre.getChildren().add(newGameHuman);
 		subCentre.getChildren().add(newGameComputer);
 		subCentre.getChildren().add(loadGame);
+		// this is a global variable, so we can set the button at a later point in the code
 		subCentre.getChildren().add(goBack);
 
 		subPane.setTop(subTop);
@@ -423,7 +433,9 @@ public class Draw extends Application {
 		playAgainBtn.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, gameSceneCopy, config, this, 'g'));
 		
 		Button saveScore = new Button("Save Score to Scoreboard");
-		Button playAgainScoreboard = new Button("View Scoreboard");
+		saveScore.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, enterNameCopy, config, this, 'n'));
+		Button playAgainScoreboard = new Button("View Leaderboard");
+		playAgainScoreboard.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, leaderboardCopy, config, this, 'h'));
 		//increases size of buttons
 		playAgainBtn.setStyle("-fx-font-size: 16px;");
 		saveScore.setStyle("-fx-font-size: 16px;");
@@ -450,7 +462,7 @@ public class Draw extends Application {
 		topPane.setPadding(new Insets(10, 50, 50, 50));
 		topPane.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
 		Label leaderboardMessage = new Label("Enter your name to scoreboard here:");
-		TextField enterName = new TextField();
+		TextField enterName =  config.getEnterPlayerName();
 		// increase font size of labels
 		leaderboardMessage.setStyle("-fx-font-size: 20px;");
 		enterName.setStyle("-fx-font-size: 12px;");
@@ -465,6 +477,7 @@ public class Draw extends Application {
 		centrePane.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
 		//Start menu buttons
 		Button saveName = new Button("Save name to leaderboard");
+		saveName.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, leaderboardCopy, config, this, 'z'));
 		Button startMenu = new Button("Go back to main menu");
 
 		startMenu.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, startMenuCopy, config, this, 'b'));
@@ -493,29 +506,23 @@ public class Draw extends Application {
 		topPane.setPrefHeight(400);
 		topPane.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
 		Label leaderboardMessage = new Label("Leaderboard - High Scores");
-		Label namesandScores = new Label("names and scores here");
+		Label namesAndScores = config.getNamesAndScores();
+		config.updateNamesAndScores();
 		// increase font size of labels
 		leaderboardMessage.setStyle("-fx-font-size: 20px;");
-		namesandScores.setStyle("-fx-font-size: 16px;");
+		namesAndScores.setStyle("-fx-font-size: 16px;");
 		//adds labels to VBox
 		topPane.getChildren().add(leaderboardMessage);
-		topPane.getChildren().add(namesandScores);
+		topPane.getChildren().add(namesAndScores);
 
 		//Buttons on leaderboard - VBox to hold button
 		VBox centrePane = new VBox(10);
 		centrePane.setPrefWidth(100); //setting pref width and height so that text inside VBox is vertically centred
 		centrePane.setPrefHeight(50);
 		centrePane.setAlignment(Pos.CENTER); //aligns VBox to centre so that labels are centered
-		//leaderboard menu buttons
-		Button startMenu = new Button("Go back to main menu");
-
-		startMenu.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, startMenuCopy, config, this, 'b'));
-
-		//increase font size of buttons
-		startMenu.setStyle("-fx-font-size: 12px;");
-
+		goBackFromLeaderboard.setStyle("-fx-font-size: 12px;");
 		//Adds labels to VBox
-		centrePane.getChildren().add(startMenu);
+		centrePane.getChildren().add(goBackFromLeaderboard); //this is a global variable, style was set in buildSubMenuScene
 
 		//Adds the VBox for labels and buttons to the BorderPane
 		startPane.setTop(topPane);

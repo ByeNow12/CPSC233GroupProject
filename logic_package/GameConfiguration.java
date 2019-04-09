@@ -10,7 +10,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.File;
 
-import logic_package.Move;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 /**
 * 2019-03-20
@@ -21,12 +22,20 @@ import logic_package.Move;
 public class GameConfiguration {
 
 	private Board board;
+	private Leaderboard leaderboard;
 	private boolean whiteTurn;
+	private long totalWhiteTime = 0;
+	private long totalBlackTime = 0;
+	private long turnStartTime = 0;
+	private long winningTime = 0;
+	private TextField enterPlayerName = new TextField();
+	private Label namesAndScores = new Label("names and scores here");
 	
 	//Constructor
-	public GameConfiguration(){
+	public GameConfiguration() {
 		board = new Board();
 		board.defaultPositions();
+		leaderboard = new Leaderboard("newgame");
 		whiteTurn = true;
 	}
 
@@ -49,6 +58,12 @@ public class GameConfiguration {
 		board.setBoardPositions(lastMove[0], lastMove[1], "0");
 		board.setBoardPositions(currentMove[0], currentMove[1], token);
 		promotion();
+		if (whiteTurn){
+			totalWhiteTime += System.currentTimeMillis() - turnStartTime;
+		} else{
+			totalBlackTime += System.currentTimeMillis() - turnStartTime;
+		}
+		takeTime();
 		whiteTurn = !whiteTurn;  	//this way it will cycle between white and black team's turns
 	}
 	
@@ -315,7 +330,47 @@ public class GameConfiguration {
 
 		return true;
 	}
-		
+
+	public void takeTime(){
+		this.turnStartTime = System.currentTimeMillis();
+	}
+
+	public void resetPlayerTimes(){
+		totalBlackTime = 0;
+		totalWhiteTime = 0;
+	}
+
+	public long getTotalWhiteTime(){
+		return totalWhiteTime;
+	}
+
+	public long getTotalBlackTime(){
+		return totalBlackTime;
+	}
+
+	public TextField getEnterPlayerName() {
+		return enterPlayerName;
+	}
+
+	public Label getNamesAndScores(){
+		return namesAndScores;
+	}
+
+	public void updateNamesAndScores (){
+		this.namesAndScores.setText(leaderboard.toReadableString());
+	}
+
+	public Leaderboard getLeaderboard(){
+		return leaderboard;
+	}
+
+	public long getWinningTime() {
+		return winningTime;
+	}
+
+	public void setWinningTime(long winningTime) {
+		this.winningTime = winningTime;
+	}
 		
 	public static void main(String[] args) {
 		GameConfiguration config = new GameConfiguration();

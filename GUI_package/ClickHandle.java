@@ -11,6 +11,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 2019-03-20
  * Author: Dany, Carmen
@@ -78,16 +80,17 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 			Move move = new Move(color, pieceSelected[0], pieceSelected[1], position[0], position[1]);
 			if (config.isValidMove(move)) {
 				//update board. Display an error message of some kind. Perhaps a red square.
-				board.setBoardPositions(position[0], position[1], board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]]);
-				board.setBoardPositions(pieceSelected[0], pieceSelected[1], "0");
+				config.update(move);
 				//board.draw();
 				if (config.hasWon('w') || config.hasWon('b')) {
 					if (config.hasWon('w')) {
-						drawGame.setEndText("You Won!");
+						drawGame.setEndText("White team won! \n "+convertToReadableTime(config.getTotalWhiteTime()));
+						config.setWinningTime(config.getTotalWhiteTime());
 						scene = drawGame.buildEndMenuScene();
 					}
 					else {
-						drawGame.setEndText("You Lost!");
+						drawGame.setEndText("Black team won! \n "+convertToReadableTime(config.getTotalBlackTime()));
+						config.setWinningTime(config.getTotalBlackTime());
 						scene = drawGame.buildEndMenuScene();
 					}
 					config.getBoard().defaultPositions();
@@ -123,5 +126,12 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 			drawGame.clear();
 			drawGame.draw();
 		}
+	}
+
+	public String convertToReadableTime(long timeMillis){
+		String readableTime = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(timeMillis),
+				TimeUnit.MILLISECONDS.toMinutes(timeMillis) % TimeUnit.HOURS.toMinutes(1),
+				TimeUnit.MILLISECONDS.toSeconds(timeMillis) % TimeUnit.MINUTES.toSeconds(1));
+		return readableTime;
 	}
 }
