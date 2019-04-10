@@ -11,19 +11,12 @@ import java.util.Random;
 */
 public class ComputerPlayer {
 	private char team;
-	//private Move lastMove; //computer considers the last move made by human player to make its move, used when AI developed
-	//lastMove will be left alone for now
    private GameConfiguration config; //TODO This needs to be changed so that our gameconfig is passed into a constructor
 
   	//Constructors
 	public ComputerPlayer(char team) { //default
     		this.team = team;
  	 }
-  
-	/*public ComputerPlayer(ComputerPlayer toCopy) { //copy constructor
-		this.token = toCopy.token;
-    		this.lastMove = toCopy.lastMove;
-  	}*/
   	
  	/** 
 	* Getter method for getting the move for the computer player
@@ -70,7 +63,8 @@ public class ComputerPlayer {
 
 		return move;
 	}
-		
+	
+	public char getTeam(){return team;}
 	
  	public static void main(String[] args) {
 		ComputerPlayer p2 = new ComputerPlayer('b');
