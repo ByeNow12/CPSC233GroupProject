@@ -1,5 +1,7 @@
 package logic_package;
 
+import java.util.ArrayList;
+
 /**
 * 2019-03-20
 * Author: Riley
@@ -9,7 +11,7 @@ public class AI extends ComputerPlayer {
 
 	private String[][] currentBoard;
 	private String[][][] hBoards;
-	private int[][] pieces;
+	private ArrayList<int[]> pieces;//stores positions of this AI's pieces
 	//private char team;
 
 	public AI(char team){
@@ -22,6 +24,23 @@ public class AI extends ComputerPlayer {
  	*/
  	@Override
   	public Move getMove(GameConfiguration currentConfig) {
+  		
+  		currentBoard = currentConfig.getBoard().getBoardPosition();
+  		char team = super.getTeam();
+  		//gets all the pieces' positions
+  		pieces.clear();
+  		for (int row = 0; row < 8; row++){
+  			for (int col = 0; col < 8; col++){
+  				if (currentBoard[row][col].charAt(0) == team){
+  					pieces.add(new int[] {row,col});
+  				}
+  			}
+  		}
+  		
+  		int[] moveValues = new int[pieces.size()];
+  		for (int i = 0, i < pieces.size(); i++){
+  			
+  		}
 		return null;
  	}
 
