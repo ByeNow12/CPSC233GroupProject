@@ -10,7 +10,7 @@ public class AI extends ComputerPlayer {
 	private String[][] currentBoard;
 	private String[][][] hBoards;
 	private int[][] pieces;
-	private char team;
+	//private char team;
 
 	public AI(char team){
 		super(team);
@@ -42,6 +42,7 @@ public class AI extends ComputerPlayer {
 		boolean[][] validMoves;
 		int[] move;
 		String type = board[pos[0]][pos[1]].substring(2);
+		char team = super.getTeam();
 
 		if (type.equals("Pa")){
 			validMoves = Piece.calculatePawnMoves(board, pos, team);
@@ -103,6 +104,7 @@ public class AI extends ComputerPlayer {
 		boolean[][] validMoves;
 		int[] move;
 		String type = board[pos[0]][pos[1]].substring(2);
+		char team = super.getTeam();
 		
 		if (type.equals("Pa")){
 			validMoves = Piece.calculatePawnMoves(board, pos, team);
