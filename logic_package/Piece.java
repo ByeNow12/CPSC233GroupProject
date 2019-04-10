@@ -84,9 +84,9 @@ public class Piece {
 		boolean[][] moves = new boolean[8][8];
 	    
 	    	//conditions for pawn to be able to move 2 spaces forward on first move
-		if (r == 1 && team == 'w' && board[r+2][c].equals("0")) // if the pawn is in row 1 or 6 (will be the first move the pawn makes), can move one or two spaces forward
+		if (r == 1 && team == 'w' && board[r+2][c].equals("0") && board[r+1][c].equals("0")) // if the pawn is in row 1 or 6 (will be the first move the pawn makes), can move one or two spaces forward
 			moves[r+2][c] = true;
-		if (r == 6 && team == 'b' && board[r-2][c].equals("0"))
+		if (r == 6 && team == 'b' && board[r-2][c].equals("0") && board[r-1][c].equals("0"))
 			moves[r-2][c] = true;
             	if (team == 'w' && r < 7){ //assuming white is on the top of the board
                 	if (c < 7){
