@@ -42,7 +42,7 @@ public class ComputerPlayer {
 				compMove.getTo(); //if valid, move piece to desired row and column number 
 			}
 		}
-    	}
+    }
 
 	/** 
 	* Gets a random move for the computer player and checks if a move is valid, then we return that move
