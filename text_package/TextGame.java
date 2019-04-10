@@ -33,7 +33,7 @@ public class TextGame{
       
     }
     if (c.equals("C")){
-      ai = new ComputerPlayer("Black"); // Unsure of the purpose of the instance variable of Move type upon initialisation.
+      ai = new ComputerPlayer('b'); // Unsure of the purpose of the instance variable of Move type upon initialisation.
     }
   }
   
