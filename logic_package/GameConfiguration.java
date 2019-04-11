@@ -1,4 +1,3 @@
-
 package logic_package;
 
 import java.util.ArrayList;
