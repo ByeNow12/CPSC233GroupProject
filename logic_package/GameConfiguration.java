@@ -325,6 +325,12 @@ public class GameConfiguration {
 			}
 			bw.newLine();
 		}
+		if (whiteTurn) {
+			bw.write("true");
+		}
+		else {
+			bw.write("false");
+		}
 		bw.close();
 	}
 
@@ -338,8 +344,12 @@ public class GameConfiguration {
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
 
-		for (int i = 0; i < 8; i++){
+		for (int i = 0; i < 9; i++){
 			String line = br.readLine();
+			if ((line.split(" ")).length <= 1) {
+				setWhiteTurn(Boolean.valueOf(line.split(" ")[0]));
+				return true;
+			}
 			for (int x = 0; x < 8; x++) {
 				board.setBoardPositions(i, x, line.split(" ")[x]);
 			}
