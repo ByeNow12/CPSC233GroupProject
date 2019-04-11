@@ -17,14 +17,14 @@ public class AI extends ComputerPlayer {
 	public AI(char team){
 		super(team);
 	}
- 	/** 
+ 	/**
 	* Getter method for getting the move for the computer player
   	* @param
-  	* @return 
+  	* @return
  	*/
  	@Override
   	public Move getMove(GameConfiguration currentConfig) {
-  		
+
   		currentBoard = currentConfig.getBoard().getBoardPosition();
   		char team = super.getTeam();
   		//gets all the pieces' positions
@@ -36,10 +36,10 @@ public class AI extends ComputerPlayer {
   				}
   			}
   		}
-  		
+
   		int[] moveValues = new int[pieces.size()];
-  		for (int i = 0, i < pieces.size(); i++){
-  			
+  		for (int i = 0; i < pieces.size(); i++){
+
   		}
 		return null;
  	}
@@ -48,8 +48,8 @@ public class AI extends ComputerPlayer {
 	*Calculates the most advantageous capture the piece in the specified position can make - assumes errors handled before method call
 	*@param pos - the position of the piece for which you want to calculate the best move
 	*@param board - the current game board
-	*@return an array with the difference in points values between the piece and the piece it can 
-	*take and the position of that piece, in the form {diff, row, col}, 
+	*@return an array with the difference in points values between the piece and the piece it can
+	*take and the position of that piece, in the form {diff, row, col},
 	*returns position as -1,-1 if no valid captures
   	*/
 
@@ -117,14 +117,14 @@ public class AI extends ComputerPlayer {
 		value = takenValue - pieceValue;
 		return new int[] {value, move[0], move[1]};
 	}
-	
+
 	public int[] getBestSpaceMove(int[] pos, String[][] board){
-		
+
 		boolean[][] validMoves;
 		int[] move;
 		String type = board[pos[0]][pos[1]].substring(2);
 		char team = super.getTeam();
-		
+
 		if (type.equals("Pa")){
 			validMoves = Piece.calculatePawnMoves(board, pos, team);
 		}
@@ -146,19 +146,19 @@ public class AI extends ComputerPlayer {
 		else{
 			return new int[] {-1,-1};
 		}
-		
+
 		move = new int[] {-1,-1};
-		
+
 		for (int row = 2; row < 6; row++){
 			for (int col = 2; col < 6; col++){
 				//will aim for the center of the board, and get the closest move it can to the very center
 				if (!validMoves[row][col]) continue;
-				
+
 				if ((row < 5 && row > 2)&&(col < 5 && col > 2)){
 					move = new int[] {row,col};
 					continue;
 				}
-				
+
 				if ((row < 5 && row > 2)||(col < 5 && col > 2)){
 					move = new int[] {row,col};
 					continue;
@@ -166,7 +166,7 @@ public class AI extends ComputerPlayer {
 				move = new int[] {row,col};
 			}
 		}
-		
+
 		return move;
 	}
 

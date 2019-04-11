@@ -17,7 +17,7 @@ public class GameConfigClickHandle implements EventHandler<MouseEvent> {
 	private Scene scene;
 	private GameConfiguration config;
 	private Draw drawCopy;
-	
+
 	public GameConfigClickHandle(Stage primaryStage, Scene scene, GameConfiguration config, Draw drawCopy, char button) {
 		pressedButton = button;
 		this.primaryStage = primaryStage;
@@ -25,7 +25,7 @@ public class GameConfigClickHandle implements EventHandler<MouseEvent> {
 		this.config = config;
 		this.drawCopy = drawCopy;
 	}
-	
+
 	@Override
 	public void handle(MouseEvent event) {
 		if (pressedButton == 'g') {
@@ -33,6 +33,7 @@ public class GameConfigClickHandle implements EventHandler<MouseEvent> {
 			primaryStage.setScene(scene);
 			config.resetPlayerTimes();
 			config.takeTime();
+			config.setWhiteTurn(true);
 		}
 
 		//MAIN MENU clickhandle

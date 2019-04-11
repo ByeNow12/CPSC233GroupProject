@@ -30,13 +30,30 @@ public class GameConfiguration {
 	private long winningTime = 0;
 	private TextField enterPlayerName = new TextField();
 	private Label namesAndScores = new Label("names and scores here");
-	
+
 	//Constructor
 	public GameConfiguration() {
 		board = new Board();
 		board.defaultPositions();
 		leaderboard = new Leaderboard("newgame");
 		whiteTurn = true;
+	}
+
+	/**
+	* Getter method for whiteTurn instance variable
+	* returns true if it is white's turn and false otherwise
+	* @return whiteTurn, boolean
+	*/
+	public boolean getWhiteTurn() {
+		return whiteTurn;
+	}
+
+	/**
+	* Setter method for the whiteTurn instance variable
+	* @param value, boolean
+	*/
+	public void setWhiteTurn(boolean value) {
+		whiteTurn = value;
 	}
 
 	/**
@@ -66,7 +83,7 @@ public class GameConfiguration {
 		takeTime();
 		whiteTurn = !whiteTurn;  	//this way it will cycle between white and black team's turns
 	}
-	
+
 	public void promotion(){
 		for (int i = 0; i <=7; i++){
 		  if (board.getBoardPositionPieceInfo(0,i).equals("b_Pa")){
@@ -76,9 +93,9 @@ public class GameConfiguration {
 			  board.setBoardPositions(7,i,"w_Qu");
 		}
 		}
-		
+
 	}
-	
+
 	/**
 	* Reverse the passed Move object
 	* @param move: Move, the change in the board to be reversed.
@@ -137,7 +154,7 @@ public class GameConfiguration {
 	/**
 	* Checks if the king in belonging to token is captured. Checks if the game has ended.
 	* @param token, the team to be checked for winning
-	* @return boolean, true or false whether the team has won 
+	* @return boolean, true or false whether the team has won
 	*/
 	public boolean hasWon(char token){
 		boolean wKingPresent = false;
@@ -205,10 +222,10 @@ public class GameConfiguration {
 				}
 			}
 		}
-		
+
 		return moveArrayList;
 	}
-	
+
 	/**
 	* Checks whether the specified player is in check
 	* @param char, the team colour that is checked
@@ -240,7 +257,7 @@ public class GameConfiguration {
 		}
 		return isCheckBoolean;
 	}
-	
+
 	/**
 	* Checks whether the specified player is in check mate
 	* @param char, the team color that is checked
@@ -310,7 +327,7 @@ public class GameConfiguration {
 		}
 		bw.close();
 	}
-			
+
 	public boolean load() throws IOException{
 		File file = new File("savegame.txt");
 		if (file.createNewFile()){
@@ -371,7 +388,7 @@ public class GameConfiguration {
 	public void setWinningTime(long winningTime) {
 		this.winningTime = winningTime;
 	}
-		
+
 	public static void main(String[] args) {
 		GameConfiguration config = new GameConfiguration();
 		config.getBoard().defaultPositions();
