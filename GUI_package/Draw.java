@@ -4,6 +4,9 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import logic_package.*;
 
 import javafx.application.Application;
@@ -37,6 +40,8 @@ public class Draw extends Application {
 	private Scene leaderboardCopy;
 	private Scene enterNameCopy;
 	private String endText = "You Won!";
+	private Label errorLabel;
+	private Label checkLabel;
 
 	//global button so that you can go back to start menu from leaderboard and submenu later
 	Button goBack = new Button("Back to main menu");
@@ -50,6 +55,14 @@ public class Draw extends Application {
 	
 	public void setEndText(String t) {
 		endText = t;
+	}
+	
+	public void setErrorText(String txt) {
+		errorLabel.setText(txt);
+	}
+	
+	public void setCheckText(String txt) {
+		checkLabel.setText(txt);
 	}
 
 	public void draw(){
@@ -243,7 +256,22 @@ public class Draw extends Application {
 		wrap.getChildren().add(eventPane);
 		wrap.getChildren().add(piecePane);
 		pane.setCenter(wrap);
-		pane.setBottom(saveGameButton);
+		
+		// Error message label and isCheck label added
+		HBox bottomContainer = new HBox();
+		errorLabel = new Label("");
+		errorLabel.setTextFill(Color.RED);
+		errorLabel.setFont(new Font("Arial", 20));
+		checkLabel = new Label("");
+		checkLabel.setTextFill(Color.GREEN);
+		checkLabel.setFont(new Font("Arial", 20));
+		bottomContainer.getChildren().add(saveGameButton);
+		bottomContainer.getChildren().add(checkLabel);
+		bottomContainer.getChildren().add(errorLabel);
+		bottomContainer.setAlignment(Pos.CENTER);
+		bottomContainer.setSpacing(15);
+		
+		pane.setBottom(bottomContainer);
 
 		config.getBoard().defaultPositions();
 		primaryStageCopy = primaryStage;

@@ -79,9 +79,17 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 			}
 			Move move = new Move(color, pieceSelected[0], pieceSelected[1], position[0], position[1]);
 			if (config.isValidMove(move)) {
-				//update board. Display an error message of some kind. Perhaps a red square.
+				drawGame.setErrorText("");
 				config.update(move);
-				//board.draw();
+				if (config.isCheck('w')) {
+					drawGame.setCheckText("White is in Check");
+				}
+				else if (config.isCheck('b')) {
+					drawGame.setCheckText("Black is in Check");
+				}
+				else {
+					drawGame.setCheckText("");
+				}
 				if (config.hasWon('w') || config.hasWon('b')) {
 					if (config.hasWon('w')) {
 						drawGame.setEndText("White team won! \n "+convertToReadableTime(config.getTotalWhiteTime()));
@@ -100,26 +108,7 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 			}
 			else {
 				// Not a valid move.
-				/*if (position[0] != pieceSelected[0] || position[1] != pieceSelected[1]) {
-					if (board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]] != "0") {
-						board.setBoardPositions(position[0], position[1], board.getBoardPosition()[pieceSelected[0]][pieceSelected[1]]);
-						board.setBoardPositions(pieceSelected[0], pieceSelected[1], "0");
-						//board.draw();
-						if (config.hasWon('w') || config.hasWon('b')) {
-							if (config.hasWon('w')) {
-								drawGame.setEndText("White Won!");
-								scene = drawGame.buildEndMenuScene();
-							}
-							else {
-								drawGame.setEndText("Black Won");
-								scene = drawGame.buildEndMenuScene();
-							}
-							config.getBoard().defaultPositions();
-							primaryStage.setScene(scene);
-							drawGame.draw();
-						}
-					}
-				}*/
+				drawGame.setErrorText("Invalid Move");
 			}
 			pieceSelected[0] = 10;
 			pieceSelected[1] = 10;
