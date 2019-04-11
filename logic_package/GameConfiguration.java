@@ -232,6 +232,12 @@ public class GameConfiguration {
 	* @return boolean, true if in check and false if not
 	*/
 	public boolean isCheck(char team) {
+		if (team == 'w') {
+			team = 'b';
+		}
+		else {
+			team = 'w';
+		}
 		ArrayList<Move> possibleMoves = getAllValidMoves(team);
 		int[] enemyKingLoc = new int[2];
 		enemyKingLoc[0] = 10;
@@ -257,24 +263,15 @@ public class GameConfiguration {
 		}
 		return isCheckBoolean;
 	}
-
+	
 	/**
 	* Checks whether the specified player is in check mate
 	* @param char, the team color that is checked
 	* @return boolean, true if in check mate and false if not
 	*/
-	/*public boolean isCheckMate(char team) {
-		char enemyColor;
-		boolean isCheckMateBool = true;
-		int[] kingLoc = new int[2];
-		kingLoc[0] = 10;
-		kingLoc[1] = 10;
-		if (team == 'w') {
-			enemyColor = 'b';
-		}
-		else {
-			enemyColor = 'w';
-		}
+	public boolean isCheckMate(char team) {
+		boolean isCheckMateBool = false;
+		int[] kingLoc = {10, 10};
 		for (int y = 0; y < 8; y++) {
 			for (int x = 0; x < 8; x++) {
 				if (board.getBoardPosition()[x][y].charAt(0) == team) {
@@ -286,32 +283,26 @@ public class GameConfiguration {
 			}
 		}
 		if (kingLoc[0] == 10 || kingLoc[1] == 10) {
+			// In case this method is called before the game ends.
 			return false;
 		}
-		Move[] allMoves = getAllValidMoves(team);
-		for (int y = 0; y < 8; y++) {
-			for (int x = 0; x < 8; x++) {
-				if (unconvertedKingMoves[x][y]) {
-					String pieceId = team + "_Ki";
-					String currentPiece = board.getBoardPosition()[x][y];
-					board.setBoardPositions(kingLoc[0], kingLoc[1], "0");
-					board.setBoardPositions(x, y, pieceId);
-					board.draw();
-					if (!isCheck(team)) {
-						isCheckMateBool = false;
-					}
-					board.setBoardPositions(x, y, currentPiece);
-					board.setBoardPositions(kingLoc[0], kingLoc[1], pieceId);
+		if (isCheck(team)) {
+			isCheckMateBool = true;
+			ArrayList<Move> allMoves = getAllValidMoves(team);
+			for (int i = 0; i < allMoves.size(); i++) {
+				Move move = allMoves.get(i);
+				String currPiece = board.getBoardPosition()[move.getFrom()[0]][move.getFrom()[1]];
+				String nextPiece = board.getBoardPosition()[move.getTo()[0]][move.getTo()[1]];
+				update(move);
+				if (!isCheck(team) || hasWon(team)) {
+					isCheckMateBool = false;
 				}
+				board.setBoardPositions(move.getFrom()[0], move.getFrom()[1], currPiece);
+				board.setBoardPositions(move.getTo()[0], move.getTo()[1], nextPiece);
 			}
 		}
-		if (!isCheck(team)) {
-			isCheckMateBool = false;
-		}
-		System.out.println(kingLoc[0]);
-		System.out.println(kingLoc[1]);
 		return isCheckMateBool;
-	}*/
+	}
 
 	public void save() throws IOException{	//only call at the end when you want to save and exit
 		File file = new File("savegame.txt");
