@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 /**
 * 2019-03-06
@@ -100,10 +101,18 @@ public class Leaderboard {
 		bw.close();
 	}
 
+	public String getReadableTime(int timeMillis){
+		String readableTime = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(timeMillis),
+				TimeUnit.MILLISECONDS.toMinutes(timeMillis) % TimeUnit.HOURS.toMinutes(1),
+				TimeUnit.MILLISECONDS.toSeconds(timeMillis) % TimeUnit.MINUTES.toSeconds(1));
+		return readableTime;
+	}
+
 	public String toReadableString(){
 		String readableString = "";
 		for (int i = 0; i < leaderboard.length; i++){
-			readableString += leaderboard[i][0] + " " + leaderboard[i][1]+"\n";
+			String timeToWin = getReadableTime(Integer.parseInt(leaderboard[i][1]));
+			readableString += leaderboard[i][0] + " - " + timeToWin+"\n";
 		}
 		return readableString;
 	}

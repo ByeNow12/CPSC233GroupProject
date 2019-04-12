@@ -4,8 +4,6 @@ package GUI_package;
 import logic_package.GameConfiguration;
 import logic_package.Board;
 import logic_package.Move;
-
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -93,12 +91,13 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 				}
 				if (config.hasWon('w') || config.hasWon('b')) {
 					if (config.hasWon('w')) {
-						drawGame.setEndText("White team won! \n "+convertToReadableTime(config.getTotalWhiteTime()));
+						drawGame.setEndText("White team won!");
+						drawGame.setTimeTakenText("Time taken: "+convertToReadableTime(config.getTotalWhiteTime()));
 						config.setWinningTime(config.getTotalWhiteTime());
 						scene = drawGame.buildEndMenuScene();
 					}
 					else {
-						drawGame.setEndText("Black team won! \n "+convertToReadableTime(config.getTotalBlackTime()));
+						drawGame.setEndText("Black team won!\nTime taken: "+convertToReadableTime(config.getTotalBlackTime()));
 						config.setWinningTime(config.getTotalBlackTime());
 						scene = drawGame.buildEndMenuScene();
 					}
