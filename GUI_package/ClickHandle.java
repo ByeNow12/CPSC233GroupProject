@@ -4,6 +4,8 @@ package GUI_package;
 import logic_package.GameConfiguration;
 import logic_package.Board;
 import logic_package.Move;
+import logic_package.ComputerPlayer;
+import logic_package.AI;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
