@@ -4,6 +4,8 @@ package GUI_package;
 import logic_package.GameConfiguration;
 import logic_package.Board;
 import logic_package.Move;
+import logic_package.ComputerPlayer;
+import logic_package.AI;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -80,9 +82,15 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 				color = "Black";
 			}
 			Move move = new Move(color, pieceSelected[0], pieceSelected[1], position[0], position[1]);
-			if (config.isValidMove(move)) {
+			boolean activeAITurn = (config.getActiveAI() && !config.getWhiteTurn());
+			if (config.isValidMove(move) && !activeAITurn) {
 				drawGame.setErrorText("");
 				config.update(move);
+				activeAITurn = (config.getActiveAI() && !config.getWhiteTurn());
+				if (activeAITurn) {
+					AI comPlayer = new AI('b');
+					config.update(comPlayer.getMove(config));
+				}
 				drawGame.setTeamText();
 				if (config.isCheck('w')) {
 					drawGame.setCheckText("White is in Check");
