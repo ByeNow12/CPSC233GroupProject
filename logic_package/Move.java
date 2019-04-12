@@ -22,7 +22,7 @@ public class Move {
 	* @param toCol, the column number for the piece to move to
 	*/
 	public Move(String team, int fromRow, int fromCol, int toRow, int toCol){
-		this.team = team;
+		this.team = tesm;
 		this.fromRow = fromRow;
 		this.fromCol = fromCol;
 		this.toRow = toRow;
@@ -35,6 +35,38 @@ public class Move {
 	*/
 	public String getTeam() {
 		return team;
+	}
+
+	/**
+	* Gets the row number of the piece that the player wants to move
+	* @return fromRow, the row number to move from
+	*/
+	public int getFromRow() {
+		return fromRow;
+	}
+
+	/**
+	* Gets the column number of the piece that the player wants to move
+	* @return fromCol, the column number to move from
+	*/
+	public int getFromCol() {
+		return fromCol;
+	}
+
+	/**
+	* Gets the row number on the board to move the piece to
+	* @return toRow, the row number to move to
+	*/
+	public int getToRow() {
+		return toRow;
+	}
+
+	/**
+	* Gets the column number on the board to move the piece to
+	* @return toCol, the column number to move to
+	*/
+	public int getToCol() {
+		return toCol;
 	}
 	
 	/** Gets the row and column that the user is moving the piece from and presents it as an integer array of size 2
