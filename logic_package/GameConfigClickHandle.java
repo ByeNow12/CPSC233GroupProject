@@ -75,6 +75,17 @@ public class GameConfigClickHandle implements EventHandler<MouseEvent> {
 		else if (pressedButton == 'l') {
 			try {
 				config.load();
+				//Update turn text and isCheck text for loaded saves
+				drawCopy.setTeamText();
+				if (config.isCheck('w')) {
+					drawCopy.setCheckText("White is in Check");
+				}
+				else if (config.isCheck('b')) {
+					drawCopy.setCheckText("Black is in Check");
+				}
+				else {
+					drawCopy.setCheckText("");
+				}
 				primaryStage.setScene(scene);
 				drawCopy.clear();
 				drawCopy.draw();
