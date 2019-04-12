@@ -270,6 +270,7 @@ public class GameConfiguration {
 	*/
 	public boolean isCheckMate(char team) {
 		boolean isCheckMateBool = false;
+		boolean turn = getWhiteTurn();
 		int[] kingLoc = {10, 10};
 		for (int y = 0; y < 8; y++) {
 			for (int x = 0; x < 8; x++) {
@@ -300,6 +301,7 @@ public class GameConfiguration {
 				board.setBoardPositions(move.getTo()[0], move.getTo()[1], nextPiece);
 			}
 		}
+		setWhiteTurn(turn);
 		return isCheckMateBool;
 	}
 
