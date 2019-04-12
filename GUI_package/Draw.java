@@ -40,6 +40,7 @@ public class Draw extends Application {
 	private Scene leaderboardCopy;
 	private Scene enterNameCopy;
 	private String endText = "You Won!";
+	private Label teamLabel;
 	private Label errorLabel;
 	private Label checkLabel;
 
@@ -52,7 +53,16 @@ public class Draw extends Application {
 	public Draw(GameConfiguration config){
 		this.config = config;
 	}
-	
+
+	public void setTeamText(){
+		if (config.getWhiteTurn() == true){
+			teamLabel.setText("White team's move");
+		}
+		else {
+			teamLabel.setText("Black team's move");
+		}
+	}
+
 	public void setEndText(String t) {
 		endText = t;
 	}
@@ -74,11 +84,11 @@ public class Draw extends Application {
 				String inputString = "";
 				String pieceType = "";
 				if (board[r][c].charAt(0) == 'w'){
-					inputString = "graphics_package/w_";
+					inputString = "graphics_package/w_"; //package that the graphics are located in, w_ to retrieve white pieces
 					pieceType = board[r][c].substring(2);
 				}
 				else if (board[r][c].charAt(0) == 'b'){
-					inputString = "graphics_package/b_";   //this is the only thing that has to be changed to put in the outline ones instead
+					inputString = "graphics_package/b_";   //package that the graphics are located in, b_ to retrieve white pieces
 					pieceType = board[r][c].substring(2);
 				}
 				if (pieceType.equals("Ro")) {
@@ -212,20 +222,20 @@ public class Draw extends Application {
 		}
 	}
 
-	/**
-	 * changes text based on which team it is
-	 * @param char team, the team  that is playing
-	 **/
-	public String bottomLabel (char team) {
-		String currentTeam = "";
-		if (team == 'w'){
-			currentTeam = "White team";
-		}
-		else if (team == 'b' ){
-			currentTeam = "Black team";
-		}
-		return ("Current turn: "+currentTeam);
-	}
+//	/**
+//	 * changes text based on which team it is
+//	 * @param char team, the team  that is playing
+//	 **/
+//	public String bottomLabel (char team) {
+//		String currentTeam = "";
+//		if (team == 'w'){
+//			currentTeam = "White team";
+//		}
+//		else if (team == 'b' ){
+//			currentTeam = "Black team";
+//		}
+//		return ("Current turn: "+currentTeam);
+//	}
 	
 	/**
 	* Start of Draw class
@@ -256,7 +266,18 @@ public class Draw extends Application {
 		wrap.getChildren().add(eventPane);
 		wrap.getChildren().add(piecePane);
 		pane.setCenter(wrap);
-		
+
+		//vbox to split the bottom section into 2 HBoxes
+
+		VBox bottomSection = new VBox();
+
+		//Label for which team is playing
+		HBox teamPlayingContainer = new HBox();
+		teamLabel = new Label("");
+		teamLabel.setFont(new Font("Arial", 20));
+		teamPlayingContainer.getChildren().add(teamLabel);
+		teamPlayingContainer.setAlignment(Pos.CENTER);
+
 		// Error message label and isCheck label added
 		HBox bottomContainer = new HBox();
 		errorLabel = new Label("");
@@ -271,7 +292,11 @@ public class Draw extends Application {
 		bottomContainer.setAlignment(Pos.CENTER);
 		bottomContainer.setSpacing(15);
 		
-		pane.setBottom(bottomContainer);
+		bottomSection.getChildren().add(teamPlayingContainer); // stack team playing text on top of save button,  error message and in check message
+		bottomSection.getChildren().add(bottomContainer);
+		bottomSection.setSpacing(10);
+		bottomSection.setPadding(new Insets(5, 0, 10, 0));
+		pane.setBottom(bottomSection);
 
 		config.getBoard().defaultPositions();
 		primaryStageCopy = primaryStage;

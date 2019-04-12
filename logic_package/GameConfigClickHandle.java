@@ -34,6 +34,7 @@ public class GameConfigClickHandle implements EventHandler<MouseEvent> {
 			config.resetPlayerTimes();
 			config.takeTime();
 			config.setWhiteTurn(true);
+			drawCopy.setTeamText();
 		}
 
 		//MAIN MENU clickhandle

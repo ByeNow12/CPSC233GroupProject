@@ -81,6 +81,7 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 			if (config.isValidMove(move)) {
 				drawGame.setErrorText("");
 				config.update(move);
+				drawGame.setTeamText();
 				if (config.isCheck('w')) {
 					drawGame.setCheckText("White is in Check");
 				}
