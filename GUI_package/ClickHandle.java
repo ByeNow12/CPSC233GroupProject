@@ -109,9 +109,15 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 						scene = drawGame.buildEndMenuScene();
 					}
 					else {
-						drawGame.setEndText("Black team won!\nTime taken: "+convertToReadableTime(config.getTotalBlackTime()));
-						config.setWinningTime(config.getTotalBlackTime());
-						scene = drawGame.buildEndMenuScene();
+						if (config.getActiveAI()) {
+							drawGame.setEndText("Black team won!");
+							scene = drawGame.buildEndMenuScene();
+						}
+						else {
+							drawGame.setEndText("Black team won!\nTime taken: "+convertToReadableTime(config.getTotalBlackTime()));
+							config.setWinningTime(config.getTotalBlackTime());
+							scene = drawGame.buildEndMenuScene();
+						}
 					}
 					config.getBoard().defaultPositions();
 					primaryStage.setScene(scene);
