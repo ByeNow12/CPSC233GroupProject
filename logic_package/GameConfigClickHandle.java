@@ -45,7 +45,7 @@ public class GameConfigClickHandle implements EventHandler<MouseEvent> {
 	@Override
 	public void handle(MouseEvent event) {
 		//Click handle for clicking the buttons for playing chess GUI version, for new game (vs. human or computer), and play again
-		if (pressedButton == 'g') {
+			if (pressedButton == 'g') {
 			if (config.getActiveAI()) {
 				config.getBoard().defaultPositions();
 				primaryStage.setScene(scene);
@@ -56,6 +56,8 @@ public class GameConfigClickHandle implements EventHandler<MouseEvent> {
 			}
 			else {
 				config.getBoard().defaultPositions();
+				config.resetPlayerTimes();
+				config.takeTime();
 				config.setWhiteTurn(true);
 				drawCopy.setTeamText();
 				primaryStage.setScene(scene);
@@ -139,6 +141,8 @@ public class GameConfigClickHandle implements EventHandler<MouseEvent> {
 			config.getBoard().defaultPositions();
 			config.setWhiteTurn(true);
 			drawCopy.setTeamText();
+			config.resetPlayerTimes();
+			config.takeTime();
 			primaryStage.setScene(scene);
 			config.setActiveAI(true);
 		}
