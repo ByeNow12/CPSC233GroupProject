@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.File;
-
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -115,18 +114,6 @@ public class GameConfiguration {
 			  board.setBoardPositions(7,i,"w_Qu");
 		}
 		}
-	}
-
-	/**
-	* Reverse the passed Move object
-	* @param move: Move, the change in the board to be reversed.
-	*/
-	public void reverseMove(Move move) {
-		int[] lastMove = move.getFrom();
-		int[] currentMove = move.getTo();
-		String token = board.getBoardPosition()[lastMove[0]][lastMove[1]];
-		board.setBoardPositions(currentMove[0], currentMove[1], "0");
-		board.setBoardPositions(lastMove[0], lastMove[1], token);
 	}
 
 	/**
@@ -280,48 +267,6 @@ public class GameConfiguration {
 			}
 		}
 		return isCheckBoolean;
-	}
-	
-	/**
-	* Checks whether the specified player is in check mate
-	* @param char, the team color that is checked
-	* @return boolean, true if in check mate and false if not
-	*/
-	public boolean isCheckMate(char team) {
-		boolean isCheckMateBool = false;
-		boolean turn = getWhiteTurn();
-		int[] kingLoc = {10, 10};
-		for (int y = 0; y < 8; y++) {
-			for (int x = 0; x < 8; x++) {
-				if (board.getBoardPosition()[x][y].charAt(0) == team) {
-					if (board.getBoardPosition()[x][y].substring(2).equals("Ki")) {
-						kingLoc[0] = x;
-						kingLoc[1] = y;
-					}
-				}
-			}
-		}
-		if (kingLoc[0] == 10 || kingLoc[1] == 10) {
-			// In case this method is called before the game ends.
-			return false;
-		}
-		if (isCheck(team)) {
-			isCheckMateBool = true;
-			ArrayList<Move> allMoves = getAllValidMoves(team);
-			for (int i = 0; i < allMoves.size(); i++) {
-				Move move = allMoves.get(i);
-				String currPiece = board.getBoardPosition()[move.getFrom()[0]][move.getFrom()[1]];
-				String nextPiece = board.getBoardPosition()[move.getTo()[0]][move.getTo()[1]];
-				update(move);
-				if (!isCheck(team) || hasWon(team)) {
-					isCheckMateBool = false;
-				}
-				board.setBoardPositions(move.getFrom()[0], move.getFrom()[1], currPiece);
-				board.setBoardPositions(move.getTo()[0], move.getTo()[1], nextPiece);
-			}
-		}
-		setWhiteTurn(turn);
-		return isCheckMateBool;
 	}
 
 	/**

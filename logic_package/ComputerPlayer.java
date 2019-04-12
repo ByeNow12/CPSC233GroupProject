@@ -11,7 +11,6 @@ import java.util.Random;
 */
 public class ComputerPlayer {
 	private char team;
-	private GameConfiguration config; //This needs to be changed so that our gameconfig is passed into a constructor
 
   	/**
 	* Default constructor
@@ -36,23 +35,6 @@ public class ComputerPlayer {
 	*/
 	public char getTeam() {
 		return team;
-	}
-	
-  	/** 
-	* Setter method to make a random valid move for the computer player
- 	* @param fromRowNum, the row number of the piece the computer wants to move from
-	* @param fromColNum, the column number of the piece the computer wants to move from
-	* @param toRowNum, the row number the computer wants to move to 
-	* @param toColNum, the column number the computer wants to move to 
-  	*/
-  	public void setMove(int fromRowNum, int fromColNum, int toRowNum, int toColNum) {
-		//while the row/column numbers in range of 0-8, Move class called to make a move
-		while ((toRowNum >= 0 && toColNum >= 0) && (toRowNum < 8 && toColNum < 8)) {
-			Move compMove = new Move("Black", fromRowNum, fromColNum, toRowNum, toColNum); //call Move class to make a move based on the row/column number 
-			if (config.isValidMove(compMove) == true) { //check if move is valid
-				compMove.getTo(); //if valid, move piece to desired row and column number 
-			}
-		}
 	}
 
 	/** 

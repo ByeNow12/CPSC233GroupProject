@@ -1,10 +1,6 @@
 package logic_package;
-import logic_package.GameConfiguration;
-import logic_package.Board;
 import text_package.*;
 import GUI_package.Draw;
-
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
