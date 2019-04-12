@@ -39,7 +39,7 @@ public class AI extends ComputerPlayer {
 
 		if (currentConfig.isCheck(team)){
 			//first checks if king can move out of check
-			int[] kingPos;
+			int[] kingPos = {0, 0};
 			boolean[][] validMoves;
 			for (int i = 0; i < pieces.size(); i++){
 				int[] pPos = pieces.get(i);
