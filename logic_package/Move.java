@@ -22,7 +22,7 @@ public class Move {
 	* @param toCol, the column number for the piece to move to
 	*/
 	public Move(String team, int fromRow, int fromCol, int toRow, int toCol){
-		this.team = tesm;
+		this.team = team;
 		this.fromRow = fromRow;
 		this.fromCol = fromCol;
 		this.toRow = toRow;
