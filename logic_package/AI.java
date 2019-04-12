@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class AI extends ComputerPlayer {
 
 	private String[][] currentBoard;
-	private ArrayList<int[]> pieces;//stores positions of this AI's pieces
+	private ArrayList<int[]> pieces = new ArrayList<int[]>();//stores positions of this AI's pieces
 
 	public AI(char team){
 		super(team);
@@ -58,8 +58,6 @@ public class AI extends ComputerPlayer {
 					}
 				}
 			}
-
-			return blockCheck(currentConfig);
 		}
 
 		int[][] moves = new int[pieces.size()][];
@@ -81,7 +79,7 @@ public class AI extends ComputerPlayer {
 			else if (best > -1 && moves[i][0] > moves[best][0]) best = i;
   		}
 		if (best > -1){
-			return new Move("AI", pieces.get(best)[0], pieces.get(best)[1], moves[best][0], moves[best][1]);
+			return new Move("AI", pieces.get(best)[0], pieces.get(best)[1], moves[best][1], moves[best][2]);
 		}
 
 		for (int i = 0; i < pieces.size(); i++){
@@ -90,15 +88,11 @@ public class AI extends ComputerPlayer {
 			else if (best > -1 && moves[i][0] > moves[best][0]) best = i;
   		}
 		if (best > -1){
-			return new Move("AI", pieces.get(best)[0], pieces.get(best)[1], moves[best][0], moves[best][1]);
+			return new Move("AI", pieces.get(best)[0], pieces.get(best)[1], moves[best][1], moves[best][2]);
 		}
 		
 		return defaultMove(currentBoard, team, pieces, currentConfig);
  	}
-
-	private Move blockCheck(GameConfiguration config){
-		return null;
-	}
 
 	/**
 	*Calculates the most advantageous capture the piece in the specified position can make - assumes errors handled before method call
@@ -180,6 +174,14 @@ public class AI extends ComputerPlayer {
 		return new int[] {best, move[0], move[1]};
 	}
 
+	/**
+	*Calculates the most advantageous move into an empty square the piece in the specified position can make - assumes errors handled before method call
+	*@param pos - the position of the piece for which you want to calculate the best move
+	*@param board - the current game board
+	*@return an array with value of the returen move and the end position of the move, in the form {value, row, col},
+	*returns position as -1,-1 if no good valid moves
+  	*/
+
 	private int[] getBestSpaceMove(int[] pos, String[][] board, char team, boolean[][] opMoves){
 
 		int pValue = 0;		//will assign piece values based on which is most advantageous to have in the middle of the board
@@ -237,6 +239,8 @@ public class AI extends ComputerPlayer {
 			}
 		}
 
+		if (move[0] == -1) pValue = -1;
+
 		return new int[] {pValue, move[0], move[1]};
 	}
 
@@ -289,6 +293,8 @@ public class AI extends ComputerPlayer {
 				move[1] = col;
 			}
 		}
+
+		if (move[0] == -1) pValue = -1;
 
 		return new int[] {pValue, move[0], move[1]};
 	}
