@@ -15,6 +15,7 @@ public class PieceTest
     */
     @Test
     public void test_pawnMoves(){
+	//manually constructing a game board
         String[][] board = new String[][]
 	{
 	{"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   },
@@ -28,6 +29,7 @@ public class PieceTest
 	};
 	assertTrue("Pawn should be able to take diagonally", Piece.calculatePawnMoves(board, new int[] {2,6}, 'w')[3][5]);
 	assertTrue("Pawn should not be able to take allies", !Piece.calculatePawnMoves(board, new int[] {1,1}, 'w')[2][0]);
+	//manually constructing what the validMoves array should look like
 	boolean[][] eReturn = new boolean[][]
 	{
 	{false,false,false,false,false,false,false,false},
@@ -48,7 +50,8 @@ public class PieceTest
     * Tests moves of the knight piece
     */
     @Test
-    public void test_knightMoves(){        
+    public void test_knightMoves(){ 
+	//manually constructing a game board       
 	String[][] board = new String[][]
 	{
 	{"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   },
@@ -62,6 +65,7 @@ public class PieceTest
 	};
 	assertTrue("Knight should be able to take opponents", Piece.calculateKnightMoves(board, new int[] {3,2}, 'b')[1][1]);
 	assertTrue("Knight should not be able to take allies", !Piece.calculateKnightMoves(board, new int[] {3,2}, 'b')[1][3]);
+	//manually constructing what the validMoves array should look like
 	boolean[][] eReturn = new boolean[][]
 	{
 	{false,false,false,false,false,false,false,false},
@@ -82,7 +86,8 @@ public class PieceTest
     * Tests moves of the king piece
     */
     @Test
-    public void test_kingMoves(){        
+    public void test_kingMoves(){      
+	//manually constructing a game board  
 	String[][] board = new String[][]
 	{
 	{"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   },
@@ -96,6 +101,7 @@ public class PieceTest
 	};
 	assertTrue("King should be able to take opponents", Piece.calculateKingMoves(board, new int[] {3,5}, 'b')[2][6]);
 	assertTrue("King should not be able to take allies", !Piece.calculateKingMoves(board, new int[] {3,5}, 'b')[2][5]);
+	//manually constructing what the validMoves array should look like
 	boolean[][] eReturn = new boolean[][]
 	{
 	{false,false,false,false,false,false,false,false},
@@ -117,6 +123,7 @@ public class PieceTest
     */
     @Test
     public void test_rookMoves(){        
+	//manually constructing a game board
 	String[][] board = new String[][]
 	{
 	{"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   },
@@ -130,6 +137,7 @@ public class PieceTest
 	};
 	assertTrue("Rook should be able to take opponents", Piece.calculateRookMoves(board, new int[] {2,2}, 'w')[3][2]);
 	assertTrue("Rook should not be able to take allies", !Piece.calculateRookMoves(board, new int[] {2,2}, 'w')[2][6]);
+	//manually constructing what the validMoves array should look like
 	boolean[][] eReturn = new boolean[][]
 	{
 	{false,false,true ,false,false,false,false,false},
@@ -151,6 +159,7 @@ public class PieceTest
     */
     @Test
     public void test_bishopMoves(){        
+	//manually constructing a game board
 	String[][] board = new String[][]
 	{
 	{"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   },
@@ -164,6 +173,7 @@ public class PieceTest
 	};
 	assertTrue("Bishop should be able to take opponents", Piece.calculateBishopMoves(board, new int[] {2,2}, 'w')[4][4]);
 	assertTrue("Bishop should not be able to take allies", !Piece.calculateBishopMoves(board, new int[] {2,2}, 'w')[1][1]);
+	//manually constructing what the validMoves array should look like
 	boolean[][] eReturn = new boolean[][]
 	{
 	{false,false,false,false,true ,false,false,false},
@@ -185,6 +195,7 @@ public class PieceTest
     */
     @Test
     public void test_queenMoves(){        
+	//manually constructing a game board
 	String[][] board = new String[][]
 	{
 	{"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   ,"0"   },
@@ -198,6 +209,7 @@ public class PieceTest
 	};
 	assertTrue("Queen should be able to take diagonally", Piece.calculateQueenMoves(board, new int[] {2,2}, 'w')[3][2]);
 	assertTrue("Queen should not be able to take allies", !Piece.calculateQueenMoves(board, new int[] {2,2}, 'w')[1][1]);
+	//manually constructing what the validMoves array should look like
 	boolean[][] eReturn = new boolean[][]
 	{
 	{false,false,true ,false,true ,false,false,false},
