@@ -58,8 +58,6 @@ public class AI extends ComputerPlayer {
 					}
 				}
 			}
-
-			return blockCheck(currentConfig);
 		}
 
 		int[][] moves = new int[pieces.size()][];
@@ -95,10 +93,6 @@ public class AI extends ComputerPlayer {
 		
 		return defaultMove(currentBoard, team, pieces, currentConfig);
  	}
-
-	private Move blockCheck(GameConfiguration config){
-		return null;
-	}
 
 	/**
 	*Calculates the most advantageous capture the piece in the specified position can make - assumes errors handled before method call
@@ -179,6 +173,14 @@ public class AI extends ComputerPlayer {
 		}
 		return new int[] {best, move[0], move[1]};
 	}
+
+	/**
+	*Calculates the most advantageous move into an empty square the piece in the specified position can make - assumes errors handled before method call
+	*@param pos - the position of the piece for which you want to calculate the best move
+	*@param board - the current game board
+	*@return an array with value of the returen move and the end position of the move, in the form {value, row, col},
+	*returns position as -1,-1 if no good valid moves
+  	*/
 
 	private int[] getBestSpaceMove(int[] pos, String[][] board, char team, boolean[][] opMoves){
 
