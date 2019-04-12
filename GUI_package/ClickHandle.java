@@ -80,9 +80,15 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 				color = "Black";
 			}
 			Move move = new Move(color, pieceSelected[0], pieceSelected[1], position[0], position[1]);
-			if (config.isValidMove(move)) {
+			boolean activeAITurn = (config.getActiveAI() && !config.getWhiteTurn());
+			if (config.isValidMove(move) && !activeAITurn) {
 				drawGame.setErrorText("");
 				config.update(move);
+				activeAITurn = (config.getActiveAI() && !config.getWhiteTurn());
+				if (activeAITurn) {
+					AI comPlayer = new AI('b');
+					config.update(comPlayer.getMove(config));
+				}
 				drawGame.setTeamText();
 				if (config.isCheck('w')) {
 					drawGame.setCheckText("White is in Check");
