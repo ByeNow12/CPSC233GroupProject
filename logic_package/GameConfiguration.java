@@ -28,6 +28,7 @@ public class GameConfiguration {
 	private long winningTime = 0;
 	private TextField enterPlayerName = new TextField();
 	private Label namesAndScores = new Label("names and scores here");
+	private boolean activeAI = false;
 
 	/**
 	 * Constructor for game configuration. Creates new board object, sets board to default positions,
@@ -38,6 +39,22 @@ public class GameConfiguration {
 		board.defaultPositions();
 		leaderboard = new Leaderboard("newgame");
 		whiteTurn = true;
+	}
+	
+	/**
+	* Setter method for activeAI.
+	* @param value, boolean
+	*/
+	public void setActiveAI(boolean value) {
+		activeAI = value;
+	}
+	
+	/**
+	* Getter method for activeAI. Returns true if is being used and false otherwise.
+	* @return activeAI, boolean
+	*/
+	public boolean getActiveAI() {
+		return activeAI;
 	}
 
 	/**
