@@ -1,9 +1,9 @@
 Chess Board Game
 CPSC 233 T09-G03
 
-Where to Find the Version for Demo 3:
+Where to Find the Correct Version of Project:
 
-All the classes required for demo 3 will be uploaded to our repository under the master branch. The classes are separated into 3 packages; the logic_package, text_package, and GUI_package. The GUIGame class is the main class used to run the program and can be found in the GUI_package. The TextGame class is the class used to run the text based version and can be found in the text_package.
+All the classes required will be uploaded under the master branch. The classes are separated into 3 packages; the logic_package, text_package, and GUI_package. The GUIGame class is the main class used to run the program and can be found in the GUI_package. The TextGame class is the class used to run the text based version and can be found in the text_package.
 
 Compiling Instructions for Text Based Version:
 1. Download the ZIP file under the master branch containing all the classes and png images and place the file in your chosen directory
