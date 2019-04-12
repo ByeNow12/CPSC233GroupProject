@@ -59,7 +59,6 @@ public class GameConfigClickHandle implements EventHandler<MouseEvent> {
 				config.setWhiteTurn(true);
 				drawCopy.setTeamText();
 				primaryStage.setScene(scene);
-				config.setActiveAI(true);
 			}
 		}
 
