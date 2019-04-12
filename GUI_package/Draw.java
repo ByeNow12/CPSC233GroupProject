@@ -507,7 +507,9 @@ public class Draw extends Application {
 		playAgainLeaderboard.setStyle("-fx-font-size: 16px;");
 		//Adds labels to VBox
 		endCentre.getChildren().add(playAgainBtn);
-		endCentre.getChildren().add(saveScore);
+		if (!config.getActiveAI() || config.hasWon('w')) {
+			endCentre.getChildren().add(saveScore);
+		}
 		endCentre.getChildren().add(playAgainLeaderboard);
 
 		//Adds the VBox for labels and buttons to the BorderPane
