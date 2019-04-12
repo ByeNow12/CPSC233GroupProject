@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class AI extends ComputerPlayer {
 
 	private String[][] currentBoard;
-	private ArrayList<int[]> pieces;//stores positions of this AI's pieces
+	private ArrayList<int[]> pieces = new ArrayList<int[]>();//stores positions of this AI's pieces
 
 	public AI(char team){
 		super(team);
