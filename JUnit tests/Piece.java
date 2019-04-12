@@ -1,5 +1,3 @@
-
-
 /**
 * 2019-03-09
 * Authors: Riley
@@ -7,6 +5,14 @@
 * Returns all the possible moves for each piece
 */
 public class Piece {
+
+    public static final int PAWN_VALUE = 1;
+    public static final int BISHOP_VALUE = 3;
+    public static final int KNIGHT_VALUE = 3;
+    public static final int ROOK_VALUE = 5;
+    public static final int QUEEN_VALUE = 9;
+    public static final int KING_VALUE = 10;	//for AI purposes
+
     /** Method for calculating possible moves for rook piece based on what moves it is allowed to make
     * Creates a 8 by 8 board with valid moves marked as true and invalid moves marked as false
     * @param String[][] board, an arraylist for the board
@@ -76,9 +82,9 @@ public class Piece {
 		boolean[][] moves = new boolean[8][8];
 	    
 	    	//conditions for pawn to be able to move 2 spaces forward on first move
-		if (r == 1 && team == 'w' && board[r+2][c].equals("0")) // if the pawn is in row 1 or 6 (will be the first move the pawn makes), can move one or two spaces forward
+		if (r == 1 && team == 'w' && board[r+2][c].equals("0") && board[r+1][c].equals("0")) // if the pawn is in row 1 or 6 (will be the first move the pawn makes), can move one or two spaces forward
 			moves[r+2][c] = true;
-		if (r == 6 && team == 'b' && board[r-2][c].equals("0"))
+		if (r == 6 && team == 'b' && board[r-2][c].equals("0") && board[r-1][c].equals("0"))
 			moves[r-2][c] = true;
             	if (team == 'w' && r < 7){ //assuming white is on the top of the board
                 	if (c < 7){

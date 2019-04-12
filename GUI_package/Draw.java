@@ -24,7 +24,7 @@ import javafx.scene.layout.Pane;
 /**
 * 2019-03-24
 * Authors: Dany, Carmen, Shavonne
-* Draw class that does the drawing of the board, pieces, labels during the game and start/end menus 
+* Draw class that does the drawing of the board, pieces, labels during the game and start/end and submenus
 */
 public class Draw extends Application {
 	private Pane eventPane;
@@ -48,21 +48,30 @@ public class Draw extends Application {
 	Button goBack = new Button("Back to main menu");
 	Button goBackFromLeaderboard = new Button("Back to main menu");
 
-
-
+	/**
+	* Constructor that sets up the state of the game
+	* @param config, the parameter that contains data about the game state
+	*/
 	public Draw(GameConfiguration config){
 		this.config = config;
 	}
 
+	/**
+	* Setter for the labels that display which team is making a move
+	*/
 	public void setTeamText(){
-		if (config.getWhiteTurn() == true){
+		if (config.getWhiteTurn() == true) { //if it is team white's turn, label displays message
 			teamLabel.setText("White team's move");
 		}
-		else {
+		else { //if it is team black's turn, label displays message
 			teamLabel.setText("Black team's move");
 		}
 	}
 
+	/**
+	* Setter for the label at the end of the game indicating which team won
+	* @param t, the text displayed in the label
+	*/
 	public void setEndText(String t) {
 		endText = t;
 	}
@@ -70,15 +79,28 @@ public class Draw extends Application {
 	public void setTimeTakenText(String timeTaken) {
 		timeTakenText = timeTaken;
 	}
-	
+
+	/**
+	* Setter for the label that indicates a player made an invalid move
+	* Displayed when called in ClickHandle class if an invalid move is made
+	* @param txt, the text displayed in the label
+	*/
 	public void setErrorText(String txt) {
 		errorLabel.setText(txt);
 	}
 	
+	/**
+	* Setter for the label that indicates which team's king is in check
+	* Displayed when called in ClickHandle class when a team's king is in check
+	* @param txt, the text displayed in the label
+	*/
 	public void setCheckText(String txt) {
 		checkLabel.setText(txt);
 	}
 
+	/**
+	* Draws the pieces on the board in the default positions
+	*/
 	public void draw(){
 		String[][] board = config.getBoard().getBoardPosition();
 		//place pieces on board
@@ -129,9 +151,13 @@ public class Draw extends Application {
 		}
 	}
 
+	/**
+	* Clears the board when pieces are captured
+	*/
 	public void clear(){
 		eventPane.getChildren().clear();
 	}
+
 	/**
 	 * Draw the specified file onto screen on the specified coordinates
 	 * @param String file, the name of the file to draw.
@@ -227,14 +253,14 @@ public class Draw extends Application {
 	}
 	
 	/**
-	* Start of Draw class
+	* Start of Draw class to display the graphics of the game
+	* @param primaryStage, the Stage
 	*/
 	public void start(Stage primaryStage) throws FileNotFoundException {
 		//GAME GUI
 
 		//Image instance created, passing FileInputStream as parameter to the Image to load the image 
 		Image boardImage = new Image(new FileInputStream("graphics_package/Chessboard.png")); //parameter is the image file path
-		//file path to image depends on where you save board image
 
 		//ImageView instance created, passing Image instance as parameter
 		ImageView boardImageView = new ImageView(boardImage);
@@ -305,13 +331,11 @@ public class Draw extends Application {
 		goBack.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, startMenuCopy, config, this, 'b'));
 		goBackFromLeaderboard.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, startMenuCopy, config, this, 'b'));
 
-
 		Scene endMenu = buildEndMenuScene();
 		endMenuCopy = endMenu;
 
 		Scene enterName = buildEnterNameScene();
 		enterNameCopy = enterName;
-
 
 		//tie the mouse event to the wrapping pane. The team must be specified
 		wrap.setOnMouseClicked(new ClickHandle(this, config, primaryStage, endMenuCopy, 'w'));
@@ -324,11 +348,11 @@ public class Draw extends Application {
 	}
 
 	/**
-	 * Creates start menu, which is the first scene that players will see upon opening game
-	 * Includes welcome message and allows user to choose from 3 buttons - to play the GUI version of the game, to play the text version,
-	 * or to view the leaderboard
-	 * @return Scene for the start menu
-	 */
+	* Creates start menu, which is the first scene that players will see upon opening game
+	* Includes welcome message and allows user to choose from 3 buttons:
+	* to play the GUI version of the game, to play the text version, or to view the leaderboard
+	* @return Scene for the start menu
+	*/
 	public Scene buildStartMenuScene() {
 		// START MENU GUI
 		BorderPane startPane = new BorderPane();
@@ -377,15 +401,14 @@ public class Draw extends Application {
 		//Adds the VBox for labels and buttons to the BorderPane
 		startPane.setTop(topPane);
 		startPane.setCenter(centrePane);
-
 		return new Scene(startPane, 450, 500);
 	}
 
 	/**
-	 * builds the sub menu, which is presented upon clickin on the GUI version of the game in the start menu
-	 * users are presented with options to play a new game against a human or computer, or to load their game from a previous save
-	 * @return Scene for the sub menu
-	 */
+	* Builds the sub menu, which is presented upon clicking on the GUI version of the game in the start menu
+	* users are presented with options to play a new game against a human or computer, or to load their game from a previous save
+	* @return Scene for the sub menu
+	*/
 	public Scene buildSubMenuScene() {
 		//SUB MENU GUI
 		BorderPane subPane = new BorderPane();
@@ -408,16 +431,10 @@ public class Draw extends Application {
 		
 		newGameHuman.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, gameSceneCopy, config, this, 'g'));
 		
-		Button newGameComputer = new Button("New Game (VS computer)");
-		
-		// AI not implemented yet
-		
+		Button newGameComputer = new Button("New Game (VS computer)"); //create buttons for the submenu options
 		Button loadGame = new Button("Load Game from Save");
 		
 		loadGame.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, gameSceneCopy, config, this, 'l'));
-
-
-
 
 		//increase font size of buttons
 		newGameHuman.setStyle("-fx-font-size: 16px;");
@@ -431,15 +448,13 @@ public class Draw extends Application {
 		subCentre.getChildren().add(loadGame);
 		// this is a global variable, so we can set the button at a later point in the code
 		subCentre.getChildren().add(goBack);
-
 		subPane.setTop(subTop);
 		subPane.setCenter(subCentre);
-
 		return new Scene(subPane, 450,500);
 	}
 
-	/** Creates end menu for game. Includes message of game win/lose and gives options for player to play again
-	* player can choose from playing again (returns to start menu), saving their score or to view the leaderboard
+	/** Creates Scene for the end menu. Includes message of game win/lose and gives options for player to play again
+	* Player can choose to play again (returns to start menu), saving their score or to view the leaderboard
 	* @return Scene for end menu
 	*/
 	public Scene buildEndMenuScene() {
@@ -494,7 +509,10 @@ public class Draw extends Application {
 		return new Scene(endPane, 450, 500);
 	}
 
-	public Scene buildEnterNameScene(){
+	/**
+	* Creates a Scene for entering a player's name to the scoreboard
+	*/
+	public Scene buildEnterNameScene() {
 		BorderPane startPane = new BorderPane();
 
 		// VBox to hold welcome message and sub message labels
@@ -534,10 +552,12 @@ public class Draw extends Application {
 		//Adds the VBox for labels and buttons to the BorderPane
 		startPane.setTop(topPane);
 		startPane.setCenter(centrePane);
-
 		return new Scene(startPane, 450, 500);
 	}
 
+	/**
+	* Creates a Scene for creating the leaderboard to display the top player's high scores
+	*/
 	public Scene buildLeaderboardScene() {
 		// LEADERBOARD
 		BorderPane startPane = new BorderPane();
