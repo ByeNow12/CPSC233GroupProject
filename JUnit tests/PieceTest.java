@@ -1,13 +1,18 @@
-
 import static org.junit.Assert.*;
-
-import logic_package.Piece;
 import org.junit.Test;
 import java.util.Arrays;
 
-
+/*
+* 2019-04-11
+* Author: Riley
+* Test for Piece class
+* Tests if pieces make the correct moves by creating a String arraylist with the pieces making incorrect moves and comparing it with a boolean arraylist that indicates if the move is correct (true/false)
+*/
 public class PieceTest
 {
+    /**
+    * Tests the moves of the pawn piece
+    */
     @Test
     public void test_pawnMoves(){
         String[][] board = new String[][]
@@ -38,6 +43,10 @@ public class PieceTest
 
         assertTrue("Expected array does not match actual", Arrays.deepEquals(returned, eReturn));
     }
+    
+    /**
+    * Tests moves of the knight piece
+    */
     @Test
     public void test_knightMoves(){        
 	String[][] board = new String[][]
@@ -68,6 +77,10 @@ public class PieceTest
 
         assertTrue("Expected array does not match actual", Arrays.deepEquals(returned, eReturn));
     }
+	
+    /**
+    * Tests moves of the king piece
+    */
     @Test
     public void test_kingMoves(){        
 	String[][] board = new String[][]
@@ -98,6 +111,10 @@ public class PieceTest
 
         assertTrue("Expected array does not match actual", Arrays.deepEquals(returned, eReturn));
     }
+	
+    /**
+    * Tests moves of the rook piece
+    */
     @Test
     public void test_rookMoves(){        
 	String[][] board = new String[][]
@@ -128,6 +145,10 @@ public class PieceTest
 
         assertTrue("Expected array does not match actual", Arrays.deepEquals(returned, eReturn));
     }
+	
+    /**
+    * Tests moves of the bishop piece
+    */
     @Test
     public void test_bishopMoves(){        
 	String[][] board = new String[][]
@@ -158,6 +179,10 @@ public class PieceTest
 
         assertTrue("Expected array does not match actual", Arrays.deepEquals(returned, eReturn));
     }
+	
+    /**
+    * Tests moves of the queen piece
+    */
     @Test
     public void test_queenMoves(){        
 	String[][] board = new String[][]
