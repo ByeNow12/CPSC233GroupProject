@@ -44,8 +44,8 @@ public class Draw extends Application {
 	private Label checkLabel;
 
 	//global button so that you can go back to start menu from leaderboard and submenu later
-	Button goBack = new Button("Back to main menu");
-	Button goBackFromLeaderboard = new Button("Back to main menu");
+	private Button goBack = new Button("Back to main menu");
+	private Button goBackFromLeaderboard = new Button("Back to main menu");
 
 	/**
 	* Constructor that sets up the state of the game
@@ -357,7 +357,7 @@ public class Draw extends Application {
 		BorderPane startPane = new BorderPane();
 
 		//adds background image
-		Image bgImage = new Image("graphics_package/chessboard_stockPhoto.jpg");
+		Image bgImage = new Image("graphics_package/chessboard_stockPhoto.jpg"); //Photo by Charlie Solorzano on Unsplash.com
 		ImageView imageView = new ImageView(bgImage);
 		startPane.getChildren().addAll(imageView);
 
