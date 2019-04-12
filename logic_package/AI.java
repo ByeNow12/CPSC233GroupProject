@@ -79,7 +79,7 @@ public class AI extends ComputerPlayer {
 			else if (best > -1 && moves[i][0] > moves[best][0]) best = i;
   		}
 		if (best > -1){
-			return new Move("AI", pieces.get(best)[0], pieces.get(best)[1], moves[best][0], moves[best][1]);
+			return new Move("AI", pieces.get(best)[0], pieces.get(best)[1], moves[best][1], moves[best][2]);
 		}
 
 		for (int i = 0; i < pieces.size(); i++){
@@ -88,7 +88,7 @@ public class AI extends ComputerPlayer {
 			else if (best > -1 && moves[i][0] > moves[best][0]) best = i;
   		}
 		if (best > -1){
-			return new Move("AI", pieces.get(best)[0], pieces.get(best)[1], moves[best][0], moves[best][1]);
+			return new Move("AI", pieces.get(best)[0], pieces.get(best)[1], moves[best][1], moves[best][2]);
 		}
 		
 		return defaultMove(currentBoard, team, pieces, currentConfig);
@@ -239,6 +239,8 @@ public class AI extends ComputerPlayer {
 			}
 		}
 
+		if (move[0] == -1) pValue = -1;
+
 		return new int[] {pValue, move[0], move[1]};
 	}
 
@@ -291,6 +293,8 @@ public class AI extends ComputerPlayer {
 				move[1] = col;
 			}
 		}
+
+		if (move[0] == -1) pValue = -1;
 
 		return new int[] {pValue, move[0], move[1]};
 	}
