@@ -356,6 +356,11 @@ public class Draw extends Application {
 		// START MENU GUI
 		BorderPane startPane = new BorderPane();
 
+		//adds background image
+		Image bgImage = new Image("graphics_package/chessboard_stockPhoto.jpg");
+		ImageView imageView = new ImageView(bgImage);
+		startPane.getChildren().addAll(imageView);
+
 		// Labels on start menu - VBox to hold welcome message and sub message labels
 		VBox topPane = new VBox(15);
 		topPane.setAlignment(Pos.TOP_CENTER); //aligns VBox to centre so that labels are centered
@@ -367,6 +372,9 @@ public class Draw extends Application {
 		welcomeMessage.setStyle("-fx-font-size: 40px;");
 		authors.setStyle("-fx-font-size: 16px;");
 		subMessage.setStyle("-fx-font-size: 20px;");
+		welcomeMessage.setTextFill(Color.WHITE);
+		authors.setTextFill(Color.WHITE);
+		subMessage.setTextFill(Color.WHITE);
 		//adds labels to VBox
 		topPane.getChildren().add(welcomeMessage);
 		topPane.getChildren().add(authors);

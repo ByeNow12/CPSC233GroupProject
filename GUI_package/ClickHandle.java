@@ -32,6 +32,10 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 		this.scene = scene;
 	}
 
+	/**
+	 * handles the mouse action in the game
+	 * @param event
+	 */
 	@Override
 	public void handle(MouseEvent event){
 		Board board = config.getBoard();
@@ -117,6 +121,11 @@ public class ClickHandle implements EventHandler<MouseEvent> {
 		}
 	}
 
+	/**
+	 * converts time player takes to finish game in miliseconds to a readable form, as hours:minutes:seconds
+	 * @param timeMillis, time in miliseconds
+	 * @return readableTime, time in the format hh:mm:ss
+	 */
 	public String convertToReadableTime(long timeMillis){
 		String readableTime = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(timeMillis),
 				TimeUnit.MILLISECONDS.toMinutes(timeMillis) % TimeUnit.HOURS.toMinutes(1),

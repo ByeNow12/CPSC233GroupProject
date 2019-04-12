@@ -436,7 +436,7 @@ public class GameConfiguration {
 	public void setWinningTime(long winningTime) {
 		this.winningTime = winningTime;
 	}
-	
+
 	public static void main(String[] args) {
 		GameConfiguration config = new GameConfiguration();
 		config.getBoard().defaultPositions();
