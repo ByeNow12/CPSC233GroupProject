@@ -8,7 +8,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import logic_package.*;
-
 import javafx.application.Application;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -60,7 +59,7 @@ public class Draw extends Application {
 	* Setter for the labels that display which team is making a move
 	*/
 	public void setTeamText(){
-		if (config.getWhiteTurn() == true) { //if it is team white's turn, label displays message
+		if (config.getWhiteTurn()) { //if it is team white's turn, label displays message
 			teamLabel.setText("White team's move");
 		}
 		else { //if it is team black's turn, label displays message
