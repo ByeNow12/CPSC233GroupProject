@@ -1,7 +1,6 @@
 package logic_package;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.FileWriter;
@@ -30,7 +29,10 @@ public class GameConfiguration {
 	private TextField enterPlayerName = new TextField();
 	private Label namesAndScores = new Label("names and scores here");
 
-	//Constructor
+	/**
+	 * Constructor for game configuration. Creates new board object, sets board to default positions,
+	 * creates new leaderboard object and sets white team's turn as true
+	 */
 	public GameConfiguration() {
 		board = new Board();
 		board.defaultPositions();
@@ -83,6 +85,10 @@ public class GameConfiguration {
 		whiteTurn = !whiteTurn;  	//this way it will cycle between white and black team's turns
 	}
 
+	/**
+	 * "Promotes" pawn to a queen type piece when it reaches the other side of the board
+	 * Checks the board for a pawn at the opposite side of the board
+	 */
 	public void promotion(){
 		for (int i = 0; i <=7; i++){
 		  if (board.getBoardPositionPieceInfo(0,i).equals("b_Pa")){
@@ -92,7 +98,6 @@ public class GameConfiguration {
 			  board.setBoardPositions(7,i,"w_Qu");
 		}
 		}
-
 	}
 
 	/**
@@ -125,11 +130,8 @@ public class GameConfiguration {
 
 		String pieceType = token.substring(2);
 		String[][] boardPositions = board.getBoardPosition();
-		/*if (Character.toUpperCase(pieceColor) != move.getTeam().charAt(0)) {
-						System.out.println("This is the problem");
-			return false;
-		}
-		else */if (pieceType.equals("Ro")) {
+
+		if (pieceType.equals("Ro")) {
 			return Piece.calculateRookMoves(boardPositions, lastMove, pieceColor)[currentMove[0]][currentMove[1]];
 		}
 		else if (pieceType.equals("Kn")) {
@@ -305,6 +307,10 @@ public class GameConfiguration {
 		return isCheckMateBool;
 	}
 
+	/**
+	 * saves current game as savegame.txt, formats into "<colour>_<piecetype>" and writes 0 if the square is empty
+	 * @throws IOException
+	 */
 	public void save() throws IOException{	//only call at the end when you want to save and exit
 		File file = new File("savegame.txt");
 		file.createNewFile();
@@ -326,6 +332,9 @@ public class GameConfiguration {
 		bw.close();
 	}
 
+	/**
+	 * loads saved game from savegame.txt and sets board positions according to what the pieces are
+	 */
 	public boolean load() throws IOException{
 		File file = new File("savegame.txt");
 		if (file.createNewFile()){
@@ -350,47 +359,84 @@ public class GameConfiguration {
 		return true;
 	}
 
+	/**
+	 * takes the current time in milliseconds
+	 */
 	public void takeTime(){
 		this.turnStartTime = System.currentTimeMillis();
 	}
 
+	/**
+	 * resets the time to 0 for both players, so that when a second game is played, the time does not compound
+	 */
 	public void resetPlayerTimes(){
 		totalBlackTime = 0;
 		totalWhiteTime = 0;
 	}
 
+	/**
+	 * returns the total time that white team player spent making moves before winning game
+	 * @return totalWhiteTime as a long
+	 */
 	public long getTotalWhiteTime(){
 		return totalWhiteTime;
 	}
 
+	/**
+	 * returns the total time that black team player spent making moves before winning game
+	 * @return totalBlackTime as a long
+	 */
 	public long getTotalBlackTime(){
 		return totalBlackTime;
 	}
 
+	/**
+	 * Player's name can be entered
+	 * @return enterPlayerName as a String
+	 */
 	public TextField getEnterPlayerName() {
 		return enterPlayerName;
 	}
 
+	/**
+	 * gets label of the player's name and score
+	 * @return namesAndScores as a label
+	 */
 	public Label getNamesAndScores(){
 		return namesAndScores;
 	}
 
+	/**
+	 * Updates names and scores of leaderboard, calls method from leaderboard that converts the text file to readable string
+	 */
 	public void updateNamesAndScores (){
 		this.namesAndScores.setText(leaderboard.toReadableString());
 	}
 
+	/**
+	 * Gets leaderboard object
+	 * @return leaderboard
+	 */
 	public Leaderboard getLeaderboard(){
 		return leaderboard;
 	}
 
+	/**
+	 * gets the total time it took for winner to finish game
+	 * @return winninTime as long, in miliseconds
+	 */
 	public long getWinningTime() {
 		return winningTime;
 	}
 
+	/**
+	 * sets winning time to the winning time in the argument
+	 * @param winningTime, the time in miliseconds as a long
+	 */
 	public void setWinningTime(long winningTime) {
 		this.winningTime = winningTime;
 	}
-
+	
 	public static void main(String[] args) {
 		GameConfiguration config = new GameConfiguration();
 		config.getBoard().defaultPositions();
