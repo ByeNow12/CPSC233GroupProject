@@ -439,6 +439,7 @@ public class Draw extends Application {
 		newGameHuman.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, gameSceneCopy, config, this, 'g'));
 		
 		Button newGameComputer = new Button("New Game (VS computer)"); //create buttons for the submenu options
+		newGameComputer.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, gameSceneCopy, config, this, 'c'));
 		Button loadGame = new Button("Load Game from Save");
 		
 		loadGame.setOnMouseClicked(new GameConfigClickHandle(primaryStageCopy, gameSceneCopy, config, this, 'l'));
